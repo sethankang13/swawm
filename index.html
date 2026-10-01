@@ -11,7 +11,8 @@
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--font)}
+body{margin:0;background:radial-gradient(circle at 10% 6%,rgba(255,107,94,.17) 0,transparent 36%),radial-gradient(circle at 94% 16%,rgba(191,232,212,.6) 0,transparent 40%),radial-gradient(circle at 84% 96%,rgba(255,107,94,.13) 0,transparent 38%),radial-gradient(circle at 4% 90%,rgba(191,232,212,.5) 0,transparent 40%),radial-gradient(rgba(23,32,51,.08) 1.3px,transparent 1.5px) 0 0/22px 22px,var(--bg);background-attachment:fixed;color:var(--fg);font:16px/1.5 var(--font)}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--acc),var(--avail),var(--pri));z-index:5}
 h1,h2{color:var(--pri)}h1{font-weight:800}h2{border-left:4px solid var(--acc);padding-left:10px}
 input:focus,select:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
 button:hover{filter:brightness(1.3)}
@@ -73,18 +74,22 @@ function hourLabel(h){var x=h%24,s=x>=12?'PM':'AM';x=x%12||12;return x+(h%1?':30
 function slotLabel(i){var m=i*30,h=Math.floor(m/60),mm=m%60;return hourLabel(h+(mm?0.5:0))}
 function localId(){try{var v=localStorage.getItem('ms_id');if(!v){v='g'+Math.random().toString(36).slice(2,10);localStorage.setItem('ms_id',v)}return v}catch(e){return 'g'+Math.random().toString(36).slice(2,10)}}
 function slug(n){return n.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||'anon'}
+var mem=[];
+function myEvents(){try{var v=JSON.parse(localStorage.getItem('swawm_events')||'[]');return Array.isArray(v)?v:[]}catch(e){return mem}}
+function saveMine(a){mem=a;try{localStorage.setItem('swawm_events',JSON.stringify(a.slice(0,100)))}catch(e){}}
+function addMine(id){saveMine([id].concat(myEvents().filter(function(x){return x!==id})))}
 function clear(){unsubs.forEach(function(u){try{u()}catch(e){}});unsubs=[]}
 function evId(){var m=location.hash.match(/event=([\w-]+)/);return m?m[1]:null}
 
 function home(){
   clear();
   var t=new Date(),n=new Date();n.setDate(n.getDate()+6);
-  app.innerHTML='<h1>SWAWM: So When Are We Meeting?</h1><p class="sub">Create an event, share this page, and everyone marks when they\'re free.</p>'+
+  app.innerHTML='<h1>SWAWM: So When Are We Meeting?</h1><p class="sub">Create an event, copy its link, and send it around. Everyone marks when they\'re free.</p>'+
   '<div class="card"><h2>New event</h2><label>Event name</label><input id="ti" placeholder="Click here to name the event">'+
   '<div class="row"><div><label>First day</label><input type="date" id="d1" value="'+iso(t)+'"></div><div><label>Last day</label><input type="date" id="d2" value="'+iso(n)+'"></div>'+
   '<div><label>Earliest</label><select id="h1"></select></div><div><label>Latest</label><select id="h2"></select></div></div>'+
   '<p style="margin:14px 0 0"><button id="mk">Create event</button></p><p class="msg" id="err"></p></div>'+
-  '<div class="card"><h2>Events</h2><div id="list"><span class="msg">Loading…</span></div></div>';
+  '<div class="card"><h2>Your events</h2><div id="list"><span class="msg">Loading…</span></div></div>';
   var o='';for(var h=0;h<=24;h++)o+='<option value="'+h+'">'+(h==24?'12 AM (end)':hourLabel(h))+'</option>';
   h1.innerHTML=o;h2.innerHTML=o;h1.value=9;h2.value=17;
   mk.onclick=function(){
@@ -94,27 +99,34 @@ function home(){
     if(e<=s){err.textContent='Latest must be after earliest.';return}
     var dates=[];for(var d=new Date(a);d<=b;d.setDate(d.getDate()+1))dates.push(iso(d));
     db.collection('events').add({title:ti.value.trim()||'Untitled event',dates:dates,start:s,end:e,created:Date.now(),owner:uid})
-     .then(function(r){location.hash='event='+r.id}).catch(function(x){err.textContent='Could not create: '+(x&&x.message||x)});
+     .then(function(r){addMine(r.id);location.hash='event='+r.id}).catch(function(x){err.textContent='Could not create: '+(x&&x.message||x)});
   };
-  unsubs.push(db.collection('events').orderBy('created','desc').limit(50).onSnapshot(function(s){
-    list.innerHTML=s.empty?'<span class="msg">No events yet.</span>':'';
-    s.docs.forEach(function(d){var v=d.data(),e=document.createElement('div');e.className='ev';
+  var ids=myEvents();
+  if(!ids.length)list.innerHTML='<span class="msg">Events you create or respond to on this device will show up here.</span>';
+  else Promise.all(ids.map(function(i){return db.doc('events/'+i).get().catch(function(){return null})})).then(function(ds){
+    var live=ds.filter(function(d){return d&&d.exists});
+    saveMine(ids.filter(function(_,n){return !ds[n]||ds[n].exists}));
+    live.sort(function(a,b){return (b.data().created||0)-(a.data().created||0)});
+    list.innerHTML=live.length?'':'<span class="msg">No events yet.</span>';
+    live.forEach(function(d){var v=d.data(),e=document.createElement('div');e.className='ev';
       e.innerHTML='<span>'+esc(v.title)+'<br><small>'+v.dates.length+' day(s) · '+hourLabel(v.start)+'–'+hourLabel(v.end)+'</small></span><span>›</span>';
       e.onclick=function(){location.hash='event='+d.id};list.appendChild(e)});
-  },function(e){list.innerHTML='<span class="msg">Could not load events: '+esc(String(e&&e.message||e))+'</span>'}));
-  var tm=setTimeout(function(){var l=document.getElementById('list');if(l&&l.textContent==='Loading…')l.innerHTML='<span class="msg">Still can\'t reach the database. Check that the Firestore rules are published, the config values are correct, the database is named (default), and nothing is blocking firestore.googleapis.com.</span>'},8000);
-  unsubs.push(function(){clearTimeout(tm)});
+  });
 }
 
 function eventView(id){
   clear();
-  var ev=null,resp={},mine={},myName='',dirty=false,mode=null;
-  app.innerHTML='<button class="back" id="bk">‹ All events</button><h1 id="et">…</h1><p class="sub">Times shown in your local time zone. Click or drag to paint when you\'re free.</p>'+
-  '<div class="card"><div class="row"><div><label>Your name</label><input id="nm" placeholder="Your name"></div><div style="flex:0;align-self:flex-end"><button id="sv">Save availability</button></div></div><p class="msg" id="st"></p></div>'+
+  var ev=null,resp={},mine={},myName='',loadedSlug=null,dirty=false,mode=null;
+  app.innerHTML='<button class="back" id="bk">‹ All events</button><h1 id="et">…</h1><p style="margin:0 0 12px"><button class="ghost" id="cp">🔗 Copy event link</button> <span class="msg" id="cpm"></span></p><p class="sub">Times shown in your local time zone. Click or drag to paint when you\'re free.</p>'+
+  '<div class="card"><div class="row"><div><label>Your name</label><input id="nm" placeholder="Your name"></div><div style="flex:0;align-self:flex-end"><button id="sv">Save availability</button></div></div><p class="msg" id="st">Tip: to change your answer later, enter the same name and your saved times will load.</p></div>'+
   '<div class="grids"><div class="card"><h2>Your availability</h2><div class="scroll" id="g1"></div></div>'+
   '<div class="card"><h2>Group availability</h2><div class="scroll" id="g2"></div><div class="leg" id="lg"></div><div id="who">Hover a time to see who\'s available.</div></div></div>'+
   '<div class="card"><h2>Best times</h2><ol class="best" id="best"></ol></div><p><button class="ghost danger" id="del" style="display:none">Delete event</button></p>';
   bk.onclick=function(){location.hash=''};
+  cp.onclick=function(){var u=location.href;
+    function ok(){cp.textContent='✓ Link copied';cpm.textContent='';setTimeout(function(){cp.textContent='🔗 Copy event link'},2000)}
+    function fb(){var t=document.createElement('textarea');t.value=u;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();var r=false;try{r=document.execCommand('copy')}catch(e){}document.body.removeChild(t);if(r)ok();else cpm.textContent=u}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(ok,fb);else fb()};
   var ref=db.doc('events/'+id);
   var first=true;
   function slots(){var a=[];for(var i=ev.start*2;i<ev.end*2;i++)a.push(i);return a}
@@ -164,7 +176,7 @@ function eventView(id){
     try{localStorage.setItem('ms_name',name)}catch(e){}
     st.textContent='Saving…';
     db.doc('events/'+id+'/responses/'+slug(name)).set({name:name,slots:Object.keys(mine),updated:Date.now()})
-      .then(function(){dirty=false;st.textContent='Saved ✓'})
+      .then(function(){addMine(id);dirty=false;st.textContent='Saved ✓'})
       .catch(function(x){st.textContent='Could not save: '+(x&&x.message||x)})
   };
   var armed=false;
@@ -176,14 +188,20 @@ function eventView(id){
       .then(function(){clear();return ref.delete()}).then(function(){location.hash=''})
       .catch(function(x){del.disabled=false;del.textContent='Delete event';st.textContent='Could not delete: '+(x&&x.message||x)});
   };
-  nm.onchange=function(){var m=resp[slug(nm.value)];if(m&&!dirty){mine={};(m.slots||[]).forEach(function(k){mine[k]=1});paintMine();st.textContent='Loaded your saved response'}};
+  function loadMine(m){mine={};(m.slots||[]).forEach(function(k){mine[k]=1});dirty=false;loadedSlug=slug(nm.value);paintMine();st.textContent='Loaded your saved response. Edit it, then click Save.'}
+  function checkName(){var sg=slug(nm.value);
+    if(loadedSlug&&sg!==loadedSlug){mine={};dirty=false;loadedSlug=null;paintMine();st.textContent=''}
+    var m=nm.value.trim()&&resp[sg];if(!m||sg===loadedSlug)return;
+    if(!dirty)loadMine(m);
+    else{st.innerHTML='A response for this name already exists. <button class="back" id="ld" style="margin:0">Load it</button> (replaces what you painted)';document.getElementById('ld').onclick=function(){loadMine(m)}}}
+  nm.oninput=checkName;nm.onchange=checkName;
   try{nm.value=localStorage.getItem('ms_name')||''}catch(e){}
   unsubs.push(ref.onSnapshot(function(s){
     if(!s.exists){et.textContent='Event not found';return}
     if(first){ev=s.data();first=false;et.textContent=ev.title;var own=false;try{own=!!(user&&user.isOwner&&user.isOwner())}catch(e){}if(!ev.owner||ev.owner===uid||own)del.style.display='';build(g1,true);build(g2,false);wire();paintMine();paintGroup();
       unsubs.push(db.collection('events/'+id+'/responses').onSnapshot(function(q){
         resp={};q.docs.forEach(function(d){resp[d.id]=d.data()});
-        var m=resp[slug(nm.value)];if(m&&!dirty){mine={};(m.slots||[]).forEach(function(k){mine[k]=1});if(!nm.value)nm.value=m.name||'';paintMine()}
+        var m=resp[slug(nm.value)];if(m&&!dirty){mine={};(m.slots||[]).forEach(function(k){mine[k]=1});if(!nm.value)nm.value=m.name||'';loadedSlug=slug(nm.value);paintMine()}
         paintGroup();
       },function(){st.textContent='Could not load responses.'}));
     }
