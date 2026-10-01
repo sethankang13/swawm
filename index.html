@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MeetSync – find a time that works</title>
+<title>SWAWM: So When Are We Meeting</title>
 <style>
 :root{--bg:#f2f6fb;--fg:#2a3a56;--mut:#6f809b;--card:#fcfdff;--line:#d6e0ed;--acc:#3f6ba8;--accfg:#fff;--none:#e6edf6;--mine:#6e98cc;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -35,7 +35,7 @@ table.g{border-collapse:separate;border-spacing:2px;font:11px system-ui,sans-ser
 .leg{display:flex;align-items:center;gap:6px;font:12px system-ui,sans-serif;color:var(--mut);margin-top:8px}
 .leg i{width:14px;height:14px;border-radius:3px;display:inline-block}
 #who{min-height:60px;font:14px system-ui,sans-serif;margin-top:10px;padding:10px;border-radius:8px;background:var(--none)}
-.best li{font:14px system-ui,sans-serif;margin:3px 0}
+.best li{font:14px/1.6 system-ui,sans-serif;margin:0 0 14px}
 .back{background:none;border:0;color:var(--acc);padding:0;margin-bottom:10px}
 button.danger{color:#b4534f;border-color:#b4534f}
 .best a{color:var(--acc);font-weight:600;text-decoration:none;white-space:nowrap}
@@ -75,8 +75,8 @@ function evId(){var m=location.hash.match(/event=([\w-]+)/);return m?m[1]:null}
 function home(){
   clear();
   var t=new Date(),n=new Date();n.setDate(n.getDate()+6);
-  app.innerHTML='<h1>MeetSync</h1><p class="sub">Create an event, share this page, and everyone marks when they\'re free.</p>'+
-  '<div class="card"><h2>New event</h2><label>Event name</label><input id="ti" placeholder="Team sync">'+
+  app.innerHTML='<h1>SWAWM: So When Are We Meeting</h1><p class="sub">Create an event, share this page, and everyone marks when they\'re free.</p>'+
+  '<div class="card"><h2>New event</h2><label>Event name</label><input id="ti" placeholder="Click here to name the event">'+
   '<div class="row"><div><label>First day</label><input type="date" id="d1" value="'+iso(t)+'"></div><div><label>Last day</label><input type="date" id="d2" value="'+iso(n)+'"></div>'+
   '<div><label>Earliest</label><select id="h1"></select></div><div><label>Latest</label><select id="h2"></select></div></div>'+
   '<p style="margin:14px 0 0"><button id="mk">Create event</button></p><p class="msg" id="err"></p></div>'+
@@ -108,7 +108,7 @@ function eventView(id){
   app.innerHTML='<button class="back" id="bk">‹ All events</button><h1 id="et">…</h1><p class="sub">Times shown in your local time zone. Click or drag to paint when you\'re free.</p>'+
   '<div class="card"><div class="row"><div><label>Your name</label><input id="nm" placeholder="Your name"></div><div style="flex:0;align-self:flex-end"><button id="sv">Save availability</button></div></div><p class="msg" id="st"></p></div>'+
   '<div class="grids"><div class="card"><h2>Your availability</h2><div class="scroll" id="g1"></div></div>'+
-  '<div class="card"><h2>Group availability</h2><div class="scroll" id="g2"></div><div class="leg" id="lg"></div><div id="who">Hover a time to see who\'s free.</div></div></div>'+
+  '<div class="card"><h2>Group availability</h2><div class="scroll" id="g2"></div><div class="leg" id="lg"></div><div id="who">Hover a time to see who\'s available.</div></div></div>'+
   '<div class="card"><h2>Best times</h2><ol class="best" id="best"></ol></div><p><button class="ghost danger" id="del" style="display:none">Delete event</button></p>';
   bk.onclick=function(){location.hash=''};
   var ref=db.doc('events/'+id);
@@ -140,12 +140,12 @@ function eventView(id){
       slots().concat([-1]).forEach(function(i){var n=i<0?0:(x.c[key(d,i)]||0);
         if(n===max){if(!run)run={s:i,e:i};else run.e=i}else if(run){out.push({d:d,s:run.s,e:run.e+1,l:run.e-run.s+1});run=null}})});
     out.sort(function(a,b){return b.l-a.l});
-    best.innerHTML=out.length?out.slice(0,5).map(function(o){var p=parse(o.d);
-      return '<li><b>'+DOW[p.getDay()]+' '+(p.getMonth()+1)+'/'+p.getDate()+'</b>, '+slotLabel(o.s)+' – '+slotLabel(o.e)+' · '+max+' of '+tot+' free · <a href="'+gcal(o)+'" target="_blank" rel="noopener">+ Google Calendar</a></li>'}).join(''):'<li style="list-style:none">No responses yet.</li>';
+    best.innerHTML=out.length?out.slice(0,3).map(function(o){var p=parse(o.d);
+      return '<li><b>'+DOW[p.getDay()]+' '+(p.getMonth()+1)+'/'+p.getDate()+'</b>, '+slotLabel(o.s)+' – '+slotLabel(o.e)+' · '+max+' of '+tot+' available · <a href="'+gcal(o)+'" target="_blank" rel="noopener">+ Google Calendar</a></li>'}).join(''):'<li style="list-style:none">No responses yet.</li>';
   }
   function showWho(k){var x=counts(),w=x.w[k]||[],all=Object.keys(resp).map(function(u){return resp[u].name||'Anonymous'});
     var no=all.filter(function(n){return w.indexOf(n)<0});
-    who.innerHTML='<b>Free ('+w.length+'):</b> '+(w.map(esc).join(', ')||'—')+'<br><b>Busy ('+no.length+'):</b> '+(no.map(esc).join(', ')||'—')}
+    who.innerHTML='<b>Available ('+w.length+'):</b> '+(w.map(esc).join(', ')||'—')+'<br><b>Unavailable ('+no.length+'):</b> '+(no.map(esc).join(', ')||'—')}
   function wire(){
     var g1=document.getElementById('g1'),g2=document.getElementById('g2');
     function cell(e){var t=document.elementFromPoint(e.clientX,e.clientY);return t&&t.closest&&t.closest('#g1 td')}
@@ -191,8 +191,8 @@ window.addEventListener('hashchange',route);
 
 (function(){
   var ok=typeof firebase!=='undefined'&&typeof FIREBASE_CONFIG!=='undefined'&&FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.apiKey.indexOf('PASTE')<0;
-  if(!ok){app.innerHTML='<h1>MeetSync</h1><p class="sub">Setup problem: either the Firebase config near the top of this file still has PASTE placeholders or is malformed (every value needs quotes), or the Firebase library was blocked from loading.</p>';return}
-  try{firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore();db.settings({experimentalForceLongPolling:true,useFetchStreams:false})}catch(e){app.innerHTML='<h1>MeetSync</h1><p class="sub">Could not connect to Firebase: '+esc(String(e.message||e))+'</p>';return}
+  if(!ok){app.innerHTML='<h1>SWAWM: So When Are We Meeting</h1><p class="sub">Setup problem: either the Firebase config near the top of this file still has PASTE placeholders or is malformed (every value needs quotes), or the Firebase library was blocked from loading.</p>';return}
+  try{firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore();db.settings({experimentalForceLongPolling:true,useFetchStreams:false})}catch(e){app.innerHTML='<h1>SWAWM: So When Are We Meeting</h1><p class="sub">Could not connect to Firebase: '+esc(String(e.message||e))+'</p>';return}
   uid=localId();
   route();
 })();
