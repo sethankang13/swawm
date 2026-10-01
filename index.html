@@ -3,43 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SWAWM: So When Are We Meeting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<title>SWAWM: So When Are We Meeting?</title>
 <style>
-:root{--bg:#f2f6fb;--fg:#2a3a56;--mut:#6f809b;--card:#fcfdff;--line:#d6e0ed;--acc:#3f6ba8;--accfg:#fff;--none:#e6edf6;--mine:#6e98cc;
+:root{--bg:#F7F8FA;--fg:#252936;--mut:#6B7283;--card:#FFF9F2;--line:#EADFCF;--pri:#172033;--acc:#FF6B5E;--none:#E9ECF1;--avail:#BFE8D4;--availd:#55B98C;--font:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#172034;--fg:#dce5f2;--mut:#8ea0bd;--card:#212c45;--line:#31405e;--acc:#7aa2d6;--accfg:#14203a;--none:#2a3753;--mine:#6b93c8}}
-:root[data-theme="dark"]{--bg:#172034;--fg:#dce5f2;--mut:#8ea0bd;--card:#212c45;--line:#31405e;--acc:#7aa2d6;--accfg:#14203a;--none:#2a3753;--mine:#6b93c8}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 Georgia,"Iowan Old Style",serif}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--font)}
+h1,h2{color:var(--pri)}h1{font-weight:800}h2{border-left:4px solid var(--acc);padding-left:10px}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+button:hover{filter:brightness(1.3)}
+.best li::marker{color:var(--acc);font-weight:800}
 main{max-width:980px;margin:0 auto;padding:20px 16px 48px}
 h1{font-size:28px;margin:0 0 4px;letter-spacing:-.5px}h2{font-size:19px;margin:0 0 10px}
-.sub{color:var(--mut);margin:0 0 20px;font-family:system-ui,sans-serif;font-size:14px}
+.sub{color:var(--mut);margin:0 0 20px;font-family:var(--font);font-size:14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
-label{display:block;font:600 12px system-ui,sans-serif;color:var(--mut);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.5px}
-input,select{font:15px system-ui,sans-serif;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
+label{display:block;font:600 12px var(--font);color:var(--mut);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+input,select{font:15px var(--font);padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
 .row{display:flex;gap:10px;flex-wrap:wrap}.row>div{flex:1;min-width:130px}
-button{font:600 14px system-ui,sans-serif;padding:9px 16px;border-radius:8px;border:1px solid var(--acc);background:var(--acc);color:var(--accfg);cursor:pointer}
-button.ghost{background:transparent;color:var(--acc)}
-.ev{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);cursor:pointer;font-family:system-ui,sans-serif}
+button{font:600 14px var(--font);padding:9px 16px;border-radius:8px;border:1px solid var(--pri);background:var(--pri);color:#fff;cursor:pointer}
+button.ghost{background:transparent;color:var(--pri)}
+.ev{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);cursor:pointer;font-family:var(--font)}
 .ev:first-of-type{border-top:0}.ev small{color:var(--mut)}
 .grids{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:760px){.grids{grid-template-columns:1fr}}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table.g{border-collapse:separate;border-spacing:2px;font:11px system-ui,sans-serif;user-select:none;-webkit-user-select:none;touch-action:none}
+table.g{border-collapse:separate;border-spacing:2px;font:11px var(--font);user-select:none;-webkit-user-select:none;touch-action:none}
 .g th{font-weight:600;color:var(--mut);padding:2px 4px;white-space:nowrap}
 .g th.t{text-align:right;font-weight:400;vertical-align:top;height:0}
 .g td{min-width:44px;height:18px;border-radius:3px;background:var(--none)}
 .g td.hr{border-top:1px solid var(--line)}
-.g td.on{background:var(--mine)}
-.leg{display:flex;align-items:center;gap:6px;font:12px system-ui,sans-serif;color:var(--mut);margin-top:8px}
+.g td.on{background:var(--avail);box-shadow:inset 0 0 0 1px var(--availd)}
+.leg{display:flex;align-items:center;gap:6px;font:12px var(--font);color:var(--mut);margin-top:8px}
 .leg i{width:14px;height:14px;border-radius:3px;display:inline-block}
-#who{min-height:60px;font:14px system-ui,sans-serif;margin-top:10px;padding:10px;border-radius:8px;background:var(--none)}
-.best li{font:14px/1.6 system-ui,sans-serif;margin:0 0 14px}
-.back{background:none;border:0;color:var(--acc);padding:0;margin-bottom:10px}
-button.danger{color:#b4534f;border-color:#b4534f}
-.best a{color:var(--acc);font-weight:600;text-decoration:none;white-space:nowrap}
-.msg{font:13px system-ui,sans-serif;color:var(--mut);margin-top:8px}
+#who{min-height:60px;font:14px var(--font);margin-top:10px;padding:10px;border-radius:8px;background:var(--none)}
+.best li{font:14px/1.6 var(--font);margin:0 0 14px}
+.back{background:none;border:0;color:var(--pri);font-weight:700;padding:0;margin-bottom:10px}
+button.danger{color:#C73E33;border-color:#C73E33}
+.best a{color:var(--pri);font-weight:700;text-decoration:underline;text-decoration-color:var(--acc);text-decoration-thickness:2px;text-underline-offset:3px;white-space:nowrap}
+.msg{font:13px var(--font);color:var(--mut);margin-top:8px}
 </style>
 </head>
 <body>
@@ -75,7 +79,7 @@ function evId(){var m=location.hash.match(/event=([\w-]+)/);return m?m[1]:null}
 function home(){
   clear();
   var t=new Date(),n=new Date();n.setDate(n.getDate()+6);
-  app.innerHTML='<h1>SWAWM: So When Are We Meeting</h1><p class="sub">Create an event, share this page, and everyone marks when they\'re free.</p>'+
+  app.innerHTML='<h1>SWAWM: So When Are We Meeting?</h1><p class="sub">Create an event, share this page, and everyone marks when they\'re free.</p>'+
   '<div class="card"><h2>New event</h2><label>Event name</label><input id="ti" placeholder="Click here to name the event">'+
   '<div class="row"><div><label>First day</label><input type="date" id="d1" value="'+iso(t)+'"></div><div><label>Last day</label><input type="date" id="d2" value="'+iso(n)+'"></div>'+
   '<div><label>Earliest</label><select id="h1"></select></div><div><label>Latest</label><select id="h2"></select></div></div>'+
@@ -129,8 +133,8 @@ function eventView(id){
     var x=counts(),tot=Object.keys(resp).length,max=0;
     Object.keys(x.c).forEach(function(k){if(x.c[k]>max)max=x.c[k]});
     document.querySelectorAll('#g2 td').forEach(function(td){var n=x.c[td.dataset.k]||0;
-      td.style.background=n?'color-mix(in srgb,var(--acc) '+Math.round(20+80*n/Math.max(max,1))+'%,var(--card))':'';td.title=n+' available'});
-    lg.innerHTML='<span>0</span><i style="background:var(--none)"></i><i style="background:color-mix(in srgb,var(--acc) 35%,var(--card))"></i><i style="background:var(--acc)"></i><span>'+max+' of '+tot+' people</span>';
+      td.style.background=n?'color-mix(in srgb,var(--availd) '+Math.round(100*(n-1)/Math.max(max-1,1))+'%,var(--avail))':'';td.title=n+' available'});
+    lg.innerHTML='<span>0</span><i style="background:var(--none)"></i><i style="background:var(--avail)"></i><i style="background:var(--availd)"></i><span>'+max+' of '+tot+' people</span>';
     // best windows: longest runs of max availability, per day
     function stamp(d,i){var p=parse(d),t=new Date(p.getFullYear(),p.getMonth(),p.getDate(),0,i*30);return iso(t).replace(/-/g,'')+'T'+String(t.getHours()).padStart(2,'0')+String(t.getMinutes()).padStart(2,'0')+'00'}
     function gcal(o){var names=x.w[key(o.d,o.s)]||[];
@@ -191,8 +195,8 @@ window.addEventListener('hashchange',route);
 
 (function(){
   var ok=typeof firebase!=='undefined'&&typeof FIREBASE_CONFIG!=='undefined'&&FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.apiKey.indexOf('PASTE')<0;
-  if(!ok){app.innerHTML='<h1>SWAWM: So When Are We Meeting</h1><p class="sub">Setup problem: either the Firebase config near the top of this file still has PASTE placeholders or is malformed (every value needs quotes), or the Firebase library was blocked from loading.</p>';return}
-  try{firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore();db.settings({experimentalForceLongPolling:true,useFetchStreams:false})}catch(e){app.innerHTML='<h1>SWAWM: So When Are We Meeting</h1><p class="sub">Could not connect to Firebase: '+esc(String(e.message||e))+'</p>';return}
+  if(!ok){app.innerHTML='<h1>SWAWM: So When Are We Meeting?</h1><p class="sub">Setup problem: either the Firebase config near the top of this file still has PASTE placeholders or is malformed (every value needs quotes), or the Firebase library was blocked from loading.</p>';return}
+  try{firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore();db.settings({experimentalForceLongPolling:true,useFetchStreams:false})}catch(e){app.innerHTML='<h1>SWAWM: So When Are We Meeting?</h1><p class="sub">Could not connect to Firebase: '+esc(String(e.message||e))+'</p>';return}
   uid=localId();
   route();
 })();
