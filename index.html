@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MeetSync – find a time that works</title>
+<style>
+:root{--bg:#f2f6fb;--fg:#2a3a56;--mut:#6f809b;--card:#fcfdff;--line:#d6e0ed;--acc:#3f6ba8;--accfg:#fff;--none:#e6edf6;--mine:#6e98cc;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#172034;--fg:#dce5f2;--mut:#8ea0bd;--card:#212c45;--line:#31405e;--acc:#7aa2d6;--accfg:#14203a;--none:#2a3753;--mine:#6b93c8}}
+:root[data-theme="dark"]{--bg:#172034;--fg:#dce5f2;--mut:#8ea0bd;--card:#212c45;--line:#31405e;--acc:#7aa2d6;--accfg:#14203a;--none:#2a3753;--mine:#6b93c8}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 Georgia,"Iowan Old Style",serif}
+main{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:28px;margin:0 0 4px;letter-spacing:-.5px}h2{font-size:19px;margin:0 0 10px}
+.sub{color:var(--mut);margin:0 0 20px;font-family:system-ui,sans-serif;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+label{display:block;font:600 12px system-ui,sans-serif;color:var(--mut);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+input,select{font:15px system-ui,sans-serif;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>div{flex:1;min-width:130px}
+button{font:600 14px system-ui,sans-serif;padding:9px 16px;border-radius:8px;border:1px solid var(--acc);background:var(--acc);color:var(--accfg);cursor:pointer}
+button.ghost{background:transparent;color:var(--acc)}
+.ev{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);cursor:pointer;font-family:system-ui,sans-serif}
+.ev:first-of-type{border-top:0}.ev small{color:var(--mut)}
+.grids{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.grids{grid-template-columns:1fr}}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.g{border-collapse:separate;border-spacing:2px;font:11px system-ui,sans-serif;user-select:none;-webkit-user-select:none;touch-action:none}
+.g th{font-weight:600;color:var(--mut);padding:2px 4px;white-space:nowrap}
+.g th.t{text-align:right;font-weight:400;vertical-align:top;height:0}
+.g td{min-width:44px;height:18px;border-radius:3px;background:var(--none)}
+.g td.hr{border-top:1px solid var(--line)}
+.g td.on{background:var(--mine)}
+.leg{display:flex;align-items:center;gap:6px;font:12px system-ui,sans-serif;color:var(--mut);margin-top:8px}
+.leg i{width:14px;height:14px;border-radius:3px;display:inline-block}
+#who{min-height:60px;font:14px system-ui,sans-serif;margin-top:10px;padding:10px;border-radius:8px;background:var(--none)}
+.best li{font:14px system-ui,sans-serif;margin:3px 0}
+.back{background:none;border:0;color:var(--acc);padding:0;margin-bottom:10px}
+button.danger{color:#b4534f;border-color:#b4534f}
+.best a{color:var(--acc);font-weight:600;text-decoration:none;white-space:nowrap}
+.msg{font:13px system-ui,sans-serif;color:var(--mut);margin-top:8px}
+</style>
+</head>
+<body>
+<main id="app"><p class="sub">Loading…</p></main>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+// STEP 1: paste your Firebase web app config here (see setup steps)
+var FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDpeO4PVFxEpe75HT16O216I5zfl8sL4sA",
+  authDomain: "meeting-sync-8faab.firebaseapp.com",
+  projectId: "meeting-sync-8faab",
+  storageBucket: "meeting-sync-8faab.firebasestorage.app",
+  messagingSenderId: "290776860050",
+  appId: "1:290776860050:web:dee97fe692a05c26146d4b"
+};
+window.addEventListener('error',function(e){var a=document.getElementById('app');if(a){var b=document.createElement('p');b.className='msg';b.style.color='#b4534f';b.textContent='Error: '+(e.message||'unknown')+' (details in the browser console)';a.prepend(b)}});
+</script>
+<script>
+(function(){
+var app=document.getElementById('app'),db=null,user=null,uid=null,unsubs=[];
+var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function parse(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function hourLabel(h){var x=h%24,s=x>=12?'PM':'AM';x=x%12||12;return x+(h%1?':30':'')+' '+s}
+function slotLabel(i){var m=i*30,h=Math.floor(m/60),mm=m%60;return hourLabel(h+(mm?0.5:0))}
+function localId(){try{var v=localStorage.getItem('ms_id');if(!v){v='g'+Math.random().toString(36).slice(2,10);localStorage.setItem('ms_id',v)}return v}catch(e){return 'g'+Math.random().toString(36).slice(2,10)}}
+function slug(n){return n.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||'anon'}
+function clear(){unsubs.forEach(function(u){try{u()}catch(e){}});unsubs=[]}
+function evId(){var m=location.hash.match(/event=([\w-]+)/);return m?m[1]:null}
+
+function home(){
+  clear();
+  var t=new Date(),n=new Date();n.setDate(n.getDate()+6);
+  app.innerHTML='<h1>MeetSync</h1><p class="sub">Create an event, share this page, and everyone marks when they\'re free.</p>'+
+  '<div class="card"><h2>New event</h2><label>Event name</label><input id="ti" placeholder="Team sync">'+
+  '<div class="row"><div><label>First day</label><input type="date" id="d1" value="'+iso(t)+'"></div><div><label>Last day</label><input type="date" id="d2" value="'+iso(n)+'"></div>'+
+  '<div><label>Earliest</label><select id="h1"></select></div><div><label>Latest</label><select id="h2"></select></div></div>'+
+  '<p style="margin:14px 0 0"><button id="mk">Create event</button></p><p class="msg" id="err"></p></div>'+
+  '<div class="card"><h2>Events</h2><div id="list"><span class="msg">Loading…</span></div></div>';
+  var o='';for(var h=0;h<=24;h++)o+='<option value="'+h+'">'+(h==24?'12 AM (end)':hourLabel(h))+'</option>';
+  h1.innerHTML=o;h2.innerHTML=o;h1.value=9;h2.value=17;
+  mk.onclick=function(){
+    var a=parse(d1.value),b=parse(d2.value),s=+h1.value,e=+h2.value;
+    if(isNaN(a)||isNaN(b)||b<a){err.textContent='Check your dates.';return}
+    if((b-a)/864e5>13){err.textContent='Max 14 days.';return}
+    if(e<=s){err.textContent='Latest must be after earliest.';return}
+    var dates=[];for(var d=new Date(a);d<=b;d.setDate(d.getDate()+1))dates.push(iso(d));
+    db.collection('events').add({title:ti.value.trim()||'Untitled event',dates:dates,start:s,end:e,created:Date.now(),owner:uid})
+     .then(function(r){location.hash='event='+r.id}).catch(function(x){err.textContent='Could not create: '+(x&&x.message||x)});
+  };
+  unsubs.push(db.collection('events').orderBy('created','desc').limit(50).onSnapshot(function(s){
+    list.innerHTML=s.empty?'<span class="msg">No events yet.</span>':'';
+    s.docs.forEach(function(d){var v=d.data(),e=document.createElement('div');e.className='ev';
+      e.innerHTML='<span>'+esc(v.title)+'<br><small>'+v.dates.length+' day(s) · '+hourLabel(v.start)+'–'+hourLabel(v.end)+'</small></span><span>›</span>';
+      e.onclick=function(){location.hash='event='+d.id};list.appendChild(e)});
+  },function(e){list.innerHTML='<span class="msg">Could not load events: '+esc(String(e&&e.message||e))+'</span>'}));
+  var tm=setTimeout(function(){var l=document.getElementById('list');if(l&&l.textContent==='Loading…')l.innerHTML='<span class="msg">Still can\'t reach the database. Check that the Firestore rules are published, the config values are correct, the database is named (default), and nothing is blocking firestore.googleapis.com.</span>'},8000);
+  unsubs.push(function(){clearTimeout(tm)});
+}
+
+function eventView(id){
+  clear();
+  var ev=null,resp={},mine={},myName='',dirty=false,mode=null;
+  app.innerHTML='<button class="back" id="bk">‹ All events</button><h1 id="et">…</h1><p class="sub">Times shown in your local time zone. Click or drag to paint when you\'re free.</p>'+
+  '<div class="card"><div class="row"><div><label>Your name</label><input id="nm" placeholder="Your name"></div><div style="flex:0;align-self:flex-end"><button id="sv">Save availability</button></div></div><p class="msg" id="st"></p></div>'+
+  '<div class="grids"><div class="card"><h2>Your availability</h2><div class="scroll" id="g1"></div></div>'+
+  '<div class="card"><h2>Group availability</h2><div class="scroll" id="g2"></div><div class="leg" id="lg"></div><div id="who">Hover a time to see who\'s free.</div></div></div>'+
+  '<div class="card"><h2>Best times</h2><ol class="best" id="best"></ol></div><p><button class="ghost danger" id="del" style="display:none">Delete event</button></p>';
+  bk.onclick=function(){location.hash=''};
+  var ref=db.doc('events/'+id);
+  var first=true;
+  function slots(){var a=[];for(var i=ev.start*2;i<ev.end*2;i++)a.push(i);return a}
+  function key(d,i){return d+'|'+i}
+  function build(el,editable){
+    var sl=slots(),h='<table class="g"><tr><th></th>';
+    ev.dates.forEach(function(d){var p=parse(d);h+='<th>'+DOW[p.getDay()]+'<br>'+(p.getMonth()+1)+'/'+p.getDate()+'</th>'});
+    h+='</tr>';
+    sl.forEach(function(i){h+='<tr><th class="t">'+(i%2?'':slotLabel(i))+'</th>';
+      ev.dates.forEach(function(d){h+='<td data-k="'+key(d,i)+'" class="'+(i%2?'':'hr')+'"></td>'});h+='</tr>'});
+    el.innerHTML=h+'</table>';
+  }
+  function paintMine(){document.querySelectorAll('#g1 td').forEach(function(td){td.classList.toggle('on',!!mine[td.dataset.k])})}
+  function counts(){var c={},w={};Object.keys(resp).forEach(function(u){var r=resp[u];(r.slots||[]).forEach(function(k){c[k]=(c[k]||0)+1;(w[k]=w[k]||[]).push(r.name||'Anonymous')})});return{c:c,w:w}}
+  function paintGroup(){
+    var x=counts(),tot=Object.keys(resp).length,max=0;
+    Object.keys(x.c).forEach(function(k){if(x.c[k]>max)max=x.c[k]});
+    document.querySelectorAll('#g2 td').forEach(function(td){var n=x.c[td.dataset.k]||0;
+      td.style.background=n?'color-mix(in srgb,var(--acc) '+Math.round(20+80*n/Math.max(max,1))+'%,var(--card))':'';td.title=n+' available'});
+    lg.innerHTML='<span>0</span><i style="background:var(--none)"></i><i style="background:color-mix(in srgb,var(--acc) 35%,var(--card))"></i><i style="background:var(--acc)"></i><span>'+max+' of '+tot+' people</span>';
+    // best windows: longest runs of max availability, per day
+    function stamp(d,i){var p=parse(d),t=new Date(p.getFullYear(),p.getMonth(),p.getDate(),0,i*30);return iso(t).replace(/-/g,'')+'T'+String(t.getHours()).padStart(2,'0')+String(t.getMinutes()).padStart(2,'0')+'00'}
+    function gcal(o){var names=x.w[key(o.d,o.s)]||[];
+      return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.title)+'&dates='+stamp(o.d,o.s)+'/'+stamp(o.d,o.e)+'&details='+encodeURIComponent('Available: '+names.join(', '))}
+    var out=[];
+    if(max>0)ev.dates.forEach(function(d){var run=null;
+      slots().concat([-1]).forEach(function(i){var n=i<0?0:(x.c[key(d,i)]||0);
+        if(n===max){if(!run)run={s:i,e:i};else run.e=i}else if(run){out.push({d:d,s:run.s,e:run.e+1,l:run.e-run.s+1});run=null}})});
+    out.sort(function(a,b){return b.l-a.l});
+    best.innerHTML=out.length?out.slice(0,5).map(function(o){var p=parse(o.d);
+      return '<li><b>'+DOW[p.getDay()]+' '+(p.getMonth()+1)+'/'+p.getDate()+'</b>, '+slotLabel(o.s)+' – '+slotLabel(o.e)+' · '+max+' of '+tot+' free · <a href="'+gcal(o)+'" target="_blank" rel="noopener">+ Google Calendar</a></li>'}).join(''):'<li style="list-style:none">No responses yet.</li>';
+  }
+  function showWho(k){var x=counts(),w=x.w[k]||[],all=Object.keys(resp).map(function(u){return resp[u].name||'Anonymous'});
+    var no=all.filter(function(n){return w.indexOf(n)<0});
+    who.innerHTML='<b>Free ('+w.length+'):</b> '+(w.map(esc).join(', ')||'—')+'<br><b>Busy ('+no.length+'):</b> '+(no.map(esc).join(', ')||'—')}
+  function wire(){
+    var g1=document.getElementById('g1'),g2=document.getElementById('g2');
+    function cell(e){var t=document.elementFromPoint(e.clientX,e.clientY);return t&&t.closest&&t.closest('#g1 td')}
+    function apply(td){if(!td||mode===null)return;var k=td.dataset.k;if(mode)mine[k]=1;else delete mine[k];td.classList.toggle('on',mode);dirty=true;st.textContent='Unsaved changes'}
+    g1.addEventListener('pointerdown',function(e){var td=cell(e);if(!td)return;e.preventDefault();mode=!mine[td.dataset.k];apply(td)});
+    g1.addEventListener('pointermove',function(e){if(mode!==null)apply(cell(e))});
+    window.addEventListener('pointerup',function(){mode=null});
+    g2.addEventListener('pointerover',function(e){var td=e.target.closest&&e.target.closest('td');if(td)showWho(td.dataset.k)});
+  }
+  sv.onclick=function(){
+    var name=nm.value.trim();if(!name){st.textContent='Please enter your name.';return}
+    try{localStorage.setItem('ms_name',name)}catch(e){}
+    st.textContent='Saving…';
+    db.doc('events/'+id+'/responses/'+slug(name)).set({name:name,slots:Object.keys(mine),updated:Date.now()})
+      .then(function(){dirty=false;st.textContent='Saved ✓'})
+      .catch(function(x){st.textContent='Could not save: '+(x&&x.message||x)})
+  };
+  var armed=false;
+  del.onclick=function(){
+    if(!armed){armed=true;del.textContent='Click again to delete for everyone';setTimeout(function(){armed=false;del.textContent='Delete event'},4000);return}
+    del.disabled=true;del.textContent='Deleting…';
+    var rc=db.collection('events/'+id+'/responses');
+    rc.get().then(function(q){return q.docs.reduce(function(p,d){return p.then(function(){return rc.doc(d.id).delete()})},Promise.resolve())})
+      .then(function(){clear();return ref.delete()}).then(function(){location.hash=''})
+      .catch(function(x){del.disabled=false;del.textContent='Delete event';st.textContent='Could not delete: '+(x&&x.message||x)});
+  };
+  nm.onchange=function(){var m=resp[slug(nm.value)];if(m&&!dirty){mine={};(m.slots||[]).forEach(function(k){mine[k]=1});paintMine();st.textContent='Loaded your saved response'}};
+  try{nm.value=localStorage.getItem('ms_name')||''}catch(e){}
+  unsubs.push(ref.onSnapshot(function(s){
+    if(!s.exists){et.textContent='Event not found';return}
+    if(first){ev=s.data();first=false;et.textContent=ev.title;var own=false;try{own=!!(user&&user.isOwner&&user.isOwner())}catch(e){}if(!ev.owner||ev.owner===uid||own)del.style.display='';build(g1,true);build(g2,false);wire();paintMine();paintGroup();
+      unsubs.push(db.collection('events/'+id+'/responses').onSnapshot(function(q){
+        resp={};q.docs.forEach(function(d){resp[d.id]=d.data()});
+        var m=resp[slug(nm.value)];if(m&&!dirty){mine={};(m.slots||[]).forEach(function(k){mine[k]=1});if(!nm.value)nm.value=m.name||'';paintMine()}
+        paintGroup();
+      },function(){st.textContent='Could not load responses.'}));
+    }
+  },function(){et.textContent='Could not load event'}));
+}
+
+function route(){var id=evId();if(id)eventView(id);else home()}
+window.addEventListener('hashchange',route);
+
+(function(){
+  var ok=typeof firebase!=='undefined'&&typeof FIREBASE_CONFIG!=='undefined'&&FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.apiKey.indexOf('PASTE')<0;
+  if(!ok){app.innerHTML='<h1>MeetSync</h1><p class="sub">Setup problem: either the Firebase config near the top of this file still has PASTE placeholders or is malformed (every value needs quotes), or the Firebase library was blocked from loading.</p>';return}
+  try{firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore();db.settings({experimentalForceLongPolling:true,useFetchStreams:false})}catch(e){app.innerHTML='<h1>MeetSync</h1><p class="sub">Could not connect to Firebase: '+esc(String(e.message||e))+'</p>';return}
+  uid=localId();
+  route();
+})();
+})();
+</script>
+</body>
+</html>
