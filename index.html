@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600;1,700;1,800&display=swap">
 <title>SWAWM: So When Are We Meeting?</title>
 <style>
-:root{--bg:#F7F8FA;--fg:#252936;--mut:#5F677A;--card:#FFF9F2;--line:#E3D6C2;--pri:#172033;--acc:#FF5E50;--none:#E3E7EE;--avail:#B2E5CB;--availd:#2E9C6B;--font:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light;
+:root{--pop:#C97863;--bg:#FAF9F6;--fg:#242424;--mut:#858585;--card:#FFFFFF;--line:#E8E6E1;--pri:#1C1C1C;--acc:#C97863;--acc2:#D8E4DC;--none:#EEECE7;--avail:#D8E4DC;--availd:#91AA9C;--btn:#1C1C1C;--btnfg:#FFFFFF;--smc:#C97863;--demofg:#1C1C1C;--star:#FAF9F6;--ink:28,28,28;--bl1:rgba(201,120,99,.14);--bl2:rgba(216,228,220,.5);--bl3:rgba(201,120,99,.1);--bl4:rgba(216,228,220,.4);--font:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 10% 6%,rgba(255,94,80,.2) 0,transparent 36%),radial-gradient(circle at 94% 16%,rgba(178,229,203,.7) 0,transparent 40%),radial-gradient(circle at 84% 96%,rgba(255,94,80,.16) 0,transparent 38%),radial-gradient(circle at 4% 90%,rgba(178,229,203,.6) 0,transparent 40%),radial-gradient(rgba(23,32,51,.1) 1.3px,transparent 1.5px) 0 0/22px 22px,var(--bg);background-attachment:fixed;color:var(--fg);font:16px/1.5 var(--font)}
-body::before{content:'';position:fixed;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--acc),var(--avail),var(--pri));z-index:5}
-h1,h2{color:var(--pri)}h1{font-weight:800}h2{border-left:4px solid var(--acc);padding-left:10px}
-input:focus,select:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
-button:hover{filter:brightness(1.3)}
+body{margin:0;background:radial-gradient(circle at 10% 6%,var(--bl1) 0,transparent 36%),radial-gradient(circle at 94% 16%,var(--bl2) 0,transparent 40%),radial-gradient(circle at 84% 96%,var(--bl3) 0,transparent 38%),radial-gradient(circle at 4% 90%,var(--bl4) 0,transparent 40%),radial-gradient(rgba(var(--ink),.1) 1.3px,transparent 1.5px) 0 0/22px 22px,var(--bg);background-attachment:fixed;color:var(--fg);font:16px/1.5 var(--font)}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--pop),var(--acc2),var(--pri));z-index:5}
+h1,h2{color:var(--pri)}h1{font-weight:800}h1 em{font-style:italic}h2{border-left:4px solid var(--pop);padding-left:10px}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--pop);outline-offset:1px}
+button:hover{filter:brightness(1.12)}
 main{max-width:980px;margin:0 auto;padding:20px 16px 48px}
 h1{font-size:28px;margin:0 0 4px;letter-spacing:-.5px}h2{font-size:19px;margin:0 0 10px}
 .sub{color:var(--mut);margin:0 0 20px;font-family:var(--font);font-size:14px}
@@ -23,47 +23,84 @@ h1{font-size:28px;margin:0 0 4px;letter-spacing:-.5px}h2{font-size:19px;margin:0
 label{display:block;font:600 12px var(--font);color:var(--mut);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.5px}
 input,select{font:15px var(--font);padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
 .row{display:flex;gap:10px;flex-wrap:wrap}.row>div{flex:1;min-width:130px}
-button{font:600 14px var(--font);padding:9px 16px;border-radius:8px;border:1px solid var(--pri);background:var(--pri);color:#fff;cursor:pointer}
-button.ghost{background:transparent;color:var(--pri)}
+button{font:600 14px var(--font);padding:9px 16px;border-radius:8px;border:1px solid var(--btn);background:var(--btn);color:var(--btnfg);cursor:pointer}
+button.ghost{background:transparent;color:var(--pri);border-color:var(--pri)}
 .ev{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);cursor:pointer;font-family:var(--font)}
 .ev:first-of-type{border-top:0}.ev small{color:var(--mut)}
-.grids{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
-.grids .card{min-width:0}
+.grids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grids .card{min-width:0;margin-bottom:0}
 #tp1{white-space:nowrap;overflow-x:auto;overflow-y:hidden;padding-bottom:4px;scrollbar-width:thin}
-@media (max-width:760px){.grids{grid-template-columns:minmax(0,1fr)}}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.demo{background:var(--acc);color:var(--pri);font:700 13px var(--font);text-align:center;padding:8px 12px}
-.tl{font:12px var(--font);user-select:none;-webkit-user-select:none}
-.tr{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.td{flex:0 0 46px;font:700 12px/1.15 var(--font);color:var(--mut);white-space:nowrap}
-.axis{flex:1;display:flex;color:var(--mut);font-size:11px}
-.axis span{flex:1;border-left:1px solid var(--line);padding-left:4px;white-space:nowrap}
-.trk{flex:1;position:relative;touch-action:pan-y;cursor:crosshair}
-.art{position:absolute;inset:0;pointer-events:none}
-.s-pills .trk{height:38px;border-radius:19px;background-color:var(--none)}
-.pill{position:absolute;top:6px;bottom:6px;border-radius:999px;background:var(--avail);box-shadow:inset 0 0 0 1px rgba(23,32,51,.16)}
+.demo{background:var(--pop);color:var(--demofg);font:700 13px var(--font);text-align:center;padding:8px 12px}
+.tl2{display:flex;gap:2px;font:11px var(--font);user-select:none;-webkit-user-select:none}
+.col{flex:1 1 0;min-width:28px;display:flex;flex-direction:column;gap:1px;position:relative}
+.col.lab{flex:0 0 40px;min-width:40px}
+.hh{height:30px;display:flex;align-items:center;justify-content:center;text-align:center;font:700 11px/1.15 var(--font);color:var(--mut)}
+.lb{height:12px;line-height:12px;font-size:10px;color:var(--mut);text-align:right;padding-right:5px;white-space:nowrap}
+.hx{height:12px;border-radius:3px;background:var(--none);border-top:1px solid transparent;cursor:pointer;touch-action:none}
+.hx.hr{border-top-color:rgba(var(--ink),.3)}
+.hx.hf{border-top:1px dotted rgba(var(--ink),.3)}
+.hx.on{background:var(--avail);box-shadow:inset 0 0 0 1px var(--availd)}
+.hx.hv{position:relative;z-index:1;box-shadow:0 0 0 2px var(--mut)}
+.hx.md{border-top:2px solid rgba(var(--ink),.55)}
+.hx.x{background:transparent;box-shadow:none;cursor:default}
+.art{position:absolute;left:0;right:0;top:31px;bottom:0;pointer-events:none}
+.star{position:absolute;left:50%;transform:translate(-50%,-50%);font:700 11px/1 var(--font);color:var(--star);text-shadow:0 0 2px rgba(var(--ink),.7),0 0 4px rgba(var(--ink),.35)}
 .cust{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
-.hf{position:absolute;top:4px;bottom:4px;width:1px;background:repeating-linear-gradient(to bottom,rgba(23,32,51,.14) 0 2px,transparent 2px 7px)}
-.hov{position:absolute;top:3px;bottom:3px;border-radius:9px;box-shadow:0 0 0 2px var(--mut);pointer-events:none}
-.pill.me{box-shadow:inset 0 0 0 1px var(--availd)}
-.star{position:absolute;top:50%;transform:translate(-50%,-52%);font:700 11px/1 var(--font);color:#F7F8FA;text-shadow:0 0 2px rgba(23,32,51,.7),0 0 4px rgba(23,32,51,.35)}
-.best{list-style:none;padding:0;margin:0}.sm{color:var(--acc);margin-right:2px}
-.sp{display:flex;flex:1;max-width:280px;height:16px;border-radius:8px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(23,32,51,.14)}
+.best{list-style:none;padding:0;margin:0}.sm{color:var(--smc);margin-right:2px}
+.sp{display:flex;flex:1;max-width:280px;height:16px;border-radius:8px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(var(--ink),.14)}
 .sp span{flex:1;display:flex;align-items:center;justify-content:center;font:700 9px var(--font);color:var(--pri)}
 .leg{display:flex;align-items:center;gap:6px;font:12px var(--font);color:var(--mut);margin-top:8px}
-.leg i{width:14px;height:14px;border-radius:3px;display:inline-block}
 #who{min-height:84px;font:14px var(--font);margin-top:10px;padding:10px;border-radius:8px;background:var(--none)}
 .best li{font:14px/1.6 var(--font);margin:0 0 14px}
 .back{background:none;border:0;color:var(--pri);font-weight:700;padding:0;margin-bottom:10px}
 button.danger{color:#C73E33;border-color:#C73E33}
-.best a{color:var(--pri);font-weight:700;text-decoration:underline;text-decoration-color:var(--acc);text-decoration-thickness:2px;text-underline-offset:3px;white-space:nowrap}
+.best a{color:var(--pri);font-weight:700;text-decoration:underline;text-decoration-color:var(--pop);text-decoration-thickness:2px;text-underline-offset:3px;white-space:nowrap}
 .msg{font:13px var(--font);color:var(--mut);margin-top:8px}
+.hd{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.ur{display:flex;gap:4px;flex:0 0 auto}
+button.ic{padding:3px 8px;line-height:0}
+button:disabled{opacity:.3;cursor:default;filter:none}
+.pv{color:var(--pop);font-weight:700}
+.lnk{background:none;border:0;padding:0;color:var(--pri);text-decoration:underline;text-underline-offset:3px;font:600 13px var(--font);cursor:pointer}
+.ur .lnk{margin-right:6px;align-self:center}
+.gx{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.gbtn{display:inline-flex;align-items:stretch;padding:0;background:#fff;color:#1F1F1F;border:1px solid #747775;border-radius:8px;overflow:hidden}
+.gbtn .gl{display:flex;align-items:center;justify-content:center;width:46px;border-right:1px solid #DADCE0}.gbtn .gt{padding:9px 16px}
+.fma{display:flex;gap:8px;align-items:flex-start}
+.fcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}
+.fmb{width:100%;padding:11px 16px;font-size:15px}
+button.fs{padding:10px 11px}
+.gu{margin-top:6px}
+.hx.on.af{background:repeating-linear-gradient(135deg,var(--avail) 0 4px,var(--card) 4px 7px)}
+.mdl{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(var(--ink),.35)}
+.mbox{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 12px 40px rgba(var(--ink),.25)}
+.mbt{display:flex;justify-content:flex-end;gap:8px;margin:16px 0 0}
+.tz{color:var(--pop)}
+.grids>.card{container-type:inline-size}
+#gp.pv{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(9px,2.66cqw,13px)}
+.sbox{position:relative;padding-right:12px}
+.sbox.nv{padding-right:0}.sbox.nv .vbar{display:none}
+.vs{max-height:min(420px,60vh);overflow:auto}
+.vs::-webkit-scrollbar{width:0;height:6px}.vs::-webkit-scrollbar-thumb{background:rgba(var(--ink),.25);border-radius:3px}
+.hh{position:sticky;top:0;z-index:2;background:var(--card)}
+.vbar{position:absolute;top:0;right:0;bottom:0;width:12px;touch-action:none;cursor:pointer}
+.vbar::before,.vbar i{position:absolute;right:2px;width:3px;border-radius:4px;transition:width .12s,background-color .12s}
+.vbar::before{content:'';top:0;bottom:0;background:rgba(var(--ink),.06)}
+.vbar i{top:0;min-height:24px;background:rgba(var(--ink),.28)}
+.vbar:hover::before,.vbar.on::before,.vbar:hover i,.vbar.on i{width:7px}
+.vbar:hover i,.vbar.on i{background:rgba(var(--ink),.55)}
+@media (pointer:coarse){.sbox{padding-right:18px}.vbar{width:18px}.vbar::before,.vbar i{width:4px}.vbar.on::before,.vbar.on i{width:9px}}
+@media (max-width:760px){.grids{grid-template-columns:minmax(0,1fr)}#gp.pv{white-space:normal;font-size:13px}}
+@media (max-width:600px){main{padding:14px 10px 40px}.card{padding:12px}h1{font-size:22px}.row>div{min-width:100px}.hh{font-size:10px}.vs{max-height:min(360px,50vh)}}
 </style>
 </head>
 <body>
 <main id="app"><p class="sub">Loading…</p></main>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
 // STEP 1: paste your Firebase web app config here (see setup steps)
 var FIREBASE_CONFIG = {
@@ -74,11 +111,13 @@ var FIREBASE_CONFIG = {
   messagingSenderId: "290776860050",
   appId: "1:290776860050:web:dee97fe692a05c26146d4b"
 };
+// STEP 2 (V3): OAuth 2.0 Web client ID used only for the Calendar free/busy token (see docs/v3-google-setup.md).
+var GOOGLE_OAUTH_CLIENT_ID = "290776860050-1ciaf04hnnoutnqh07dc5c9dj2sgqb6s.apps.googleusercontent.com";
 window.addEventListener('error',function(e){var a=document.getElementById('app');if(a){var b=document.createElement('p');b.className='msg';b.style.color='#b4534f';b.textContent='Error: '+(e.message||'unknown')+' (details in the browser console)';a.prepend(b)}});
 </script>
 <script>
 (function(){
-var app=document.getElementById('app'),db=null,user=null,uid=null,unsubs=[];
+var app=document.getElementById('app'),db=null,user=null,bid=null,unsubs=[],AUTH=null,authCbs=[];
 var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
 function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
@@ -86,7 +125,24 @@ function parse(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
 var STEP=30;
 function tLabel(m){var f=Math.floor(m/60)%24,mm=m%60,ap=f>=12?'PM':'AM',x=f%12||12;return x+(mm?':'+String(mm).padStart(2,'0'):'')+' '+ap}
 function hourLabel(h){return tLabel(h*60)}
-function slotLabel(i){return tLabel(i*STEP)}
+// Many zones have no short name and come back as "GMT+9"; show those as a UTC offset, and nothing if Intl is unavailable.
+function tzAbbr(tz){var off='';
+  [undefined,'en-US'].some(function(loc){try{var o={timeZoneName:'short'};if(tz)o.timeZone=tz;var f=new Intl.DateTimeFormat(loc,o).formatToParts(new Date()).filter(function(p){return p.type==='timeZoneName'})[0],v=(f&&f.value||'').replace('\u2212','-');
+    var g=v.match(/^(?:GMT|UTC)([+\-]\d{1,2}(?::\d{2})?)$/);if(g){off=off||'UTC '+g[1];return false}if(/^[A-Z]{2,6}$/.test(v)){off=v;return true}}catch(e){}return false});
+  return off}
+// Time math works in whole minutes. A "wall" value is minutes since 1970-01-01 00:00 read on some zone's clock, so UTC getters on new Date(wall*6e4) give that clock's date and time.
+var VTZ=(function(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){return ''}})(),tzF={};
+function pad(n){return String(n).padStart(2,'0')}
+function zWall(tz,ms){var f=tzF[tz]||(tzF[tz]=new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric'})),o={};
+  f.formatToParts(new Date(ms)).forEach(function(p){o[p.type]=+p.value});return Date.UTC(o.year,o.month-1,o.day,o.hour%24,o.minute)/6e4}
+function zOk(tz){try{return !!tz&&isFinite(zWall(tz,0))}catch(e){return false}}
+function zToUtc(tz,w){var t=w-(zWall(tz,w*6e4)-w);return w-(zWall(tz,t*6e4)-t)}
+function lw(t){return t-new Date(t*6e4).getTimezoneOffset()}
+function lToUtc(w){var x=new Date(w*6e4);return new Date(x.getUTCFullYear(),x.getUTCMonth(),x.getUTCDate(),x.getUTCHours(),x.getUTCMinutes()).getTime()/6e4}
+function dn(d){var p=String(d).split('-');return Date.UTC(+p[0],+p[1]-1,+p[2])/6e4}
+function wIso(w){var x=new Date(w*6e4);return x.getUTCFullYear()+'-'+pad(x.getUTCMonth()+1)+'-'+pad(x.getUTCDate())}
+function wDay(w){var x=new Date(w*6e4);return DOW[x.getUTCDay()]+' '+(x.getUTCMonth()+1)+'/'+x.getUTCDate()}
+function wTime(w){return tLabel(((w%1440)+1440)%1440)}
 function localId(){try{var v=localStorage.getItem('ms_id');if(!v){v='g'+Math.random().toString(36).slice(2,10);localStorage.setItem('ms_id',v)}return v}catch(e){return 'g'+Math.random().toString(36).slice(2,10)}}
 function slug(n){return n.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||'anon'}
 var mem=[];
@@ -99,7 +155,7 @@ function evId(){var m=location.hash.match(/event=([\w-]+)/);return m?m[1]:null}
 function home(){
   clear();
   var t=new Date(),n=new Date();n.setDate(n.getDate()+6);
-  app.innerHTML='<h1>SWAWM: So When Are We Meeting?</h1><p class="sub">Create an event, copy its link, and send it around. Everyone marks when they\'re free.</p>'+
+  app.innerHTML='<h1>SWAWM: <em>So When Are We Meeting?</em></h1><p class="sub">Create an event, copy its link, and send it around. Everyone marks when they\'re free.</p>'+
   '<div class="card"><h2>New event</h2><label>Event name</label><input id="ti" placeholder="Click here to name the event">'+
   '<div class="row"><div><label>First day</label><input type="date" id="d1" value="'+iso(t)+'"></div><div><label>Last day</label><input type="date" id="d2" value="'+iso(n)+'"></div>'+
   '<div><label>Earliest</label><select id="h1"></select></div><div><label>Latest</label><select id="h2"></select></div></div>'+
@@ -112,181 +168,395 @@ function home(){
     if(isNaN(a)||isNaN(b)||b<a){err.textContent='Check your dates.';return}
     if((b-a)/864e5>13){err.textContent='Max 14 days.';return}
     if(e<=s){err.textContent='Latest must be after earliest.';return}
+    if(!me){err.textContent='Still connecting to the server. Try again in a moment.';return}
     var dates=[];for(var d=new Date(a);d<=b;d.setDate(d.getDate()+1))dates.push(iso(d));
-    db.collection('events').add({title:ti.value.trim()||'Untitled event',dates:dates,start:s,end:e,created:Date.now(),step:15,owner:uid})
-     .then(function(r){addMine(r.id);location.hash='event='+r.id}).catch(function(x){err.textContent='Could not create: '+(x&&x.message||x)});
+    var doc={title:ti.value.trim()||'Untitled event',dates:dates,start:s,end:e,created:Date.now(),step:15,owner:me.uid,ownerKind:me.anon?'anon':'google'};if(zOk(VTZ))doc.tz=VTZ;
+    db.collection('events').add(doc)
+     .then(function(r){track(r.id);location.hash='event='+r.id}).catch(function(x){err.textContent='Could not create: '+(x&&x.message||x)});
   };
-  var ids=myEvents();
-  if(!ids.length)list.innerHTML='<span class="msg">Events you create or respond to on this device will show up here.</span>';
+  var L=list;
+  function loadList(){var ids=myEvents();
+  if(!ids.length)L.innerHTML='<span class="msg">Events you create or respond to on this device will show up here.</span>';
   else Promise.all(ids.map(function(i){return db.doc('events/'+i).get().catch(function(){return null})})).then(function(ds){
     var live=ds.filter(function(d){return d&&d.exists});
     saveMine(ids.filter(function(_,n){return !ds[n]||ds[n].exists}));
     live.sort(function(a,b){return (b.data().created||0)-(a.data().created||0)});
-    list.innerHTML=live.length?'':'<span class="msg">No events yet.</span>';
+    L.innerHTML=live.length?'':'<span class="msg">No events yet.</span>';
     live.forEach(function(d){var v=d.data(),e=document.createElement('div');e.className='ev';
-      e.innerHTML='<span>'+esc(v.title)+'<br><small>'+v.dates.length+' day(s) · '+hourLabel(v.start)+'–'+hourLabel(v.end)+'</small></span><span>›</span>';
-      e.onclick=function(){location.hash='event='+d.id};list.appendChild(e)});
-  });
+      var hrs=hourLabel(v.start)+'–'+hourLabel(v.end);
+      if(v.tz&&v.tz!==VTZ&&zOk(v.tz)){var d0=dn(v.dates[0]);hrs=wTime(lw(zToUtc(v.tz,d0+v.start*60)))+'–'+wTime(lw(zToUtc(v.tz,d0+v.end*60)))}
+      e.innerHTML='<span>'+esc(v.title)+'<br><small>'+v.dates.length+' day(s) · '+hrs+'</small></span><span>›</span>';
+      e.onclick=function(){location.hash='event='+d.id};L.appendChild(e)});
+  })}
+  loadList();unsubs.push(onAuth(function(u,m){if(m||!u)loadList()}));
 }
 
 function eventView(id){
   clear();
   var ev=null,resp={},mine={},myName='',loadedSlug=null,dirty=false,mode=null;
-  app.innerHTML='<button class="back" id="bk">‹ All events</button><h1 id="et">…</h1><p style="margin:0 0 12px"><button class="ghost" id="cp">🔗 Copy event link</button> <span class="msg" id="cpm"></span></p><p class="sub">Times shown in your local time zone. Click or drag to paint when you\'re free.</p>'+
-  '<div class="card"><div class="row"><div><label>Your name</label><input id="nm" placeholder="Your name"></div><div style="flex:0;align-self:flex-end"><button id="sv">Save availability</button></div></div><p class="msg" id="st">Tip: to change your answer later, enter the same name and your saved times will load.</p></div>'+
-  '<div class="grids"><div class="card"><h2>Your availability</h2><p class="msg" id="tp1" style="margin:-4px 0 8px">Drag along a row to mark when you are available. Start on a marked stretch to clear it.</p><div class="scroll" id="g1"></div></div>'+
-  '<div class="card"><h2>Group availability</h2><div class="scroll" id="g2"></div><div class="leg" id="lg"></div><div id="who">Hover a time to see who\'s available.</div></div></div>'+
-  '<div class="card"><h2>Best times</h2><ol class="best" id="best"></ol><div class="cust"><h2 style="font-size:16px">Not feeling these? Make your own:</h2><div class="row"><div><label>Day</label><select id="cd"></select></div><div><label>From</label><select id="cf"></select></div><div><label>To</label><select id="ct"></select></div></div><p style="margin:12px 0 0"><button id="cg">+ Google Calendar</button> <span class="msg" id="cm"></span></p></div></div><p><button class="ghost danger" id="del" style="display:none">Delete event</button></p>';
+  app.innerHTML='<button class="back" id="bk">‹ All events</button><h1 id="et">…</h1><p style="margin:0 0 12px"><button class="ghost" id="cp">🔗 Copy event link</button> <span class="msg" id="cpm"></span></p><p class="sub">Times shown in your local time zone'+(tzAbbr()?' (<span class="tz">'+esc(tzAbbr())+'</span>)':'')+'. Click or drag to paint when you\'re free.</p>'+
+  '<div class="card"><div class="row"><div><label>Your name</label><input id="nm" placeholder="Your Name"></div><div style="flex:0;align-self:flex-end"><button id="sv">Save availability</button></div></div><p class="msg" id="st">Tip: to change your answer later, enter the same name and your saved times will load.</p></div>'+
+  '<div class="grids"><div class="card"><div class="hd"><h2>Your availability</h2><span class="ur"><button class="lnk" id="rs" title="Clear all your slots">Reset</button>'+
+  '<button class="ghost ic" id="un" title="Undo (Ctrl+Z)" aria-label="Undo" disabled><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5 2.5 7 6 10.5"/><path d="M2.5 7h7a3.5 3.5 0 0 1 0 7H8"/></svg></button>'+
+  '<button class="ghost ic" id="rd" title="Redo (Ctrl+Shift+Z)" aria-label="Redo" disabled><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 13.5 7 10 10.5"/><path d="M13.5 7h-7a3.5 3.5 0 0 0 0 7H8"/></svg></button></span></div>'+
+  '<p class="msg" id="tp1" style="margin:-4px 0 8px">Drag down a column to mark when you are available. Start on a marked stretch to clear it.</p><div class="sbox"><div class="scroll vs" id="g1"></div><div class="vbar"><i></i></div></div><div class="gx" id="gx"></div></div>'+
+  '<div class="card"><h2>Group availability</h2><p class="msg" id="gp" style="margin:-4px 0 6px;min-height:18px"></p><div class="sbox"><div class="scroll vs" id="g2"></div><div class="vbar"><i></i></div></div><div class="leg" id="lg"></div><div id="who">Hover a time to see who\'s available.</div></div></div>'+
+  '<div class="card"><h2>Best times</h2><p class="msg pv" id="bp" style="margin:-4px 0 8px;display:none">Preview only</p><ol class="best" id="best"></ol><div class="cust"><h2 style="font-size:16px">Not feeling these? Make your own:</h2><div class="row"><div><label>Day</label><select id="cd"></select></div><div><label>From</label><select id="cf"></select></div><div><label>To</label><select id="ct"></select></div></div><p style="margin:12px 0 0"><button id="cg">+ Google Calendar</button> <span class="msg" id="cm"></span></p></div></div><p><button class="ghost danger" id="del" style="display:none">Delete event</button></p>';
   bk.onclick=function(){location.hash=''};
   cp.onclick=function(){var u=location.href;
-    function ok(){cp.textContent='✓ Link copied';cpm.textContent='';setTimeout(function(){cp.textContent='🔗 Copy event link'},2000)}
+    function ok(){var b=cp;b.textContent='✓ Link copied';cpm.textContent='';setTimeout(function(){b.textContent='🔗 Copy event link'},2000)}
     function fb(){var t=document.createElement('textarea');t.value=u;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();var r=false;try{r=document.execCommand('copy')}catch(e){}document.body.removeChild(t);if(r)ok();else cpm.textContent=u}
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(ok,fb);else fb()};
-  var ref=db.doc('events/'+id);
+  var ref=db.doc('events/'+id),G1=document.getElementById('g1'),G2=document.getElementById('g2'),UN=document.getElementById('un'),RD=document.getElementById('rd');
   var first=true;
-  function slots(){var p=60/STEP,a=[];for(var i=ev.start*p;i<ev.end*p;i++)a.push(i);return a}
-  function key(d,i){return d+'|'+i}
-  function klabel(k){var a=k.split('|'),p=parse(a[0]);return DOW[p.getDay()]+' '+(p.getMonth()+1)+'/'+p.getDate()+' · '+slotLabel(+a[1])+' – '+slotLabel(+a[1]+1)}
-  var STYLE='pills',bestWin=[],selHist=[],WHO_DEFAULT="Hover a time to see who's available.",TIP_DEFAULT='Drag along a row to mark when you are available. Start on a marked stretch to clear it.';
+  // Z is the grid layout in the viewer's zone. Slot ids are UTC epoch minutes when the event has a zone (ev.tz);
+  // older events without one keep floating wall-clock minutes, so everyone sees the times as they were entered.
+  var Z=null,RS={};
+  function layout(){var p=60/STEP,utc=zOk(ev.tz),E=[],seen={};
+    ev.dates.forEach(function(d){for(var i=ev.start*p;i<ev.end*p;i++){var w=dn(d)+i*STEP,t=utc?zToUtc(ev.tz,w):w;if(!seen[t]){seen[t]=1;E.push(t)}}});
+    E.sort(function(a,b){return a-b});
+    var wall=utc?lw:function(t){return t},mods=[],ms={};E.forEach(function(t){var m=((wall(t)%1440)+1440)%1440;if(!ms[m]){ms[m]=1;mods.push(m)}});mods.sort(function(a,b){return a-b});
+    var rs=mods[0],gap=mods[0]+1440-mods[mods.length-1];for(var k=0;k<mods.length-1;k++)if(mods[k+1]-mods[k]>gap){gap=mods[k+1]-mods[k];rs=mods[k+1]}
+    var R=0,cols={},order=[],at={};
+    E.forEach(function(t){var rel=wall(t)-rs,cd=Math.floor(rel/1440),r=Math.floor((rel-cd*1440)/STEP);if(r+1>R)R=r+1;if(!cols[cd]){cols[cd]={w0:cd*1440+rs,t:[]};order.push(cd)}cols[cd].t.push([r,t])});
+    order.sort(function(a,b){return a-b});
+    var C=order.map(function(cd,c){var col=cols[cd],cells=[];for(var r=0;r<R;r++)cells.push([]);col.t.forEach(function(x){cells[x[0]].push(x[1]);at[x[1]]={c:c,r:x[0]}});return{w0:col.w0,cells:cells}});
+    return{utc:utc,E:E,wall:wall,rs:rs,R:R,cols:C,at:at}}
+  function ids(c,r){return Z.cols[c].cells[r]}
+  function has(set,a){return a.length>0&&a.every(function(t){return set[t]})}
+  function rw(c,r){return Z.cols[c].w0+r*STEP}
+  function klabel(c,r){var w=rw(c,r);return wDay(w)+' · '+wTime(w)+' – '+wTime(w+STEP)}
+  function stamp(w){var x=new Date(w*6e4);return x.getUTCFullYear()+pad(x.getUTCMonth()+1)+pad(x.getUTCDate())+'T'+pad(x.getUTCHours())+pad(x.getUTCMinutes())+'00'}
+  function gstamp(t){return Z.utc?stamp(t)+'Z':stamp(t)}
+  function wstamp(w){return gstamp(Z.utc?lToUtc(w):w)}
+  function toSet(r){var o={};
+    if(Z.utc&&Array.isArray(r.utc))r.utc.forEach(function(t){if(isFinite(t))o[+t]=1});
+    else(r.slots||[]).forEach(function(k){var a=String(k).split('|'),w=dn(a[0])+(+a[1])*STEP;if(a.length===2&&isFinite(w))o[Z.utc?zToUtc(ev.tz,w):w]=1});
+    return o}
+  function pick(a){var o={};(a||[]).forEach(function(t){if(mine[t])o[t]=1});return o}
+  function myKey(){if(me)for(var k in resp)if(resp[k].uid===me.uid)return k;return slug(nm.value)}
+  function lkey(w){return wIso(w)+'|'+(((w%1440)+1440)%1440)/STEP}
+  function toDoc(name){var T=Object.keys(mine).map(Number).sort(function(a,b){return a-b}),d={name:name,updated:Date.now()};
+    if(Z.utc){d.utc=T;d.slots=T.map(function(t){return lkey(zWall(ev.tz,t*6e4))})}else d.slots=T.map(lkey);
+    d.auto=Object.keys(auto).map(Number).filter(function(t){return mine[t]}).sort(function(a,b){return a-b});if(me)d.uid=me.uid;if(user)d.email=user.email;return d}
+  var auto={},off={},GL='<svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>',SLI='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4h7M12 4h2M2 12h2M7 12h7"/><circle cx="10.5" cy="4" r="1.6"/><circle cx="5.5" cy="12" r="1.6"/></svg>';
+  var undo=[],redo=[],stash=null,bestWin=[],WHO_DEFAULT="Hover a time to see who's available.",TIP_DEFAULT='Drag down a column to mark when you are available. Start on a marked stretch to clear it.';
   function runs(a,ok){var r=[],b=-1;a.forEach(function(v,j){if(ok(v)){if(b<0)b=j}else if(b>=0){r.push([b,j]);b=-1}});if(b>=0)r.push([b,a.length]);return r}
   function colr(c,T){return T>1?'color-mix(in srgb,var(--availd) '+Math.round(100*(c-1)/(T-1))+'%,var(--avail))':'var(--availd)'}
-  function grad(cnt,a,b,T){var w=b-a,s0=a,st=[];
-    for(var j=a+1;j<=b;j++)if(j==b||cnt[j]!==cnt[s0]){var c=colr(cnt[s0],T);st.push(c+' '+(s0-a)/w*100+'%',c+' '+(j-a)/w*100+'%');s0=j}
-    return 'linear-gradient(90deg,'+st.join(',')+')'}
-  function pillsHtml(cnt,T,own){var n=cnt.length,h='';
-    runs(cnt,function(v){return v>0}).forEach(function(r){h+='<div class="pill'+(own?' me':'')+'" style="left:'+r[0]/n*100+'%;width:'+(r[1]-r[0])/n*100+'%'+(own?'':';background:'+grad(cnt,r[0],r[1],T))+'"></div>'});
-    return h}
-  function render(box,grp){var x=grp?counts():null,T=Math.max(1,Object.keys(resp).length),sl=slots(),n=sl.length;
-    box.querySelectorAll('.trk').forEach(function(t){var d=t.dataset.d,cnt=sl.map(function(i){return grp?(x.c[key(d,i)]||0):(mine[key(d,i)]?1:0)}),h=pillsHtml(cnt,T,!grp);
-      if(grp)bestWin.forEach(function(o){if(o.d===d)h+='<b class="star" style="left:'+((o.s+o.e)/2-sl[0])/n*100+'%">★</b>'});
-      t.firstChild.innerHTML=h})}
-  function rangeText(d,j,grp){var sl=slots(),x=grp?counts():null,p=parse(d),pre=DOW[p.getDay()]+' '+(p.getMonth()+1)+'/'+p.getDate()+' · ',
-      cnt=sl.map(function(i){return grp?(x.c[key(d,i)]||0):(mine[key(d,i)]?1:0)}),
-      r=runs(cnt,function(v){return v>0}).filter(function(q){return j>=q[0]&&j<q[1]})[0];
-    return r?pre+slotLabel(sl[r[0]])+' – '+slotLabel(sl[r[1]-1]+1):pre+slotLabel(sl[j])+' – '+slotLabel(sl[j]+1)}
-  function build(el){var H=slots().length/(60/STEP),halves='';for(var q=0;q<H;q++)halves+='<i class="hf" style="left:'+(q+.5)/H*100+'%"></i>';
-    var h='<div class="tl" style="min-width:'+(54+H*44)+'px"><div class="tr"><div class="td"></div><div class="axis">';
-    for(var q=0;q<H;q++)h+='<span>'+tLabel((ev.start+q)*60)+'</span>';
-    h+='</div></div>';
-    ev.dates.forEach(function(d){var p=parse(d);h+='<div class="tr"><div class="td">'+DOW[p.getDay()]+'<br>'+(p.getMonth()+1)+'/'+p.getDate()+'</div><div class="trk" data-d="'+d+'"><div class="art"></div><div class="art" style="background-image:linear-gradient(90deg,rgba(23,32,51,.18) 1px,transparent 1px);background-size:calc(100%/'+H+') 100%">'+halves+'</div></div></div></div>'});
-    el.className='scroll s-'+STYLE;el.innerHTML=h+'</div>';
-  }
-  function paintMine(){render(document.getElementById('g1'),false)}
-  function counts(){var c={},w={};Object.keys(resp).forEach(function(u){var r=resp[u];(r.slots||[]).forEach(function(k){c[k]=(c[k]||0)+1;(w[k]=w[k]||[]).push(r.name||'Anonymous')})});return{c:c,w:w}}
+  function colOn(c){return Z.cols[c].cells.map(function(a){return has(mine,a)?1:0})}
+  function rangeText(c,j){var r=runs(colOn(c),function(v){return v>0}).filter(function(q){return j>=q[0]&&j<q[1]})[0],a=r?r[0]:j,b=r?r[1]:j+1;
+    return wDay(rw(c,a))+' · '+wTime(rw(c,a))+' – '+wTime(rw(c,b))}
+  function build(el){var h='<div class="tl2" style="min-width:'+(42+Z.cols.length*30)+'px"><div class="col lab"><div class="hh"></div>';
+    for(var r=0;r<Z.R;r++){var w=Z.rs+r*STEP;h+='<div class="lb">'+(w%60?'':wTime(w))+'</div>'}h+='</div>';
+    Z.cols.forEach(function(col,c){var x=new Date(col.w0*6e4);h+='<div class="col" data-c="'+c+'"><div class="hh">'+DOW[x.getUTCDay()]+'<br>'+(x.getUTCMonth()+1)+'/'+x.getUTCDate()+'</div>';
+      col.cells.forEach(function(a,r){var w=Z.rs+r*STEP,cl=w%1440===0&&r>0?' hr md':w%60===0?' hr':w%30===0?' hf':'';h+='<div class="hx'+cl+(a.length?'':' x')+'" data-r="'+r+'"></div>'});
+      h+='<div class="art"></div></div>'});
+    el.innerHTML=h+'</div>'}
+  // Fill rule: auto holds slots that Fill My Availability set and nobody has touched since; off holds slots the user
+  // cleared by hand. A refill drops every auto slot, then adds free slots that are neither already on nor in off.
+  function obj(a){var o={};(a||[]).forEach(function(k){o[k]=1});return o}
+  function snap(){return JSON.stringify([Object.keys(mine).sort(),Object.keys(auto).sort(),Object.keys(off).sort()])}
+  function unsnap(t){var v=JSON.parse(t);mine=obj(v[0]);auto=obj(v[1]);off=obj(v[2])}
+  function restore(t){unsnap(t);dirty=true;st.textContent='Unsaved changes';paintMine();idleTip();paintGroup();updUR()}
+  function updUR(){UN.disabled=!undo.length;RD.disabled=!redo.length}
+  function doUndo(){if(!undo.length)return;redo.push(snap());restore(undo.pop())}
+  function doRedo(){if(!redo.length)return;undo.push(snap());restore(redo.pop())}
+  UN.onclick=function(){if(mode===null)doUndo()};RD.onclick=function(){if(mode===null)doRedo()};
+  function paintMine(){var rb=document.getElementById('rs');if(rb)rb.disabled=!Object.keys(mine).length;G1.querySelectorAll('.col[data-c]').forEach(function(col){var c=+col.dataset.c;col.querySelectorAll('.hx').forEach(function(el,r){var a=ids(c,r),on=has(mine,a);el.classList.toggle('on',on);el.classList.toggle('af',on&&has(auto,a))})})}
+  function cnt(x,a){return a.length?Math.min.apply(null,a.map(function(t){return x.c[t]||0})):0}
+  function renderGroup(){var x=counts(),T=Math.max(1,x.T);
+    G2.querySelectorAll('.col[data-c]').forEach(function(col){var c=+col.dataset.c,h='';
+      col.querySelectorAll('.hx').forEach(function(el,r){var k=cnt(x,ids(c,r));el.style.background=k?colr(k,T):''});
+      bestWin.forEach(function(o){if(o.c===c)h+='<b class="star" style="top:'+o.top+'%">★</b>'});
+      col.querySelector('.art').innerHTML=h})}
+  function ppl(){var sg=myKey(),named=!!nm.value.trim(),out=[],mk=Object.keys(mine),meIn=named?(!!resp[sg]||mk.length>0):mk.length>0;
+    Object.keys(resp).forEach(function(u){if(meIn&&named&&u===sg)return;out.push({name:resp[u].name||'Anonymous',set:RS[u]||{},email:resp[u].email||''})});
+    if(meIn)out.push({name:named?nm.value.trim():'You',set:mine,me:true,email:user?user.email:''});return out}
+  function counts(){var c={},w={},m={},P=ppl();P.forEach(function(p){Object.keys(p.set).forEach(function(k){c[k]=(c[k]||0)+1;(w[k]=w[k]||[]).push(p.name);if(p.email)(m[k]=m[k]||[]).push(p.email)})});return{c:c,w:w,m:m,P:P,T:P.length}}
+  function addq(em){em=uniq(em||[]);return em.length?'&add='+encodeURIComponent(em.join(',')):''}
   function paintGroup(){
-    var x=counts(),tot=Object.keys(resp).length,max=0;
-    Object.keys(x.c).forEach(function(k){if(x.c[k]>max)max=x.c[k]});
+    var x=counts(),tot=x.T,max=0;
+    Z.E.forEach(function(t){if((x.c[t]||0)>max)max=x.c[t]});
     var T=Math.max(tot,1),cells='';for(var c=0;c<=T;c++)cells+='<span style="background:'+(c?colr(c,T):'var(--none)')+'">'+(T<=10?c:'')+'</span>';
     lg.innerHTML='<span>0/'+T+'</span><div class="sp">'+cells+'</div><span>'+T+'/'+T+' available</span>';
-    // best windows: longest runs of max availability, per day
-    function stamp(d,i){var p=parse(d),t=new Date(p.getFullYear(),p.getMonth(),p.getDate(),0,i*STEP);return iso(t).replace(/-/g,'')+'T'+String(t.getHours()).padStart(2,'0')+String(t.getMinutes()).padStart(2,'0')+'00'}
-    function gcal(o){var names=x.w[key(o.d,o.s)]||[];
-      return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.title)+'&dates='+stamp(o.d,o.s)+'/'+stamp(o.d,o.e)+'&details='+encodeURIComponent('Available: '+names.join(', '))}
-    var out=[];
-    if(max>0)ev.dates.forEach(function(d){var run=null;
-      slots().concat([-1]).forEach(function(i){var n=i<0?0:(x.c[key(d,i)]||0);
-        if(n===max){if(!run)run={s:i,e:i};else run.e=i}else if(run){var per=60/STEP,len=run.e-run.s+1;for(var a=run.s;a<run.s+len;a+=per){var ln=Math.min(per,run.s+len-a);if(ln<per&&a>run.s)break;out.push({d:d,s:a,e:a+ln,l:ln})}run=null}})});
+    // best windows: runs of max availability in time order, split into hour chunks
+    function blk(o,f){var a=[];for(var t=o.s;t<o.e;t+=STEP)a=a.concat(f[t]||[]);return uniq(a)}
+    function gcal(o){var names=blk(o,x.w);
+      return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.title)+'&dates='+gstamp(o.s)+'/'+gstamp(o.e)+'&details='+encodeURIComponent('Available: '+names.join(', '))+addq(blk(o,x.m))}
+    var out=[],per=60/STEP,run=null;
+    function flush(){var len=(run.e-run.s)/STEP+1;for(var a=0;a<len;a+=per){var ln=Math.min(per,len-a);if(ln<per&&a>0)break;
+      var s0=run.s+a*STEP,e0=s0+ln*STEP,p0=Z.at[s0],p1=Z.at[e0-STEP],top=p1&&p1.c===p0.c?(p0.r+p1.r+1)/2/Z.R*100:(p0.r+.5)/Z.R*100;out.push({s:s0,e:e0,l:ln,c:p0.c,top:top})}}
+    if(max>0)Z.E.concat([null]).forEach(function(t){var n=t===null?0:(x.c[t]||0);
+      if(n===max&&run&&t===run.e+STEP)run.e=t;else{if(run)flush();run=n===max?{s:t,e:t}:null}});
     out.sort(function(a,b){return b.l-a.l});
-    best.innerHTML=out.length?out.map(function(o){var p=parse(o.d);
-      return '<li><span class="sm">★</span> <b>'+DOW[p.getDay()]+' '+(p.getMonth()+1)+'/'+p.getDate()+'</b>, '+slotLabel(o.s)+' – '+slotLabel(o.e)+' · '+max+' of '+tot+' available · <a href="'+gcal(o)+'" target="_blank" rel="noopener">+ Google Calendar</a></li>'}).join(''):'<li style="list-style:none">No responses yet.</li>';
-    bestWin=out;render(document.getElementById('g2'),true);
+    best.innerHTML=out.length?out.map(function(o){var w=Z.wall(o.s);
+      return '<li><span class="sm">★</span> <b>'+wDay(w)+'</b>, '+wTime(w)+' – '+wTime(Z.wall(o.e))+' · '+max+' of '+tot+' available · <a href="'+gcal(o)+'" target="_blank" rel="noopener">+ Google Calendar</a></li>'}).join(''):'<li style="list-style:none">No responses yet.</li>';
+    bestWin=out;renderGroup();
+    var pv=dirty&&x.P.some(function(p){return p.me}),gp=document.getElementById('gp'),bp=document.getElementById('bp');
+    if(gp){gp.textContent=pv?'Preview only: includes your unsaved changes. Save availability to share it.':'';gp.classList.toggle('pv',pv)}
+    if(bp)bp.style.display=pv?'':'none'
   }
-  function showWho(k,hd){var x=counts(),w=x.w[k]||[],all=Object.keys(resp).map(function(u){return resp[u].name||'Anonymous'});
-    var no=all.filter(function(n){return w.indexOf(n)<0});
-    who.innerHTML=(hd||'<b>'+klabel(k)+'</b>')+'<br><b>Available ('+w.length+'):</b> '+(w.map(esc).join(', ')||'—')+'<br><b>Unavailable ('+no.length+'):</b> '+(no.map(esc).join(', ')||'—')}
-  function idleTip(){var sl=slots(),parts=[];
-    ev.dates.forEach(function(d){var cnt=sl.map(function(i){return mine[key(d,i)]?1:0}),rs=runs(cnt,function(v){return v>0});if(!rs.length)return;
-      var p=parse(d);parts.push(DOW[p.getDay()]+' '+(p.getMonth()+1)+'/'+p.getDate()+' · '+rs.map(function(r){return slotLabel(sl[r[0]])+' – '+slotLabel(sl[r[1]-1]+1)}).join(', '))});
+  function showWho(c,r){var a=ids(c,r),el=document.getElementById('who');if(!a.length){el.innerHTML='<b>'+klabel(c,r)+'</b><br>Outside this event\'s hours.';return}
+    var P=counts().P,w=P.filter(function(p){return has(p.set,a)}).map(function(p){return p.name}),no=P.filter(function(p){return !has(p.set,a)}).map(function(p){return p.name});
+    el.innerHTML='<b>'+klabel(c,r)+'</b><br><b>Available ('+w.length+'):</b> '+(w.map(esc).join(', ')||'—')+'<br><b>Unavailable ('+no.length+'):</b> '+(no.map(esc).join(', ')||'—')}
+  function idleTip(){var parts=[];
+    Z.cols.forEach(function(col,c){runs(colOn(c),function(v){return v>0}).forEach(function(q){parts.push(wDay(rw(c,q[0]))+' · '+wTime(rw(c,q[0]))+' – '+wTime(rw(c,q[1])))})});
     tp1.textContent=parts.length?parts.join('; '):TIP_DEFAULT}
   function wire(){
-    var g1=document.getElementById('g1'),g2=document.getElementById('g2'),A=null;
-    function pos(e){var t=document.elementFromPoint(e.clientX,e.clientY),k=t&&t.closest&&t.closest('.trk');if(!k)return null;
-      var sl=slots();return{d:k.dataset.d,j:jAt(e,k),k:null,trk:k,sl:sl}}
-    function jAt(e,trk){var r=trk.getBoundingClientRect(),n=slots().length;return Math.max(0,Math.min(n-1,Math.floor((e.clientX-r.left)/r.width*n)))}
-    function apply(j){if(A.h)A.h.j=j;var lo=Math.min(A.j,j),hi=Math.max(A.j,j);
-      slots().forEach(function(i,q){var kk=key(A.d,i);if(q>=lo&&q<=hi){if(mode)mine[kk]=1;else delete mine[kk]}else if(A.base[kk])mine[kk]=1;else delete mine[kk]});
-      dirty=true;st.textContent='Unsaved changes';paintMine()}
-    g1.addEventListener('pointerdown',function(e){var p=pos(e);if(!p||p.trk.closest('#g1')!==g1)return;e.preventDefault();
-      var base={};slots().forEach(function(i){var kk=key(p.d,i);if(mine[kk])base[kk]=1});
-      mode=!mine[key(p.d,p.sl[p.j])];A={d:p.d,j:p.j,trk:p.trk,base:base};if(mode){A.h={d:p.d,j:p.j};selHist.push(A.h);if(selHist.length>50)selHist.shift()}apply(p.j)});
-    g1.addEventListener('pointermove',function(e){var p=pos(e);if(mode!==null&&A)apply(jAt(e,A.trk));if(p&&p.trk.closest('#g1')===g1)tp1.textContent=rangeText(p.d,p.j,false);else if(mode===null)idleTip()});
-    g1.addEventListener('pointerleave',function(){if(mode===null)idleTip()});
-    function end(){mode=null;A=null}
+    var A=null,hv=null,whoEl=document.getElementById('who');
+    function cellAt(e){var t=document.elementFromPoint(e.clientX,e.clientY);return t&&t.closest?t.closest('.hx'):null}
+    function info(el){var col=el.parentNode;return{c:+col.dataset.c,j:+el.dataset.r,col:col}}
+    function apply(j){if(j===A.last)return;A.last=j;if(j!==A.j)A.away=true;var back=A.away&&j===A.j,lo=Math.min(A.j,j),hi=Math.max(A.j,j);
+      A.cells.forEach(function(el,q){var a=ids(A.c,q);if(!a.length)return;var on=(!back&&q>=lo&&q<=hi)?mode:has(A.base,a);if(on!==has(mine,a)){a.forEach(function(t){if(on)mine[t]=1;else delete mine[t]});el.classList.toggle('on',on)}});
+      dirty=true;st.textContent='Unsaved changes'}
+    G1.addEventListener('pointerdown',function(e){var c=cellAt(e);if(!c||!G1.contains(c))return;e.preventDefault();var ae=document.activeElement;if(ae&&/^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName))ae.blur();
+      var p=info(c),cells=[].slice.call(p.col.querySelectorAll('.hx')),r0=cells[0].getBoundingClientRect(),r1=cells[cells.length-1].getBoundingClientRect(),base={};
+      Z.cols[p.c].cells.forEach(function(a){a.forEach(function(t){if(mine[t])base[t]=1})});
+      mode=!has(mine,ids(p.c,p.j));A={c:p.c,j:p.j,cells:cells,top:r0.top,hgt:r1.bottom-r0.top,n:cells.length,base:base,last:-1,before:snap()};apply(p.j);tp1.textContent=rangeText(p.c,p.j)});
+    G1.addEventListener('pointermove',function(e){
+      if(mode!==null&&A){apply(Math.max(0,Math.min(A.n-1,Math.floor((e.clientY-A.top)/A.hgt*A.n))));tp1.textContent=rangeText(A.c,A.last);return}
+      var c=cellAt(e);if(c&&G1.contains(c)){var p=info(c);tp1.textContent=rangeText(p.c,p.j)}else idleTip()});
+    G1.addEventListener('pointerleave',function(){if(mode===null)idleTip()});
+    function end(){if(A){var a=A;A=null;mode=null;
+      Z.cols[a.c].cells.forEach(function(x){x.forEach(function(t){var now=!!mine[t];if(now!==!!a.base[t]){delete auto[t];if(now)delete off[t];else off[t]=1}})});paintMine();if(snap()!==a.before){undo.push(a.before);if(undo.length>100)undo.shift();redo=[];updUR()}paintGroup()}mode=null}
     window.addEventListener('pointerup',end);window.addEventListener('pointercancel',end);
-    function ring(p){var h=g2.querySelector('.hov');if(h)h.remove();if(!p)return;var n=p.sl.length,el=document.createElement('div');el.className='hov';el.style.left='calc('+p.j/n*100+'% + 1px)';el.style.width='calc('+100/n+'% - 2px)';p.trk.children[1].appendChild(el)}
-    function who(e){var p=pos(e);if(p&&p.trk.closest('#g2')===g2){showWho(key(p.d,p.sl[p.j]));ring(p)}else{ring(null);document.getElementById('who').textContent=WHO_DEFAULT}}
-    g2.addEventListener('pointerleave',function(e){ring(null);if(e.pointerType!=='touch')document.getElementById('who').textContent=WHO_DEFAULT});
-    g2.addEventListener('pointermove',who);g2.addEventListener('pointerdown',who);
+    function setHv(c){if(hv)hv.classList.remove('hv');hv=c;if(c)c.classList.add('hv')}
+    function who(e){var c=cellAt(e);if(c&&G2.contains(c)){var p=info(c);showWho(p.c,p.j);setHv(c)}else{setHv(null);whoEl.textContent=WHO_DEFAULT}}
+    G2.addEventListener('pointerleave',function(e){setHv(null);if(e.pointerType!=='touch')whoEl.textContent=WHO_DEFAULT});
+    G2.addEventListener('pointermove',who);G2.addEventListener('pointerdown',who);
+    vbar(G1);vbar(G2);
   }
+  // Custom bar because the cells use touch-action:none (swiping paints), so touch screens need a separate scroll handle.
+  function vbar(sc){var box=sc.parentNode,bar=box.querySelector('.vbar'),th=bar.firstChild,off=null,tm=null;
+    function upd(){var ch=sc.clientHeight,sh=sc.scrollHeight,H=bar.clientHeight,no=sh<=ch+1;box.classList.toggle('nv',no);if(no)return;
+      var h=Math.max(24,H*ch/sh);th.style.height=h+'px';th.style.top=(H-h)*sc.scrollTop/(sh-ch)+'px'}
+    function to(y){var r=bar.getBoundingClientRect(),h=th.offsetHeight,room=bar.clientHeight-h;if(room>0)sc.scrollTop=(y-r.top-off)/room*(sc.scrollHeight-sc.clientHeight)}
+    function stop(){off=null;bar.classList.remove('on')}
+    bar.addEventListener('pointerdown',function(e){e.preventDefault();var r=th.getBoundingClientRect();off=e.clientY>=r.top&&e.clientY<=r.bottom?e.clientY-r.top:th.offsetHeight/2;
+      bar.classList.add('on');try{bar.setPointerCapture(e.pointerId)}catch(x){}to(e.clientY)});
+    bar.addEventListener('pointermove',function(e){if(off!==null)to(e.clientY)});
+    bar.addEventListener('pointerup',stop);bar.addEventListener('pointercancel',stop);bar.addEventListener('lostpointercapture',stop);
+    sc.addEventListener('scroll',function(){upd();if(off===null){bar.classList.add('on');clearTimeout(tm);tm=setTimeout(function(){if(off===null)bar.classList.remove('on')},700)}});
+    if(window.ResizeObserver){var ro=new ResizeObserver(upd);ro.observe(sc);if(sc.firstChild)ro.observe(sc.firstChild);unsubs.push(function(){ro.disconnect()})}
+    else{window.addEventListener('resize',upd);unsubs.push(function(){window.removeEventListener('resize',upd)})}
+    upd()}
   sv.onclick=function(){
     var name=nm.value.trim();if(!name){st.textContent='Please enter your name.';return}
     try{localStorage.setItem('ms_name',name)}catch(e){}
-    st.textContent='Saving…';
-    db.doc('events/'+id+'/responses/'+slug(name)).set({name:name,slots:Object.keys(mine),updated:Date.now()})
-      .then(function(){addMine(id);dirty=false;st.textContent='Saved ✓'})
-      .catch(function(x){st.textContent='Could not save: '+(x&&x.message||x)})
+    var s2=st,sent=snap(),hu=undo,hr=redo;s2.textContent='Saving…';
+    undo=[];redo=[];updUR();
+    var rid=slug(name);if(me){var mk=myKey();if(resp[mk]&&resp[mk].uid===me.uid)rid=mk;else if(resp[rid]&&resp[rid].uid&&resp[rid].uid!==me.uid)rid=rid+'-'+me.uid.slice(-6).toLowerCase()}
+    db.doc('events/'+id+'/responses/'+rid).set(toDoc(name))
+      .then(function(){track(id);stash=null;dirty=snap()!==sent;s2.textContent=dirty?'Unsaved changes':'Saved ✓';if(document.getElementById('g2')===G2)paintGroup()})
+      .catch(function(x){if(!undo.length&&!redo.length){undo=hu;redo=hr;if(document.getElementById('g1')===G1)updUR()}s2.textContent='Could not save: '+(x&&x.message||x)})
   };
-  function stampAt(d,i){var p=parse(d),t=new Date(p.getFullYear(),p.getMonth(),p.getDate(),0,i*STEP);return iso(t).replace(/-/g,'')+'T'+String(t.getHours()).padStart(2,'0')+String(t.getMinutes()).padStart(2,'0')+'00'}
-  function fillCustom(){var sl=slots(),o='',f='',t='';
-    ev.dates.forEach(function(d){var p=parse(d);o+='<option value="'+d+'">'+DOW[p.getDay()]+' '+(p.getMonth()+1)+'/'+p.getDate()+'</option>'});
-    sl.forEach(function(i){f+='<option value="'+i+'">'+slotLabel(i)+'</option>';t+='<option value="'+(i+1)+'">'+slotLabel(i+1)+'</option>'});
-    cd.innerHTML=o;cf.innerHTML=f;ct.innerHTML=t;cf.value=sl[0];ct.value=Math.min(sl[0]+60/STEP,sl[sl.length-1]+1)}
-  cg.onclick=function(){var d=cd.value,s=+cf.value,e=+ct.value;if(e<=s){cm.textContent='The end time must be after the start time.';return}
-    var names=[];Object.keys(resp).forEach(function(u){var set={};(resp[u].slots||[]).forEach(function(k){set[k]=1});var ok=true;for(var i=s;i<e;i++)if(!set[key(d,i)]){ok=false;break}if(ok)names.push(resp[u].name||'Anonymous')});
+  function fillCustom(){var o='',f='',t='';
+    Z.cols.forEach(function(col,c){o+='<option value="'+c+'">'+wDay(col.w0)+'</option>'});
+    for(var r=0;r<Z.R;r++){f+='<option value="'+r+'">'+wTime(Z.rs+r*STEP)+'</option>';t+='<option value="'+(r+1)+'">'+wTime(Z.rs+(r+1)*STEP)+'</option>'}
+    cd.innerHTML=o;cf.innerHTML=f;ct.innerHTML=t;cf.value=0;ct.value=Math.min(60/STEP,Z.R)}
+  cg.onclick=function(){var c=+cd.value,s=+cf.value,e=+ct.value;if(e<=s){cm.textContent='The end time must be after the start time.';return}
+    var a=[];for(var r=s;r<e;r++)a=a.concat(ids(c,r));if(!a.length){cm.textContent='That range is outside the event\'s hours.';return}
+    var av=ppl().filter(function(p){return has(p.set,a)}),names=av.map(function(p){return p.name});
     cm.textContent='';
-    var a=document.createElement('a');a.href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.title)+'&dates='+stampAt(d,s)+'/'+stampAt(d,e)+'&details='+encodeURIComponent('Available: '+(names.join(', ')||'none of the respondents'));
-    a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove()};
-  var armed=false;
-  del.onclick=function(){
-    if(!armed){armed=true;del.textContent='Click again to delete for everyone';setTimeout(function(){armed=false;del.textContent='Delete event'},4000);return}
-    del.disabled=true;del.textContent='Deleting…';
+    var l=document.createElement('a');l.href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.title)+'&dates='+wstamp(rw(c,s))+'/'+wstamp(rw(c,e))+'&details='+encodeURIComponent('Available: '+(names.join(', ')||'none of the respondents'))+addq(av.map(function(p){return p.email}));
+    l.target='_blank';l.rel='noopener';document.body.appendChild(l);l.click();l.remove()};
+  function showDel(){if(ev)del.style.display=(ev.ownerKind?!!me&&ev.owner===me.uid:!ev.owner||ev.owner===bid)?'':'none'}
+  var armed=false,dt=null;
+  del.onclick=function(){var b=del,s2=st;
+    if(!armed){armed=true;b.textContent='Click again to delete for everyone';dt=setTimeout(function(){armed=false;b.textContent='Delete event'},4000);return}
+    clearTimeout(dt);b.disabled=true;b.textContent='Deleting…';
     var rc=db.collection('events/'+id+'/responses');
     rc.get().then(function(q){return q.docs.reduce(function(p,d){return p.then(function(){return rc.doc(d.id).delete()})},Promise.resolve())})
       .then(function(){clear();return ref.delete()}).then(function(){location.hash=''})
-      .catch(function(x){del.disabled=false;del.textContent='Delete event';st.textContent='Could not delete: '+(x&&x.message||x)});
+      .catch(function(x){b.disabled=false;b.textContent='Delete event';s2.textContent='Could not delete: '+(x&&x.message||x)});
   };
-  function loadMine(m){mine={};(m.slots||[]).forEach(function(k){mine[k]=1});dirty=false;loadedSlug=slug(nm.value);paintMine();idleTip();st.textContent='Loaded your saved response. Edit it, then click Save.'}
+  function loadMine(m,msg){undo=[];redo=[];updUR();mine=toSet(m);auto=pick(m.auto);off={};dirty=false;loadedSlug=slug(nm.value);paintMine();idleTip();st.textContent=msg||'Loaded your saved response. Edit it, then click Save.'}
+  // A matching name always shows that person's saved times; an unsaved draft is set aside and comes back if the name changes again before any edit.
   function checkName(){var sg=slug(nm.value);
-    if(loadedSlug&&sg!==loadedSlug){mine={};dirty=false;loadedSlug=null;paintMine();idleTip();st.textContent=''}
-    var m=nm.value.trim()&&resp[sg];if(!m||sg===loadedSlug)return;
-    if(!dirty)loadMine(m);
-    else{st.innerHTML='A response for this name already exists. <button class="back" id="ld" style="margin:0">Load it</button> (replaces what you painted)';document.getElementById('ld').onclick=function(){loadMine(m)}}}
+    if(loadedSlug&&sg!==loadedSlug){var s=stash,keep=!!s&&snap()===s.loaded;stash=null;mine={};auto={};off={};undo=[];redo=[];dirty=false;loadedSlug=null;
+      if(keep){unsnap(s.t);dirty=true;st.textContent='Unsaved changes'}else st.textContent='';
+      paintMine();idleTip();updUR()}
+    var m=nm.value.trim()&&resp[sg];
+    if(m&&sg!==loadedSlug){var t=dirty&&Object.keys(mine).length?snap():null;
+      loadMine(m,t?'Showing the saved times for '+(m.name||nm.value.trim())+'. Your unsaved painting was set aside; change the name to get it back.':null);
+      if(t)stash={t:t,loaded:snap()}}
+    paintGroup()}
   nm.oninput=checkName;nm.onchange=checkName;
+  var RSb=document.getElementById('rs');
+  RSb.onclick=function(){if(mode!==null||!Object.keys(mine).length)return;var before=snap();mine={};auto={};off={};undo.push(before);if(undo.length>100)undo.shift();redo=[];updUR();
+    dirty=true;st.textContent='Cleared all your slots. Undo brings them back.';paintMine();idleTip();paintGroup()};
+  function fget(){var o={};try{o=JSON.parse(localStorage.getItem('swawm_fma')||'{}')||{}}catch(e){}var b=+o.buf,e=(o.ev||{})[id]||{};
+    return{buf:o.buf!=null&&isFinite(b)&&b>=0&&b<=120?b:15,lo:isFinite(+e.lo)?+e.lo:0,hi:e.hi!=null&&isFinite(+e.hi)?+e.hi:null,o:o}}
+  function fput(b,lo,hi){var o=fget().o;o.buf=b;o.ev=o.ev||{};o.ev[id]={lo:lo,hi:hi};try{localStorage.setItem('swawm_fma',JSON.stringify(o))}catch(e){}}
+  function bounds(){var f=fget(),lo=Math.max(0,Math.min(f.lo,Z.R-1)),hi=f.hi==null?Z.R:Math.max(lo+1,Math.min(f.hi,Z.R));return{buf:f.buf,lo:lo,hi:hi}}
+  function fill(){if(!Z||!user||mode!==null)return;var f=bounds(),inst=function(t){return Z.utc?t:lToUtc(t)},a=inst(Z.E[0]),b=inst(Z.E[Z.E.length-1])+STEP,btn=document.getElementById('fm');
+    if(btn){btn.disabled=true;btn.textContent='Checking your calendar…'}
+    AUTH.freeBusy(a*6e4,b*6e4,ev.tz||VTZ).then(function(busy){if(document.getElementById('g1')!==G1)return;
+      var bl=busyBlocks(busy,f.buf,STEP),before=snap(),n=0;
+      Object.keys(auto).forEach(function(t){delete mine[t]});auto={};
+      Z.cols.forEach(function(col){col.cells.forEach(function(x,r){if(r<f.lo||r>=f.hi)return;x.forEach(function(t){if(mine[t]||off[t]||isBusy(bl,inst(t),STEP))return;mine[t]=1;auto[t]=1;n++})})});
+      if(snap()!==before){undo.push(before);if(undo.length>100)undo.shift();redo=[];updUR()}
+      dirty=true;paintMine();idleTip();paintGroup();
+      st.textContent='Filled '+n+' free slot'+(n===1?'':'s')+' from your Google Calendar, keeping '+f.buf+' minutes clear around your events. Review, then Save availability.'})
+    .catch(function(e){if(document.getElementById('g1')===G1)st.textContent='Could not read your calendar: '+(e&&e.message||e)})
+    .then(function(){var x=document.getElementById('fm');if(x){x.disabled=false;x.textContent='Fill My Availability'}})}
+  function settings(){if(!Z)return;var f=bounds(),l='',h='';
+    for(var r=0;r<Z.R;r++)l+='<option value="'+r+'"'+(r===f.lo?' selected':'')+'>'+wTime(Z.rs+r*STEP)+'</option>';
+    for(r=1;r<=Z.R;r++)h+='<option value="'+r+'"'+(r===f.hi?' selected':'')+'>'+wTime(Z.rs+r*STEP)+'</option>';
+    modal('Fill settings','<label for="fb">Buffer around busy times (minutes)</label><input id="fb" type="number" min="0" max="120" step="5" value="'+f.buf+'">'+
+      '<div class="row"><div><label for="fl">Earliest</label><select id="fl">'+l+'</select></div><div><label for="fh">Latest</label><select id="fh">'+h+'</select></div></div>'+
+      '<p class="msg">Fill My Availability will keep at least this much time clear before and after existing events, round to the nearest 15-minute slot, and fill only between desired times.</p>','Save',
+      function(w){var B=w.querySelector('#fb').value.trim(),L=+w.querySelector('#fl').value,H=+w.querySelector('#fh').value;
+        if(!/^\d+$/.test(B)||+B>120)return{error:'Use a whole number of minutes from 0 to 120.'};if(H<=L)return{error:'Latest must be after earliest.'};return{b:+B,l:L,h:H}})
+    .then(function(v){if(!v)return;fput(v.b,v.l,v.h);st.textContent='Fill settings saved: '+v.b+'-minute buffer, '+wTime(Z.rs+v.l*STEP)+' to '+wTime(Z.rs+v.h*STEP)+'. Click Fill My Availability to refresh.'})}
+  function calUrl(){return 'https://calendar.google.com/calendar/r/week'+(user&&user.email?'?authuser='+encodeURIComponent(user.email):'')}
+  function renderGx(){var g=document.getElementById('gx');if(!g)return;
+    if(!AUTH||!AUTH.ready){g.innerHTML='<p class="msg">'+esc(AUTH&&AUTH.why||'Google sign-in is not available.')+'</p>';return}
+    if(!user){g.innerHTML='<button class="gbtn" id="gs"><span class="gl">'+GL+'</span><span class="gt">Sign in with Google</span></button><p class="msg" id="gxm"></p>';
+      document.getElementById('gs').onclick=function(){var m=document.getElementById('gxm');AUTH.signIn().catch(function(e){if(m)m.textContent=e&&e.message||String(e)})};return}
+    g.innerHTML='<div class="fma"><div class="fcol"><button class="fmb" id="fm">Fill My Availability</button><a class="lnk" id="vc" href="'+calUrl()+'" target="_blank" rel="noopener">View Calendar</a></div>'+
+      '<button class="ghost ic fs" id="fs" title="Fill settings" aria-label="Fill settings">'+SLI+'</button></div>'+
+      '<p class="msg" id="fmh">Striped slots came from your calendar. If you paint or clear a slot yourself, filling again will leave it alone.</p>'+
+      '<p class="msg gu">Signed in as <b>'+esc(user.email||user.name)+'</b> · <button class="lnk" id="so">Sign out</button></p>';
+    document.getElementById('fm').onclick=fill;document.getElementById('fs').onclick=settings;document.getElementById('so').onclick=function(){AUTH.signOut()}}
+  renderGx();
+  unsubs.push(onAuth(function(u){renderGx();showDel();if(!Z)return;
+    var k=myKey();if(u&&!dirty&&resp[k]&&resp[k].uid===u.uid&&k!==loadedSlug){nm.value=resp[k].name||nm.value;loadMine(resp[k])}
+    else if(u&&!u.anon&&!nm.value.trim()){nm.value=u.name||'';checkName()}
+    paintGroup()}));
+  function onKey(e){if(!(e.ctrlKey||e.metaKey)||mode!==null)return;var k=(e.key||'').toLowerCase(),ae=document.activeElement;if(ae&&/^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName))return;
+    if(k==='z'&&!e.shiftKey){e.preventDefault();doUndo()}else if(k==='y'||(k==='z'&&e.shiftKey)){e.preventDefault();doRedo()}}
+  document.addEventListener('keydown',onKey);unsubs.push(function(){document.removeEventListener('keydown',onKey)});
   try{nm.value=localStorage.getItem('ms_name')||''}catch(e){}
   unsubs.push(ref.onSnapshot(function(s){
     if(!s.exists){et.textContent='Event not found';return}
-    if(first){ev=s.data();STEP=ev.step||30;first=false;et.textContent=ev.title;var own=false;try{own=!!(user&&user.isOwner&&user.isOwner())}catch(e){}if(!ev.owner||ev.owner===uid||own)del.style.display='';build(g1,true);build(g2,false);fillCustom();wire();paintMine();paintGroup();
+    if(first){ev=s.data();STEP=ev.step||30;first=false;et.textContent=ev.title;Z=layout();showDel();
+      var sub=document.querySelector('p.sub');if(sub&&!Z.utc)sub.insertAdjacentHTML('beforeend',' This event was created before time zone support, so its times are shown as entered, without conversion.');
+      else if(sub&&ev.tz!==VTZ&&tzAbbr(ev.tz))sub.insertAdjacentHTML('beforeend',' Converted from the organizer\'s time zone ('+esc(tzAbbr(ev.tz))+').');
+      build(G1);build(G2);fillCustom();wire();paintMine();paintGroup();
       unsubs.push(db.collection('events/'+id+'/responses').onSnapshot(function(q){
-        resp={};q.docs.forEach(function(d){resp[d.id]=d.data()});
-        var m=resp[slug(nm.value)];if(m&&!dirty){mine={};(m.slots||[]).forEach(function(k){mine[k]=1});if(!nm.value)nm.value=m.name||'';loadedSlug=slug(nm.value);paintMine();idleTip()}
+        resp={};RS={};q.docs.forEach(function(d){resp[d.id]=d.data();RS[d.id]=toSet(resp[d.id])});
+        var mk=myKey(),m=resp[mk];if(m&&!dirty){mine=toSet(m);auto=pick(m.auto);off={};if(!nm.value)nm.value=m.name||'';loadedSlug=slug(nm.value);paintMine();idleTip()}
         paintGroup();
-      },function(){st.textContent='Could not load responses.'}));
+      },function(){var m=document.getElementById('st');if(m)m.textContent='Could not load responses.'}));
     }
   },function(){et.textContent='Could not load event'}));
 }
 
+// ---- Accounts (V3) ----
+// Every visitor has a Firebase Auth identity: guests are anonymous users, so the anonymous uid owns what a guest
+// creates and Firestore rules can check it. Google sign-in links that same anonymous user, keeping its uid. If the
+// Google account already exists, this browser hands its guest data to that account before switching to it.
+// Sign-in asks for openid/email/profile plus calendar.freebusy on one Google screen; no other calendar scope is used.
+var FB_SCOPE='https://www.googleapis.com/auth/calendar.freebusy',me=null;
+function onAuth(f){authCbs.push(f);return function(){authCbs=authCbs.filter(function(x){return x!==f})}}
+function setMe(m){var was=user&&user.uid;me=m;user=m&&!m.anon?m:null;fire(m,false);if(user&&user.uid!==was){var u=user;afterGoogle(u).then(function(){if(user===u)fire(u,true)})}}
+function fire(u,m){authCbs.slice().forEach(function(f){try{f(u,m)}catch(e){console.error(e)}})}
+// Busy blocks in UTC minutes: pad each busy range by buf, round outward to slot boundaries so the whole buffer is
+// kept, then merge anything that overlaps or touches, so every slot is checked against one disjoint list.
+function busyBlocks(busy,buf,step){var iv=[],out=[];
+  busy.forEach(function(b){var a=b.s/6e4-buf,e=b.e/6e4+buf;if(e>a)iv.push([Math.floor(a/step)*step,Math.ceil(e/step)*step])});
+  iv.sort(function(x,y){return x[0]-y[0]});iv.forEach(function(x){var l=out[out.length-1];if(l&&x[0]<=l[1]){if(x[1]>l[1])l[1]=x[1]}else out.push([x[0],x[1]])});return out}
+function isBusy(bl,s,step){for(var i=0;i<bl.length;i++)if(s<bl[i][1]&&s+step>bl[i][0])return true;return false}
+function liveAuth(){
+  if(!(firebase.auth&&firebase.auth.GoogleAuthProvider))return{ready:false,why:'Google sign-in did not load (firebase-auth-compat.js).'};
+  var A=firebase.auth(),tok=null,exp=0,ok=false;
+  function who(u){return{uid:u.uid,anon:u.isAnonymous,email:u.email||'',name:u.displayName||''}}
+  A.onAuthStateChanged(function(u){if(u)return setMe(who(u));setMe(null);A.signInAnonymously().catch(function(e){console.warn('Anonymous sign-in failed',e)})});
+  function prov(){var p=new firebase.auth.GoogleAuthProvider();p.addScope(FB_SCOPE);p.setCustomParameters({prompt:'select_account'});return p}
+  function keep(r){var t=r&&r.credential&&r.credential.accessToken;if(t){tok=t;exp=Date.now()+50*6e4;ok=false}}
+  function check(t){return fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token='+encodeURIComponent(t)).then(function(r){if(!r.ok)throw new Error('tokeninfo '+r.status);return r.json()})
+    .then(function(j){var sc=(j.scope||'').split(' ');if(sc.indexOf(FB_SCOPE)<0||sc.some(function(x){return /calendar/.test(x)&&x!==FB_SCOPE}))throw new Error('scope');return t})}
+  function gis(){
+    if(!GOOGLE_OAUTH_CLIENT_ID||GOOGLE_OAUTH_CLIENT_ID.indexOf('PASTE')>=0)return Promise.reject(new Error('Calendar access is not set up yet (missing OAuth client ID).'));
+    if(!(window.google&&google.accounts&&google.accounts.oauth2))return Promise.reject(new Error('Google Identity Services did not load.'));
+    return new Promise(function(res,rej){google.accounts.oauth2.initTokenClient({client_id:GOOGLE_OAUTH_CLIENT_ID,scope:FB_SCOPE,include_granted_scopes:false,login_hint:user&&user.email||undefined,
+      callback:function(r){if(r.error)return rej(new Error(r.error_description||r.error));
+        var extra=(r.scope||'').split(' ').filter(function(x){return /calendar/.test(x)&&x!==FB_SCOPE});
+        if(extra.length){google.accounts.oauth2.revoke(r.access_token,function(){});return rej(new Error('Google returned more calendar access than free/busy, so the token was discarded.'))}
+        if(!google.accounts.oauth2.hasGrantedAllScopes(r,FB_SCOPE))return rej(new Error('Free/busy access was not granted.'));
+        tok=r.access_token;ok=true;exp=Date.now()+((+r.expires_in||3600)-60)*1000;res(tok)},
+      error_callback:function(e){rej(new Error(e&&e.type==='popup_closed'?'The Google window was closed.':(e&&e.message)||'Google sign-in failed.'))}}).requestAccessToken()})}
+  // The sign-in token is reused when tokeninfo confirms it carries free/busy and no other calendar scope;
+  // otherwise (expired, reloaded page, or the box was unticked) Google's own token popup asks for free/busy alone.
+  function token(){if(tok&&Date.now()<exp)return ok?Promise.resolve(tok):check(tok).then(function(t){ok=true;return t},function(){tok=null;return gis()});return gis()}
+  function handOver(from,cred){var app2=firebase.initializeApp(FIREBASE_CONFIG,'swawm-handover-'+Date.now());
+    return app2.auth().signInWithCredential(cred).then(function(r){return transfer(from,{uid:r.user.uid,email:r.user.email||''})})
+      .then(function(){return app2.delete()},function(e){app2.delete();throw e})}
+  return{ready:true,
+    signIn:function(){var cur=A.currentUser;
+      if(!cur||!cur.isAnonymous)return A.signInWithPopup(prov()).then(keep);
+      return cur.linkWithPopup(prov()).then(function(r){keep(r);setMe(who(r.user))},function(e){
+        if((e.code!=='auth/credential-already-in-use'&&e.code!=='auth/email-already-in-use')||!e.credential)throw e;
+        var cred=e.credential;return handOver(cur.uid,cred).then(function(){return A.signInWithCredential(cred)}).then(function(r){if(cred.accessToken)keep({credential:cred})})})},
+    signOut:function(){tok=null;return A.signOut()},
+    freeBusy:function(a,b){return token().then(function(t){return fetch('https://www.googleapis.com/calendar/v3/freeBusy',{method:'POST',headers:{Authorization:'Bearer '+t,'Content-Type':'application/json'},
+      body:JSON.stringify({timeMin:new Date(a).toISOString(),timeMax:new Date(b).toISOString(),items:[{id:'primary'}]})})}).then(function(r){if(!r.ok){if(r.status===401||r.status===403)tok=null;throw new Error('Google Calendar answered '+r.status)}return r.json()})
+      .then(function(j){var c=j.calendars&&j.calendars.primary||{};if(c.errors&&c.errors.length)throw new Error(c.errors[0].reason||'calendar error');return(c.busy||[]).map(function(x){return{s:Date.parse(x.start),e:Date.parse(x.end)}})})}}}
+var CONSENT_LINE='SWAWM wants to see the availabilities on your calendars.',CONSENT_SUB='Event titles and details remain private and unchanged.';
+// Preview mode: a fake Google account and seeded busy blocks, so the whole flow runs without credentials. It mirrors the
+// live account model: a per-browser anonymous guest uid, linking on first sign-in, hand-over when the account exists.
+function demoAuth(){var KA='swawm_demo_anon',KG='swawm_demo_user',KR='swawm_demo_accounts';
+  function ls(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||'null');if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
+  function rid(p){return p+Math.random().toString(36).slice(2,12)}
+  function anon(){var a=ls(KA);if(!a){a={uid:rid('anon_'),anon:true,email:'',name:''};ls(KA,a)}return a}
+  setTimeout(function(){setMe(ls(KG)||anon())},0);
+  return{ready:true,demo:true,
+    signIn:function(){return modal('Sign in with Google','<p class="msg" style="margin-top:0">Demo only: no real Google account is used.</p><p><b>Demo Google User</b><br>demo.user@gmail.com</p><p><b>'+esc(CONSENT_LINE)+'</b><br><span class="msg">'+esc(CONSENT_SUB)+'</span></p><p class="msg">Google also shares your name and email address with SWAWM.</p>','Continue').then(function(ok){
+      if(!ok)throw new Error('Sign-in was cancelled.');var reg=ls(KR)||{},cur=me,g={email:'demo.user@gmail.com',name:'Demo Google User',anon:false};
+      if(reg[g.email]){g.uid=reg[g.email];return(cur&&cur.anon?transfer(cur.uid,g):Promise.resolve()).then(function(){ls(KA,null);ls(KG,g);setMe(g)})}
+      g.uid=cur&&cur.anon?cur.uid:rid('g_');reg[g.email]=g.uid;ls(KR,reg);ls(KA,null);ls(KG,g);setMe(g)})},
+    signOut:function(){ls(KG,null);setMe(anon());return Promise.resolve()},
+    freeBusy:function(a,b,tz){return new Promise(function(r){setTimeout(r,350)}).then(function(){
+      var z=zOk(tz)?tz:null,P=[[[600,660],[810,855]],[[540,590],[720,780]],[[670,720],[725,760],[900,920]],[[840,990]],[[540,560],[555,600]]],out=[];
+      var w0=z?zWall(z,a):lw(a/6e4),d0=Math.floor(w0/1440)*1440;
+      for(var k=-1;k<40&&(d0+k*1440)*6e4<b+864e5;k++)P[(k+5)%5].forEach(function(x){var s=z?zToUtc(z,d0+k*1440+x[0]):lToUtc(d0+k*1440+x[0]),e=z?zToUtc(z,d0+k*1440+x[1]):lToUtc(d0+k*1440+x[1]);if(e*6e4>a&&s*6e4<b)out.push({s:s*6e4,e:e*6e4})});
+      return out})}}}
+function modal(title,body,okText,read){return new Promise(function(res){var w=document.createElement('div');w.className='mdl';
+  w.innerHTML='<div class="mbox" role="dialog" aria-modal="true" aria-label="'+esc(title)+'"><h2>'+esc(title)+'</h2>'+body+'<p class="mbt"><button class="ghost" data-x="0">Cancel</button> <button data-x="1">'+esc(okText)+'</button></p><p class="msg" data-err style="color:#b4534f"></p></div>';
+  document.body.appendChild(w);function done(v){if(v&&read){var r=read(w);if(r&&r.error){w.querySelector('[data-err]').textContent=r.error;return}v=r}w.remove();document.removeEventListener('keydown',k);res(v||null)}
+  function k(e){if(e.key==='Escape')done(false)}document.addEventListener('keydown',k);
+  w.addEventListener('click',function(e){if(e.target===w)done(false);var x=e.target.closest&&e.target.closest('[data-x]');if(x)done(x.dataset.x==='1')});
+  var f=w.querySelector('[data-x="1"]');if(f)f.focus()})}
+function uniq(a){var o={};return a.filter(function(x){return x&&!o[x]&&(o[x]=1)})}
+// users/{uid} lists a Google account's events so they follow it to other devices.
+function track(id){addMine(id);if(!user)return;var u=user,r=db.doc('users/'+u.uid);r.get().then(function(s){var d=s.exists?s.data():{};return r.set({uid:u.uid,email:u.email,name:u.name,events:uniq([id].concat(d.events||[])).slice(0,200),updated:Date.now()})}).catch(function(e){console.warn('track',e)})}
+// Runs while this browser is still signed in as the anonymous guest, so rules let it give its own data away.
+function transfer(from,to){return Promise.all(myEvents().map(function(id){var r=db.doc('events/'+id);
+  return r.get().then(function(s){if(!s.exists)return;var p=[];if(s.data().owner===from)p.push(r.update({owner:to.uid,ownerKind:'google'}));
+    return db.collection('events/'+id+'/responses').get().then(function(q){q.docs.forEach(function(d){if(d.data().uid===from)p.push(db.doc('events/'+id+'/responses/'+d.id).update({uid:to.uid,email:to.email}))});return Promise.all(p)})})
+  .catch(function(e){console.warn('transfer',id,e)})}))}
+function afterGoogle(u){var r=db.doc('users/'+u.uid);
+  return r.get().then(function(s){var d=s.exists?s.data():{},evs=uniq(myEvents().concat(d.events||[])).slice(0,200);
+    return r.set({uid:u.uid,email:u.email,name:u.name,events:evs,updated:Date.now()}).then(function(){saveMine(evs);
+      return Promise.all(evs.map(function(id){var e=db.doc('events/'+id);return e.get().then(function(x){if(!x.exists)return;var p=[];if(x.data().owner===u.uid&&x.data().ownerKind!=='google')p.push(e.update({owner:u.uid,ownerKind:'google'}));
+        return db.collection('events/'+id+'/responses').get().then(function(q){q.docs.forEach(function(d){var v=d.data();if(v.uid===u.uid&&v.email!==u.email)p.push(db.doc('events/'+id+'/responses/'+d.id).update({uid:u.uid,email:u.email}))});return Promise.all(p)})}).catch(function(e){console.warn('account sync',id,e)})}))})})
+  .catch(function(e){console.warn('account sync',e)})}
 function demoDb(){var st={},subs=[];
   function note(){subs.slice().forEach(function(f){f()})}
   function cp(v){return JSON.parse(JSON.stringify(v))}
   function kids(c){var o=[];Object.keys(st).forEach(function(k){var i=k.lastIndexOf('/');if(k.slice(0,i)===c)o.push(sd(k))});return o}
   function sd(p){var has=p in st;return{id:p.split('/').pop(),exists:has,data:function(){return has?cp(st[p]):undefined}}}
   function sub(f){subs.push(f);setTimeout(f,0);return function(){subs=subs.filter(function(x){return x!==f})}}
-  function doc(p){return{get:function(){return Promise.resolve(sd(p))},set:function(v){st[p]=cp(v);note();return Promise.resolve()},delete:function(){delete st[p];note();return Promise.resolve()},onSnapshot:function(cb){return sub(function(){cb(sd(p))})}}}
+  function doc(p){return{get:function(){return Promise.resolve(sd(p))},set:function(v){st[p]=cp(v);note();return Promise.resolve()},delete:function(){delete st[p];note();return Promise.resolve()},update:function(v){if(!(p in st))return Promise.reject(new Error('No document to update'));var o=st[p];Object.keys(v).forEach(function(k){o[k]=cp(v[k])});note();return Promise.resolve()},onSnapshot:function(cb){return sub(function(){cb(sd(p))})}}}
   function col(c){return{doc:function(i){return doc(c+'/'+i)},add:function(v){var id='demo'+Math.random().toString(36).slice(2,9);return doc(c+'/'+id).set(v).then(function(){return{id:id}})},get:function(){var d=kids(c);return Promise.resolve({docs:d,empty:!d.length})},onSnapshot:function(cb){return sub(function(){var d=kids(c);cb({docs:d,empty:!d.length})})}}}
   return{doc:doc,collection:col}}
-function seedDemo(){var dates=[];for(var n=0;n<5;n++){var d=new Date();d.setDate(d.getDate()+n);dates.push(iso(d))}
-  db.doc('events/demo-event').set({title:'Demo event (preview only)',dates:dates,start:9,end:17,step:15,created:Date.now(),owner:'demo'});
-  [['Alex',0,3,40,56],['Sam',1,4,44,60],['Jo',2,4,48,64]].forEach(function(p){var a=[];for(var n=p[1];n<=p[2];n++)for(var i=p[3];i<p[4];i++)a.push(dates[n]+'|'+i);
-    db.doc('events/demo-event/responses/'+p[0].toLowerCase()).set({name:p[0],slots:a,updated:Date.now()})});
+// The demo event lives in America/Los_Angeles so preview mode shows the conversion from any other zone.
+function seedDemo(){var tz='America/Los_Angeles',z=zOk(tz),now=z?zWall(tz,Date.now()):Date.now()/6e4-new Date().getTimezoneOffset(),d0=Math.floor(now/1440)*1440,dates=[];
+  for(var n=0;n<5;n++)dates.push(wIso(d0+n*1440));
+  var ev={title:'Demo event (preview only)',dates:dates,start:9,end:17,step:15,created:Date.now(),owner:'demo'};if(z)ev.tz=tz;
+  db.doc('events/demo-event').set(ev);
+  [['Alex',0,3,40,56],['Sam',1,4,44,60],['Jo',2,4,48,64]].forEach(function(p){var a=[],u=[];for(var n=p[1];n<=p[2];n++)for(var i=p[3];i<p[4];i++){a.push(dates[n]+'|'+i);if(z)u.push(zToUtc(tz,dn(dates[n])+i*15))}
+    var r={name:p[0],slots:a,updated:Date.now()};if(z)r.utc=u;db.doc('events/demo-event/responses/'+p[0].toLowerCase()).set(r)});
   addMine('demo-event')}
 function route(){var id=evId();if(id)eventView(id);else home()}
 window.addEventListener('hashchange',route);
 
 (function(){
   var ok=typeof firebase!=='undefined'&&typeof FIREBASE_CONFIG!=='undefined'&&FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.apiKey.indexOf('PASTE')<0;
-  if(!ok){db=demoDb();uid=localId();var b=document.createElement('div');b.className='demo';b.textContent='Preview mode: could not reach Firebase, so nothing here is saved or shared.';document.body.insertBefore(b,document.body.firstChild);seedDemo();route();return}
-  try{firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore();db.settings({experimentalForceLongPolling:true,useFetchStreams:false})}catch(e){app.innerHTML='<h1>SWAWM: So When Are We Meeting?</h1><p class="sub">Could not connect to Firebase: '+esc(String(e.message||e))+'</p>';return}
-  uid=localId();
+  if(!ok){db=demoDb();bid=localId();AUTH=demoAuth();var b=document.createElement('div');b.className='demo';b.textContent='Preview mode: could not reach Firebase, so nothing here is saved or shared.';document.body.insertBefore(b,document.body.firstChild);seedDemo();route();return}
+  try{firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore();db.settings({experimentalForceLongPolling:true,useFetchStreams:false})}catch(e){app.innerHTML='<h1>SWAWM: <em>So When Are We Meeting?</em></h1><p class="sub">Could not connect to Firebase: '+esc(String(e.message||e))+'</p>';return}
+  bid=localId();AUTH=liveAuth();
   route();
 })();
 })();
