@@ -6,70 +6,105 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600;1,700;1,800&display=swap">
 <title>SWAWM: So When Are We Meeting?</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<script>
+(function(){
+  var a={};
+  try{a=JSON.parse(localStorage.getItem('swawm_a11y')||'{}')||{}}catch(e){}
+  var t=a.theme||'system';
+  var dark=t==='dark'||(t!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  if(a.large)document.documentElement.classList.add('large-text');
+})();
+</script>
 <style>
 :root{--pop:#C97863;--bg:#FAF9F6;--fg:#242424;--mut:#858585;--card:#FFFFFF;--line:#E8E6E1;--pri:#1C1C1C;--acc:#C97863;--acc2:#D8E4DC;--none:#EEECE7;--avail:#D8E4DC;--availd:#91AA9C;--btn:#1C1C1C;--btnfg:#FFFFFF;--smc:#C97863;--demofg:#1C1C1C;--star:#FAF9F6;--ink:28,28,28;--bl1:rgba(201,120,99,.14);--bl2:rgba(216,228,220,.5);--bl3:rgba(201,120,99,.1);--bl4:rgba(216,228,220,.4);--font:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html[data-theme="dark"]{--pop:#E08A74;--bg:#1C1916;--fg:#EDEAE4;--mut:#A8A29A;--card:#2A2622;--line:#4A433C;--pri:#F7F3EC;--acc:#C97863;--acc2:#3F4F46;--none:#35312C;--avail:#3F4F46;--availd:#91AA9C;--btn:#C97863;--btnfg:#1C1916;--smc:#E08A74;--demofg:#1C1916;--star:#FAF9F6;--ink:247,243,236;--bl1:rgba(201,120,99,.22);--bl2:rgba(145,170,156,.14);--bl3:rgba(201,120,99,.12);--bl4:rgba(145,170,156,.1);color-scheme:dark}
+html{font-size:16px;scroll-padding-top:env(safe-area-inset-top,0px)}
+html.large-text{font-size:20px}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 10% 6%,var(--bl1) 0,transparent 36%),radial-gradient(circle at 94% 16%,var(--bl2) 0,transparent 40%),radial-gradient(circle at 84% 96%,var(--bl3) 0,transparent 38%),radial-gradient(circle at 4% 90%,var(--bl4) 0,transparent 40%),radial-gradient(rgba(var(--ink),.1) 1.3px,transparent 1.5px) 0 0/22px 22px,var(--bg);background-attachment:fixed;color:var(--fg);font:16px/1.5 var(--font)}
+body{margin:0;background:radial-gradient(circle at 10% 6%,var(--bl1) 0,transparent 36%),radial-gradient(circle at 94% 16%,var(--bl2) 0,transparent 40%),radial-gradient(circle at 84% 96%,var(--bl3) 0,transparent 38%),radial-gradient(circle at 4% 90%,var(--bl4) 0,transparent 40%),radial-gradient(rgba(var(--ink),.1) 1.3px,transparent 1.5px) 0 0/22px 22px,var(--bg);background-attachment:fixed;color:var(--fg);font:1rem/1.5 var(--font)}
 body::before{content:'';position:fixed;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--pop),var(--acc2),var(--pri));z-index:5}
 h1,h2{color:var(--pri)}h1{font-weight:800}h1 em{font-style:italic}h2{border-left:4px solid var(--pop);padding-left:10px}
 input:focus,select:focus,button:focus-visible{outline:2px solid var(--pop);outline-offset:1px}
 button:hover{filter:brightness(1.12)}
-main{max-width:980px;margin:0 auto;padding:20px 16px 48px}
-h1{font-size:28px;margin:0 0 4px;letter-spacing:-.5px}h2{font-size:19px;margin:0 0 10px}
-.sub{color:var(--mut);margin:0 0 20px;font-family:var(--font);font-size:14px}
+main{max-width:980px;margin:0 auto;padding:calc(16px + 2.125rem) 16px 48px}
+h1{font-size:1.75rem;margin:0 0 4px;letter-spacing:-.5px}h2{font-size:1.1875rem;margin:0 0 10px}
+.mast{display:flex;align-items:center;gap:12px;margin:0 0 4px;min-width:0}
+.mast h1{flex:1;min-width:0;margin:0}
+.brand{flex:0 0 auto;line-height:0}
+.brand img{width:36px;height:36px;display:block}
+.topbar{position:fixed;top:8px;right:8px;z-index:40;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 16px);transition:right .2s,max-width .2s}
+body.calopen .topbar{right:calc(min(460px,42vw) + 8px);max-width:calc(100vw - min(460px,42vw) - 16px);z-index:45}
+.a11y{position:relative;z-index:1}
+.hauth{display:flex;align-items:center;gap:6px;min-width:0}
+.hwho{max-width:9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:600 .75rem var(--font);color:var(--pri)}
+.hgbtn{height:2.125rem;align-items:stretch}
+.hgbtn .gl{width:1.875rem;margin:4px 0}.hgbtn .gt{padding:.25rem .6rem;font-size:.75rem;line-height:1.2;white-space:nowrap}
+.a11y-btn{width:2.125rem;height:2.125rem;padding:0;border-radius:8px;background:var(--card);color:var(--pri);border:1px solid var(--line);font:700 .8125rem var(--font);cursor:pointer}
+.a11y-panel{display:none;position:absolute;top:40px;right:0;width:228px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 8px 24px rgba(var(--ink),.2)}
+.a11y.open .a11y-panel,.a11y.open .a11y-panel[hidden]{display:block}
+.a11y-lab{font:700 .6875rem var(--font);color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin:0 0 8px}
+.a11y-row{display:flex;gap:6px;margin:0 0 10px}
+.a11y-row button{flex:1;padding:7px 6px;font-size:.75rem;background:var(--bg);color:var(--pri);border-color:var(--line)}
+.a11y-row button.on{background:var(--pop);color:#1C1C1C;border-color:var(--pop)}
+.a11y-panel label{display:flex;align-items:center;gap:8px;margin:8px 0 0;text-transform:none;letter-spacing:0;font:600 .8125rem var(--font);color:var(--fg);cursor:pointer}
+.a11y-panel input{width:auto}
+@media (max-width:600px){.brand img{width:32px;height:32px}}
+.sub{color:var(--mut);margin:0 0 20px;font-family:var(--font);font-size:.875rem}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
-label{display:block;font:600 12px var(--font);color:var(--mut);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.5px}
-input,select{font:15px var(--font);padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
+label{display:block;font:600 .75rem var(--font);color:var(--mut);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+input,select{font:.9375rem var(--font);padding:.5rem .625rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
 .row{display:flex;gap:10px;flex-wrap:wrap}.row>div{flex:1;min-width:130px}
-button{font:600 14px var(--font);padding:9px 16px;border-radius:8px;border:1px solid var(--btn);background:var(--btn);color:var(--btnfg);cursor:pointer}
+button{font:600 .875rem var(--font);padding:.5625rem 1rem;border-radius:8px;border:1px solid var(--btn);background:var(--btn);color:var(--btnfg);cursor:pointer}
 button.ghost{background:transparent;color:var(--pri);border-color:var(--pri)}
 .ev{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);cursor:pointer;font-family:var(--font)}
 .ev:first-of-type{border-top:0}.ev small{color:var(--mut)}
-.grids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:16px}
 .grids .card{min-width:0;margin-bottom:0}
 #tp1{white-space:nowrap;overflow-x:auto;overflow-y:hidden;padding-bottom:4px;scrollbar-width:thin}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.demo{background:var(--pop);color:var(--demofg);font:700 13px var(--font);text-align:center;padding:8px 12px}
-.tl2{display:flex;gap:2px;font:11px var(--font);user-select:none;-webkit-user-select:none}
-.col{flex:1 1 0;min-width:28px;display:flex;flex-direction:column;gap:1px;position:relative}
-.col.lab{flex:0 0 40px;min-width:40px}
-.hh{height:30px;display:flex;align-items:center;justify-content:center;text-align:center;font:700 11px/1.15 var(--font);color:var(--mut)}
-.lb{height:12px;line-height:12px;font-size:10px;color:var(--mut);text-align:right;padding-right:5px;white-space:nowrap}
-.hx{height:12px;border-radius:3px;background:var(--none);border-top:1px solid transparent;cursor:pointer;touch-action:none}
+.demo{background:var(--pop);color:var(--demofg);font:700 .8125rem var(--font);text-align:center;padding:8px 12px}
+.tl2{display:flex;gap:2px;font:.6875rem var(--font);user-select:none;-webkit-user-select:none}
+.col{flex:1 1 0;min-width:1.75rem;display:flex;flex-direction:column;gap:1px;position:relative}
+.col.lab{flex:0 0 2.5rem;min-width:2.5rem}
+.hh{height:1.875rem;display:flex;align-items:center;justify-content:center;text-align:center;font:700 .6875rem/1.15 var(--font);color:var(--mut)}
+.lb{height:.75rem;line-height:.75rem;font-size:.625rem;color:var(--mut);text-align:right;padding-right:5px;white-space:nowrap}
+.hx{height:.75rem;border-radius:3px;background:var(--none);border-top:1px solid transparent;cursor:pointer;touch-action:none}
 .hx.hr{border-top-color:rgba(var(--ink),.3)}
 .hx.hf{border-top:1px dotted rgba(var(--ink),.3)}
 .hx.on{background:var(--avail);box-shadow:inset 0 0 0 1px var(--availd)}
 .hx.hv{position:relative;z-index:1;box-shadow:0 0 0 2px var(--mut)}
 .hx.md{border-top:2px solid rgba(var(--ink),.55)}
 .hx.x{background:transparent;box-shadow:none;cursor:default}
-.art{position:absolute;left:0;right:0;top:31px;bottom:0;pointer-events:none}
-.star{position:absolute;left:50%;transform:translate(-50%,-50%);font:700 11px/1 var(--font);color:var(--star);text-shadow:0 0 2px rgba(var(--ink),.7),0 0 4px rgba(var(--ink),.35)}
+.art{position:absolute;left:0;right:0;top:calc(1.875rem + 1px);bottom:0;pointer-events:none}
+.star{position:absolute;left:50%;transform:translate(-50%,-50%);font:700 .6875rem/1 var(--font);color:var(--star);text-shadow:0 0 2px rgba(var(--ink),.7),0 0 4px rgba(var(--ink),.35)}
 .cust{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
 .best{list-style:none;padding:0;margin:0}.sm{color:var(--smc);margin-right:2px}
-.sp{display:flex;flex:1;max-width:280px;height:16px;border-radius:8px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(var(--ink),.14)}
-.sp span{flex:1;display:flex;align-items:center;justify-content:center;font:700 9px var(--font);color:var(--pri)}
-.leg{display:flex;align-items:center;gap:6px;font:12px var(--font);color:var(--mut);margin-top:8px}
-#who{min-height:84px;font:14px var(--font);margin-top:10px;padding:10px;border-radius:8px;background:var(--none)}
-.best li{font:14px/1.6 var(--font);margin:0 0 14px}
+.sp{display:flex;flex:1;max-width:280px;height:1rem;border-radius:8px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(var(--ink),.14)}
+.sp span{flex:1;display:flex;align-items:center;justify-content:center;font:700 .5625rem var(--font);color:var(--pri)}
+.leg{display:flex;align-items:center;gap:6px;font:.75rem var(--font);color:var(--mut);margin-top:8px}
+#who{min-height:5.25rem;font:.875rem var(--font);margin-top:10px;padding:10px;border-radius:8px;background:var(--none)}
+.best li{font:.875rem/1.6 var(--font);margin:0 0 14px}
 .back{background:none;border:0;color:var(--pri);font-weight:700;padding:0;margin-bottom:10px}
 button.danger{color:#C73E33;border-color:#C73E33}
 .best a{color:var(--pri);font-weight:700;text-decoration:underline;text-decoration-color:var(--pop);text-decoration-thickness:2px;text-underline-offset:3px;white-space:nowrap}
-.msg{font:13px var(--font);color:var(--mut);margin-top:8px}
+.msg{font:.8125rem var(--font);color:var(--mut);margin-top:8px}.delnote{margin:0 0 14px;font:600 .9375rem var(--font);color:var(--pri);transition:opacity 5s linear}
 .hd{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .ur{display:flex;gap:4px;flex:0 0 auto}
 button.ic{padding:3px 8px;line-height:0}
 button:disabled{opacity:.3;cursor:default;filter:none}
 .pv{color:var(--pop);font-weight:700}
-.lnk{background:none;border:0;padding:0;color:var(--pri);text-decoration:underline;text-underline-offset:3px;font:600 13px var(--font);cursor:pointer}
+.lnk{background:none;border:0;padding:0;color:var(--pri);text-decoration:underline;text-underline-offset:3px;font:600 .8125rem var(--font);cursor:pointer}
 .ur .lnk{margin-right:6px;align-self:center}
 .gx{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
-.gbtn{display:inline-flex;align-items:stretch;padding:0;background:#fff;color:#1F1F1F;border:1px solid #747775;border-radius:8px;overflow:hidden}
-.gbtn .gl{display:flex;align-items:center;justify-content:center;width:46px;border-right:1px solid #DADCE0}.gbtn .gt{padding:9px 16px}
+.gbtn{display:inline-flex;align-items:stretch;padding:0;background:#fff;color:#1F1F1F;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.gbtn .gl{display:flex;align-items:center;justify-content:center;width:46px;align-self:stretch;margin:5px 0;border-right:1px solid #DADCE0}.gbtn .gt{padding:9px 16px}
 .fma{display:flex;gap:8px;align-items:flex-start}
 .fcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}
-.fmb{width:100%;padding:11px 16px;font-size:15px}
+.fmb{width:100%;padding:11px 16px;font-size:.9375rem}
 button.fs{padding:10px 11px}
 .gu{margin-top:6px}
 .hx.on.af{background:repeating-linear-gradient(135deg,var(--avail) 0 4px,var(--card) 4px 7px)}
@@ -78,7 +113,7 @@ button.fs{padding:10px 11px}
 .mbt{display:flex;justify-content:flex-end;gap:8px;margin:16px 0 0}
 .tz{color:var(--pop)}
 .grids>.card{container-type:inline-size}
-#gp.pv{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(9px,2.66cqw,13px)}
+#gp.pv{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(.5625rem,2.66cqw,.8125rem)}
 .sbox{position:relative;padding-right:12px}
 .sbox.nv{padding-right:0}.sbox.nv .vbar{display:none}
 .vs{max-height:min(420px,60vh);overflow:auto}
@@ -91,11 +126,37 @@ button.fs{padding:10px 11px}
 .vbar:hover::before,.vbar.on::before,.vbar:hover i,.vbar.on i{width:7px}
 .vbar:hover i,.vbar.on i{background:rgba(var(--ink),.55)}
 @media (pointer:coarse){.sbox{padding-right:18px}.vbar{width:18px}.vbar::before,.vbar i{width:4px}.vbar.on::before,.vbar.on i{width:9px}}
-@media (max-width:760px){.grids{grid-template-columns:minmax(0,1fr)}#gp.pv{white-space:normal;font-size:13px}}
-@media (max-width:600px){main{padding:14px 10px 40px}.card{padding:12px}h1{font-size:22px}.row>div{min-width:100px}.hh{font-size:10px}.vs{max-height:min(360px,50vh)}}
+@media (max-width:760px){.grids{grid-template-columns:minmax(0,1fr)}#gp.pv{white-space:normal;font-size:.8125rem}}
+@media (max-width:600px){main{padding:calc(14px + 2.125rem) 10px 40px}.card{padding:12px}h1{font-size:1.375rem}.row>div{min-width:100px}.hh{font-size:.625rem}.vs{max-height:min(360px,50vh)}}
+.calp{position:fixed;top:0;right:0;bottom:0;width:min(460px,42vw);background:var(--card);border-left:1px solid var(--line);box-shadow:-8px 0 24px rgba(var(--ink),.12);z-index:20;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.calh{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);font:.875rem var(--font)}
+.calh span{display:flex;gap:12px;align-items:center}
+#calb{flex:1;display:flex;min-height:0}
+.calf{flex:1;border:0;width:100%;background:#fff}
+.calm{padding:10px 14px;margin:0}
+body.calopen{padding-right:min(460px,42vw);transition:padding-right .2s}
+html[data-theme="dark"] .gbtn{background:#fff;color:#1F1F1F;border-color:var(--line)}
+html[data-theme="dark"] button.danger{color:#E08A74;border-color:#E08A74}
+html[data-theme="dark"] .calf{background:#2A2622}
+@media (max-width:760px){.calp{display:none!important}body.calopen{padding-right:0}body.calopen .topbar{right:8px;max-width:calc(100vw - 16px)}}
 </style>
 </head>
 <body>
+<div class="topbar" id="topbar">
+<div class="hauth" id="hauth"></div>
+<div class="a11y" id="a11y">
+<button type="button" class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel" title="Accessibility">Aa</button>
+<div class="a11y-panel" id="a11yPanel" hidden>
+<p class="a11y-lab">Appearance</p>
+<div class="a11y-row">
+<button type="button" data-theme="system">System</button>
+<button type="button" data-theme="light">Light</button>
+<button type="button" data-theme="dark">Dark</button>
+</div>
+<label><input type="checkbox" id="a11yLarge"> Larger text</label>
+</div>
+</div>
+</div>
 <main id="app"><p class="sub">Loading…</p></main>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -104,15 +165,15 @@ button.fs{padding:10px 11px}
 <script>
 // STEP 1: paste your Firebase web app config here (see setup steps)
 var FIREBASE_CONFIG = {
-  apiKey: "AIzaSyDpeO4PVFxEpe75HT16O216I5zfl8sL4sA",
-  authDomain: "meeting-sync-8faab.firebaseapp.com",
-  projectId: "meeting-sync-8faab",
-  storageBucket: "meeting-sync-8faab.firebasestorage.app",
-  messagingSenderId: "290776860050",
-  appId: "1:290776860050:web:dee97fe692a05c26146d4b"
+  apiKey: "AIzaSyAdLBuqSWvmxMaLuztRFlCjCOAoNxzY1Ws",
+  authDomain: "swawm-25202.firebaseapp.com",
+  projectId: "swawm-25202",
+  storageBucket: "swawm-25202.firebasestorage.app",
+  messagingSenderId: "820111423002",
+  appId: "1:820111423002:web:4033b2c454acdf046d03a3"
 };
-// STEP 2 (V3): OAuth 2.0 Web client ID used only for the Calendar free/busy token (see docs/v3-google-setup.md).
-var GOOGLE_OAUTH_CLIENT_ID = "290776860050-1ciaf04hnnoutnqh07dc5c9dj2sgqb6s.apps.googleusercontent.com";
+// STEP 2 (V3): OAuth 2.0 Web client ID for Calendar list + free/busy tokens (see docs/v3-google-setup.md).
+var GOOGLE_OAUTH_CLIENT_ID = "820111423002-1av32aeelcl1gv0e574v82b5bvajmv5k.apps.googleusercontent.com";
 window.addEventListener('error',function(e){var a=document.getElementById('app');if(a){var b=document.createElement('p');b.className='msg';b.style.color='#b4534f';b.textContent='Error: '+(e.message||'unknown')+' (details in the browser console)';a.prepend(b)}});
 </script>
 <script>
@@ -120,6 +181,37 @@ window.addEventListener('error',function(e){var a=document.getElementById('app')
 var app=document.getElementById('app'),db=null,user=null,bid=null,unsubs=[],AUTH=null,authCbs=[];
 var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+var LOGO='<img src="data:image/png;base64,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" width="36" height="36" alt="SWAWM">';
+function brand(href){return href?'<a class="brand" href="'+href+'" title="SWAWM home">'+LOGO+'</a>':'<span class="brand">'+LOGO+'</span>'}
+function mast(title,href,hid){return '<div class="mast"><h1'+(hid?' id="'+hid+'"':'')+'>'+title+'</h1>'+brand(href)+'</div>'}
+function a11yLoad(){try{var a=JSON.parse(localStorage.getItem('swawm_a11y')||'{}')||{};return{theme:a.theme||'system',large:!!a.large}}catch(e){return{theme:'system',large:false}}}
+function a11ySave(a){try{localStorage.setItem('swawm_a11y',JSON.stringify({theme:a.theme||'system',large:!!a.large}))}catch(e){}}
+function a11yApply(){var a=a11yLoad(),t=a.theme||'system',dark=t==='dark'||(t!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  document.documentElement.classList.toggle('large-text',!!a.large);
+  document.documentElement.classList.remove('reduce-motion');
+  document.querySelectorAll('.a11y-row [data-theme]').forEach(function(b){b.classList.toggle('on',(a.theme||'system')===b.getAttribute('data-theme'))});
+  var L=document.getElementById('a11yLarge');if(L)L.checked=!!a.large}
+function a11yInit(){var root=document.getElementById('a11y'),btn=document.getElementById('a11yBtn'),panel=document.getElementById('a11yPanel');if(!root||!btn)return;
+  a11yApply();a11ySave(a11yLoad());
+  btn.onclick=function(e){e.stopPropagation();var open=!root.classList.contains('open');root.classList.toggle('open',open);btn.setAttribute('aria-expanded',open?'true':'false');if(panel)panel.hidden=!open};
+  document.addEventListener('click',function(e){if(!root.contains(e.target)){root.classList.remove('open');btn.setAttribute('aria-expanded','false');if(panel)panel.hidden=true}});
+  root.querySelectorAll('[data-theme]').forEach(function(b){b.onclick=function(e){e.stopPropagation();var a=a11yLoad();a.theme=b.getAttribute('data-theme');a11ySave(a);a11yApply()}});
+  var L=document.getElementById('a11yLarge');
+  if(L)L.onchange=function(){var a=a11yLoad();a.large=L.checked;a11ySave(a);a11yApply()};
+  if(window.matchMedia){var mq=matchMedia('(prefers-color-scheme: dark)');var on=function(){if((a11yLoad().theme||'system')==='system')a11yApply()};if(mq.addEventListener)mq.addEventListener('change',on);else if(mq.addListener)mq.addListener(on)}}
+a11yInit();
+var GLH='<svg width="14" height="14" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
+function headLabel(u){var n=String(u&&u.name||'').trim();if(n)return n.split(/\s+/)[0];var e=String(u&&u.email||'');return e.split('@')[0]||'Signed in'}
+function renderHeadAuth(){var el=document.getElementById('hauth');if(!el)return;
+  if(!AUTH||!AUTH.ready){el.innerHTML='';return}
+  if(!user){el.innerHTML='<button type="button" class="gbtn hgbtn" id="hgs" title="Sign in with Google"><span class="gl">'+GLH+'</span><span class="gt">Sign in</span></button>';
+    document.getElementById('hgs').onclick=function(){AUTH.signIn().catch(function(e){el.title=e&&e.message||String(e)})};return}
+  el.innerHTML='<span class="hwho" title="'+esc(user.email||user.name)+'">'+esc(headLabel(user))+'</span><button type="button" class="lnk" id="hso">Sign out</button>';
+  document.getElementById('hso').onclick=function(){closeHeadCal();if(AUTH)AUTH.signOut()}}
+function closeHeadCal(){var p=document.getElementById('calp');if(p)p.remove();document.body.classList.remove('calopen')}
+onAuth(function(){renderHeadAuth()});
+
 function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function parse(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
 var STEP=30;
@@ -145,22 +237,31 @@ function wDay(w){var x=new Date(w*6e4);return DOW[x.getUTCDay()]+' '+(x.getUTCMo
 function wTime(w){return tLabel(((w%1440)+1440)%1440)}
 function localId(){try{var v=localStorage.getItem('ms_id');if(!v){v='g'+Math.random().toString(36).slice(2,10);localStorage.setItem('ms_id',v)}return v}catch(e){return 'g'+Math.random().toString(36).slice(2,10)}}
 function slug(n){return n.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||'anon'}
-var mem=[];
+var mem=[],justDeleted=null;
 function myEvents(){try{var v=JSON.parse(localStorage.getItem('swawm_events')||'[]');return Array.isArray(v)?v:[]}catch(e){return mem}}
 function saveMine(a){mem=a;try{localStorage.setItem('swawm_events',JSON.stringify(a.slice(0,100)))}catch(e){}}
 function addMine(id){saveMine([id].concat(myEvents().filter(function(x){return x!==id})))}
 function clear(){unsubs.forEach(function(u){try{u()}catch(e){}});unsubs=[]}
 function evId(){var m=location.hash.match(/event=([\w-]+)/);return m?m[1]:null}
 
+function paintDeletedNote(){
+  var title=justDeleted;justDeleted=null;if(!title||!app)return;
+  var p=document.createElement('p');p.className='delnote';p.setAttribute('role','status');
+  p.textContent='An event titled "'+title+'" was deleted.';
+  app.insertBefore(p,app.firstChild);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){p.style.opacity='0'})});
+  setTimeout(function(){if(p.parentNode)p.remove()},5000);
+}
 function home(){
   clear();
   var t=new Date(),n=new Date();n.setDate(n.getDate()+6);
-  app.innerHTML='<h1>SWAWM: <em>So When Are We Meeting?</em></h1><p class="sub">Create an event, copy its link, and send it around. Everyone marks when they\'re free.</p>'+
+  app.innerHTML=mast('SWAWM: <em>So When Are We Meeting?</em>')+'<p class="sub">Create an event, copy its link, and send it around. Everyone marks when they\'re free.</p>'+
   '<div class="card"><h2>New event</h2><label>Event name</label><input id="ti" placeholder="Click here to name the event">'+
   '<div class="row"><div><label>First day</label><input type="date" id="d1" value="'+iso(t)+'"></div><div><label>Last day</label><input type="date" id="d2" value="'+iso(n)+'"></div>'+
   '<div><label>Earliest</label><select id="h1"></select></div><div><label>Latest</label><select id="h2"></select></div></div>'+
   '<p style="margin:14px 0 0"><button id="mk">Create event</button></p><p class="msg" id="err"></p></div>'+
   '<div class="card"><h2>Your events</h2><div id="list"><span class="msg">Loading…</span></div></div>';
+  paintDeletedNote();
   var o='';for(var h=0;h<=24;h++)o+='<option value="'+h+'">'+(h==24?'12 AM (end)':hourLabel(h))+'</option>';
   h1.innerHTML=o;h2.innerHTML=o;h1.value=9;h2.value=17;
   mk.onclick=function(){
@@ -194,7 +295,7 @@ function home(){
 function eventView(id){
   clear();
   var ev=null,resp={},mine={},myName='',loadedSlug=null,dirty=false,mode=null;
-  app.innerHTML='<button class="back" id="bk">‹ All events</button><h1 id="et">…</h1><p style="margin:0 0 12px"><button class="ghost" id="cp">🔗 Copy event link</button> <span class="msg" id="cpm"></span></p><p class="sub">Times shown in your local time zone'+(tzAbbr()?' (<span class="tz">'+esc(tzAbbr())+'</span>)':'')+'. Click or drag to paint when you\'re free.</p>'+
+  app.innerHTML='<button class="back" id="bk">‹ All events</button>'+mast('…','#','et')+'<p style="margin:0 0 12px"><button class="ghost" id="cp">🔗 Copy event link</button> <span class="msg" id="cpm"></span></p><p class="sub">Times shown in your local time zone'+(tzAbbr()?' (<span class="tz">'+esc(tzAbbr())+'</span>)':'')+'. Click or drag to paint when you\'re free.</p>'+
   '<div class="card"><div class="row"><div><label>Your name</label><input id="nm" placeholder="Your Name"></div><div style="flex:0;align-self:flex-end"><button id="sv">Save availability</button></div></div><p class="msg" id="st">Tip: to change your answer later, enter the same name and your saved times will load.</p></div>'+
   '<div class="grids"><div class="card"><div class="hd"><h2>Your availability</h2><span class="ur"><button class="lnk" id="rs" title="Clear all your slots">Reset</button>'+
   '<button class="ghost ic" id="un" title="Undo (Ctrl+Z)" aria-label="Undo" disabled><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5 2.5 7 6 10.5"/><path d="M2.5 7h7a3.5 3.5 0 0 1 0 7H8"/></svg></button>'+
@@ -246,7 +347,7 @@ function eventView(id){
   function colOn(c){return Z.cols[c].cells.map(function(a){return has(mine,a)?1:0})}
   function rangeText(c,j){var r=runs(colOn(c),function(v){return v>0}).filter(function(q){return j>=q[0]&&j<q[1]})[0],a=r?r[0]:j,b=r?r[1]:j+1;
     return wDay(rw(c,a))+' · '+wTime(rw(c,a))+' – '+wTime(rw(c,b))}
-  function build(el){var h='<div class="tl2" style="min-width:'+(42+Z.cols.length*30)+'px"><div class="col lab"><div class="hh"></div>';
+  function build(el){var h='<div class="tl2" style="min-width:'+(2.625+Z.cols.length*1.875)+'rem"><div class="col lab"><div class="hh"></div>';
     for(var r=0;r<Z.R;r++){var w=Z.rs+r*STEP;h+='<div class="lb">'+(w%60?'':wTime(w))+'</div>'}h+='</div>';
     Z.cols.forEach(function(col,c){var x=new Date(col.w0*6e4);h+='<div class="col" data-c="'+c+'"><div class="hh">'+DOW[x.getUTCDay()]+'<br>'+(x.getUTCMonth()+1)+'/'+x.getUTCDate()+'</div>';
       col.cells.forEach(function(a,r){var w=Z.rs+r*STEP,cl=w%1440===0&&r>0?' hr md':w%60===0?' hr':w%30===0?' hf':'';h+='<div class="hx'+cl+(a.length?'':' x')+'" data-r="'+r+'"></div>'});
@@ -256,7 +357,7 @@ function eventView(id){
   // cleared by hand. A refill drops every auto slot, then adds free slots that are neither already on nor in off.
   function obj(a){var o={};(a||[]).forEach(function(k){o[k]=1});return o}
   function snap(){return JSON.stringify([Object.keys(mine).sort(),Object.keys(auto).sort(),Object.keys(off).sort()])}
-  function unsnap(t){var v=JSON.parse(t);mine=obj(v[0]);auto=obj(v[1]);off=obj(v[2])}
+  function unsnap(t){var v=JSON.parse(t);mine=obj(v[0]);auto=obj(v[1]);off=obj(v[2]);offPut()}
   function restore(t){unsnap(t);dirty=true;st.textContent='Unsaved changes';paintMine();idleTip();paintGroup();updUR()}
   function updUR(){UN.disabled=!undo.length;RD.disabled=!redo.length}
   function doUndo(){if(!undo.length)return;redo.push(snap());restore(undo.pop())}
@@ -318,7 +419,7 @@ function eventView(id){
       var c=cellAt(e);if(c&&G1.contains(c)){var p=info(c);tp1.textContent=rangeText(p.c,p.j)}else idleTip()});
     G1.addEventListener('pointerleave',function(){if(mode===null)idleTip()});
     function end(){if(A){var a=A;A=null;mode=null;
-      Z.cols[a.c].cells.forEach(function(x){x.forEach(function(t){var now=!!mine[t];if(now!==!!a.base[t]){delete auto[t];if(now)delete off[t];else off[t]=1}})});paintMine();if(snap()!==a.before){undo.push(a.before);if(undo.length>100)undo.shift();redo=[];updUR()}paintGroup()}mode=null}
+      Z.cols[a.c].cells.forEach(function(x){x.forEach(function(t){var now=!!mine[t];if(now!==!!a.base[t]){delete auto[t];if(now)delete off[t];else off[t]=1}})});offPut();paintMine();if(snap()!==a.before){undo.push(a.before);if(undo.length>100)undo.shift();redo=[];updUR()}paintGroup()}mode=null}
     window.addEventListener('pointerup',end);window.addEventListener('pointercancel',end);
     function setHv(c){if(hv)hv.classList.remove('hv');hv=c;if(c)c.classList.add('hv')}
     function who(e){var c=cellAt(e);if(c&&G2.contains(c)){var p=info(c);showWho(p.c,p.j);setHv(c)}else{setHv(null);whoEl.textContent=WHO_DEFAULT}}
@@ -360,17 +461,24 @@ function eventView(id){
     cm.textContent='';
     var l=document.createElement('a');l.href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.title)+'&dates='+wstamp(rw(c,s))+'/'+wstamp(rw(c,e))+'&details='+encodeURIComponent('Available: '+(names.join(', ')||'none of the respondents'))+addq(av.map(function(p){return p.email}));
     l.target='_blank';l.rel='noopener';document.body.appendChild(l);l.click();l.remove()};
-  function showDel(){if(ev)del.style.display=(ev.ownerKind?!!me&&ev.owner===me.uid:!ev.owner||ev.owner===bid)?'':'none'}
-  var armed=false,dt=null;
+  function canDel(){if(!ev)return false;if(ev.ownerKind)return !!me&&ev.owner===me.uid;return !ev.owner||ev.owner===bid}
+  function showDel(){if(ev)del.style.display=canDel()?'':'none'}
+  var armed=false,dt=null,left=false;
+  unsubs.push(function(){clearTimeout(dt)});
   del.onclick=function(){var b=del,s2=st;
+    if(!canDel()){showDel();s2.textContent='Only the owner can delete this event.';return}
     if(!armed){armed=true;b.textContent='Click again to delete for everyone';dt=setTimeout(function(){armed=false;b.textContent='Delete event'},4000);return}
     clearTimeout(dt);b.disabled=true;b.textContent='Deleting…';
     var rc=db.collection('events/'+id+'/responses');
     rc.get().then(function(q){return q.docs.reduce(function(p,d){return p.then(function(){return rc.doc(d.id).delete()})},Promise.resolve())})
-      .then(function(){clear();return ref.delete()}).then(function(){location.hash=''})
-      .catch(function(x){b.disabled=false;b.textContent='Delete event';s2.textContent='Could not delete: '+(x&&x.message||x)});
+      .then(function(){left=true;return ref.delete()}).then(function(){
+      justDeleted=(ev&&String(ev.title||'').trim())||'Untitled event';
+      clear();
+      location.hash='';
+    })
+      .catch(function(x){left=false;armed=false;b.disabled=false;b.textContent='Delete event';s2.textContent='Could not delete: '+(x&&x.message||x)});
   };
-  function loadMine(m,msg){undo=[];redo=[];updUR();mine=toSet(m);auto=pick(m.auto);off={};dirty=false;loadedSlug=slug(nm.value);paintMine();idleTip();st.textContent=msg||'Loaded your saved response. Edit it, then click Save.'}
+  function loadMine(m,msg){undo=[];redo=[];updUR();mine=toSet(m);auto=pick(m.auto);off=offGet();dirty=false;loadedSlug=slug(nm.value);paintMine();idleTip();st.textContent=msg||'Loaded your saved response. Edit it, then click Save.'}
   // A matching name always shows that person's saved times; an unsaved draft is set aside and comes back if the name changes again before any edit.
   function checkName(){var sg=slug(nm.value);
     if(loadedSlug&&sg!==loadedSlug){var s=stash,keep=!!s&&snap()===s.loaded;stash=null;mine={};auto={};off={};undo=[];redo=[];dirty=false;loadedSlug=null;
@@ -383,21 +491,23 @@ function eventView(id){
     paintGroup()}
   nm.oninput=checkName;nm.onchange=checkName;
   var RSb=document.getElementById('rs');
-  RSb.onclick=function(){if(mode!==null||!Object.keys(mine).length)return;var before=snap();mine={};auto={};off={};undo.push(before);if(undo.length>100)undo.shift();redo=[];updUR();
+  RSb.onclick=function(){if(mode!==null||!Object.keys(mine).length)return;var before=snap();mine={};auto={};off={};offPut();undo.push(before);if(undo.length>100)undo.shift();redo=[];updUR();
     dirty=true;st.textContent='Cleared all your slots. Undo brings them back.';paintMine();idleTip();paintGroup()};
   function fget(){var o={};try{o=JSON.parse(localStorage.getItem('swawm_fma')||'{}')||{}}catch(e){}var b=+o.buf,e=(o.ev||{})[id]||{};
     return{buf:o.buf!=null&&isFinite(b)&&b>=0&&b<=120?b:15,lo:isFinite(+e.lo)?+e.lo:0,hi:e.hi!=null&&isFinite(+e.hi)?+e.hi:null,o:o}}
+  function offGet(){var o={};try{(JSON.parse(localStorage.getItem('swawm_off_'+id)||'[]')||[]).forEach(function(t){if(isFinite(t))o[+t]=1})}catch(e){}return o}
+  function offPut(){try{localStorage.setItem('swawm_off_'+id,JSON.stringify(Object.keys(off).map(Number)))}catch(e){}}
   function fput(b,lo,hi){var o=fget().o;o.buf=b;o.ev=o.ev||{};o.ev[id]={lo:lo,hi:hi};try{localStorage.setItem('swawm_fma',JSON.stringify(o))}catch(e){}}
   function bounds(){var f=fget(),lo=Math.max(0,Math.min(f.lo,Z.R-1)),hi=f.hi==null?Z.R:Math.max(lo+1,Math.min(f.hi,Z.R));return{buf:f.buf,lo:lo,hi:hi}}
   function fill(){if(!Z||!user||mode!==null)return;var f=bounds(),inst=function(t){return Z.utc?t:lToUtc(t)},a=inst(Z.E[0]),b=inst(Z.E[Z.E.length-1])+STEP,btn=document.getElementById('fm');
     if(btn){btn.disabled=true;btn.textContent='Checking your calendar…'}
-    AUTH.freeBusy(a*6e4,b*6e4,ev.tz||VTZ).then(function(busy){if(document.getElementById('g1')!==G1)return;
-      var bl=busyBlocks(busy,f.buf,STEP),before=snap(),n=0;
+    AUTH.freeBusy((a-f.buf)*6e4,(b+f.buf)*6e4,ev.tz||VTZ).then(function(res){if(document.getElementById('g1')!==G1)return;
+      var busy=res&&res.busy?res.busy:res,cals=res&&res.n||1,skipped=res&&res.err||0,bl=busyBlocks(busy,f.buf),before=snap(),n=0;
       Object.keys(auto).forEach(function(t){delete mine[t]});auto={};
       Z.cols.forEach(function(col){col.cells.forEach(function(x,r){if(r<f.lo||r>=f.hi)return;x.forEach(function(t){if(mine[t]||off[t]||isBusy(bl,inst(t),STEP))return;mine[t]=1;auto[t]=1;n++})})});
       if(snap()!==before){undo.push(before);if(undo.length>100)undo.shift();redo=[];updUR()}
       dirty=true;paintMine();idleTip();paintGroup();
-      st.textContent='Filled '+n+' free slot'+(n===1?'':'s')+' from your Google Calendar, keeping '+f.buf+' minutes clear around your events. Review, then Save availability.'})
+      st.textContent='Filled '+n+' free slot'+(n===1?'':'s')+' from '+cals+' Google Calendar'+(cals===1?'':'s')+' you can access, keeping '+f.buf+' minutes clear around busy times. Event titles were not read. Review, then Save availability.'+(busy.length?'':' No busy time was found on those calendars, so every slot in range was filled.')+(skipped?' '+skipped+' calendar'+(skipped===1?'':'s')+' could not be checked.':'')})
     .catch(function(e){if(document.getElementById('g1')===G1)st.textContent='Could not read your calendar: '+(e&&e.message||e)})
     .then(function(){var x=document.getElementById('fm');if(x){x.disabled=false;x.textContent='Fill My Availability'}})}
   function settings(){if(!Z)return;var f=bounds(),l='',h='';
@@ -405,57 +515,67 @@ function eventView(id){
     for(r=1;r<=Z.R;r++)h+='<option value="'+r+'"'+(r===f.hi?' selected':'')+'>'+wTime(Z.rs+r*STEP)+'</option>';
     modal('Fill settings','<label for="fb">Buffer around busy times (minutes)</label><input id="fb" type="number" min="0" max="120" step="5" value="'+f.buf+'">'+
       '<div class="row"><div><label for="fl">Earliest</label><select id="fl">'+l+'</select></div><div><label for="fh">Latest</label><select id="fh">'+h+'</select></div></div>'+
-      '<p class="msg">Fill My Availability will keep at least this much time clear before and after existing events, round to the nearest 15-minute slot, and fill only between desired times.</p>','Save',
+      '<p class="msg">"Fill My Availability" will keep at least this much time clear before and after existing events and fill only between desired times.</p>','Save',
       function(w){var B=w.querySelector('#fb').value.trim(),L=+w.querySelector('#fl').value,H=+w.querySelector('#fh').value;
         if(!/^\d+$/.test(B)||+B>120)return{error:'Use a whole number of minutes from 0 to 120.'};if(H<=L)return{error:'Latest must be after earliest.'};return{b:+B,l:L,h:H}})
     .then(function(v){if(!v)return;fput(v.b,v.l,v.h);st.textContent='Fill settings saved: '+v.b+'-minute buffer, '+wTime(Z.rs+v.l*STEP)+' to '+wTime(Z.rs+v.h*STEP)+'. Click Fill My Availability to refresh.'})}
+  function calEmbed(){var tz=(typeof VTZ!=='undefined'&&VTZ)||'';return 'https://calendar.google.com/calendar/embed?src='+encodeURIComponent(user.email)+'&mode=WEEK&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&wkst=1'+(tz?'&ctz='+encodeURIComponent(tz):'')}
+  function closeCal(){var p=document.getElementById('calp');if(p)p.remove();document.body.classList.remove('calopen')}
+  function openCal(){closeCal();var p=document.createElement('aside'),demo=AUTH&&AUTH.demo,live=!demo&&user&&user.email;p.id='calp';p.className='calp';
+    p.innerHTML='<div class="calh"><b>Your Google Calendar</b><span><a class="lnk" href="'+calUrl()+'" target="_blank" rel="noopener">Open in new tab</a><button class="lnk" id="calx">Close</button></span></div><div id="calb"></div><p class="msg calm">'+(live?'If the calendar stays blank, your browser may be blocking it. Use Open in new tab.':'Demo preview: your real Google Calendar would appear here once you sign in with Google.')+'</p>';
+    document.body.appendChild(p);document.body.classList.add('calopen');p.querySelector('#calx').onclick=closeCal;
+    if(live){var f=document.createElement('iframe');f.className='calf';f.title='Google Calendar';f.src=calEmbed();document.getElementById('calb').appendChild(f)}}
   function calUrl(){return 'https://calendar.google.com/calendar/r/week'+(user&&user.email?'?authuser='+encodeURIComponent(user.email):'')}
   function renderGx(){var g=document.getElementById('gx');if(!g)return;
     if(!AUTH||!AUTH.ready){g.innerHTML='<p class="msg">'+esc(AUTH&&AUTH.why||'Google sign-in is not available.')+'</p>';return}
-    if(!user){g.innerHTML='<button class="gbtn" id="gs"><span class="gl">'+GL+'</span><span class="gt">Sign in with Google</span></button><p class="msg" id="gxm"></p>';
+    if(!user){closeCal();g.innerHTML='<button class="gbtn" id="gs"><span class="gl">'+GL+'</span><span class="gt">Sign in with Google</span></button><p class="msg" id="gxh">Sign in to fill your availability from Google Calendar.</p><p class="msg" id="gxm"></p>';
       document.getElementById('gs').onclick=function(){var m=document.getElementById('gxm');AUTH.signIn().catch(function(e){if(m)m.textContent=e&&e.message||String(e)})};return}
     g.innerHTML='<div class="fma"><div class="fcol"><button class="fmb" id="fm">Fill My Availability</button><a class="lnk" id="vc" href="'+calUrl()+'" target="_blank" rel="noopener">View Calendar</a></div>'+
       '<button class="ghost ic fs" id="fs" title="Fill settings" aria-label="Fill settings">'+SLI+'</button></div>'+
       '<p class="msg" id="fmh">Striped slots came from your calendar. If you paint or clear a slot yourself, filling again will leave it alone.</p>'+
       '<p class="msg gu">Signed in as <b>'+esc(user.email||user.name)+'</b> · <button class="lnk" id="so">Sign out</button></p>';
-    document.getElementById('fm').onclick=fill;document.getElementById('fs').onclick=settings;document.getElementById('so').onclick=function(){AUTH.signOut()}}
-  renderGx();
+    document.getElementById('fm').onclick=fill;document.getElementById('fs').onclick=settings;document.getElementById('so').onclick=function(){closeCal();AUTH.signOut()};
+    document.getElementById('vc').onclick=function(e){if(window.matchMedia&&window.matchMedia('(min-width:761px)').matches){e.preventDefault();openCal()}}}
+  unsubs.push(closeCal);renderGx();
   unsubs.push(onAuth(function(u){renderGx();showDel();if(!Z)return;
     var k=myKey();if(u&&!dirty&&resp[k]&&resp[k].uid===u.uid&&k!==loadedSlug){nm.value=resp[k].name||nm.value;loadMine(resp[k])}
-    else if(u&&!u.anon&&!nm.value.trim()){nm.value=u.name||'';checkName()}
+    else if(u&&!u.anon&&!nm.value.trim()){var full=String(u.name||'').trim(),nmv='';[full.split(/\s+/)[0],full].some(function(c){if(!c)return false;var r0=resp[slug(c)];if(!r0||r0.uid===u.uid){nmv=c;return true}return false});if(nmv){nm.value=nmv;checkName()}}
     paintGroup()}));
   function onKey(e){if(!(e.ctrlKey||e.metaKey)||mode!==null)return;var k=(e.key||'').toLowerCase(),ae=document.activeElement;if(ae&&/^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName))return;
     if(k==='z'&&!e.shiftKey){e.preventDefault();doUndo()}else if(k==='y'||(k==='z'&&e.shiftKey)){e.preventDefault();doRedo()}}
   document.addEventListener('keydown',onKey);unsubs.push(function(){document.removeEventListener('keydown',onKey)});
   try{nm.value=localStorage.getItem('ms_name')||''}catch(e){}
   unsubs.push(ref.onSnapshot(function(s){
-    if(!s.exists){et.textContent='Event not found';return}
-    if(first){ev=s.data();STEP=ev.step||30;first=false;et.textContent=ev.title;Z=layout();showDel();
+    var t=document.getElementById('et');
+    if(!s.exists){if(!left&&t)t.textContent='Event not found';return}
+    if(first){ev=s.data();STEP=ev.step||30;first=false;if(t)t.textContent=ev.title;Z=layout();showDel();
       var sub=document.querySelector('p.sub');if(sub&&!Z.utc)sub.insertAdjacentHTML('beforeend',' This event was created before time zone support, so its times are shown as entered, without conversion.');
       else if(sub&&ev.tz!==VTZ&&tzAbbr(ev.tz))sub.insertAdjacentHTML('beforeend',' Converted from the organizer\'s time zone ('+esc(tzAbbr(ev.tz))+').');
       build(G1);build(G2);fillCustom();wire();paintMine();paintGroup();
       unsubs.push(db.collection('events/'+id+'/responses').onSnapshot(function(q){
         resp={};RS={};q.docs.forEach(function(d){resp[d.id]=d.data();RS[d.id]=toSet(resp[d.id])});
-        var mk=myKey(),m=resp[mk];if(m&&!dirty){mine=toSet(m);auto=pick(m.auto);off={};if(!nm.value)nm.value=m.name||'';loadedSlug=slug(nm.value);paintMine();idleTip()}
+        var mk=myKey(),m=resp[mk];if(m&&!dirty){mine=toSet(m);auto=pick(m.auto);off=offGet();if(!nm.value)nm.value=m.name||'';loadedSlug=slug(nm.value);paintMine();idleTip()}
         paintGroup();
       },function(){var m=document.getElementById('st');if(m)m.textContent='Could not load responses.'}));
     }
-  },function(){et.textContent='Could not load event'}));
+  },function(){var t=document.getElementById('et');if(t)t.textContent='Could not load event'}));
 }
 
 // ---- Accounts (V3) ----
 // Every visitor has a Firebase Auth identity: guests are anonymous users, so the anonymous uid owns what a guest
 // creates and Firestore rules can check it. Google sign-in links that same anonymous user, keeping its uid. If the
 // Google account already exists, this browser hands its guest data to that account before switching to it.
-// Sign-in asks for openid/email/profile plus calendar.freebusy on one Google screen; no other calendar scope is used.
-var FB_SCOPE='https://www.googleapis.com/auth/calendar.freebusy',me=null;
+// Sign-in asks for openid/email/profile plus calendar list (IDs only) and free/busy. No events or calendar.readonly.
+var FB_SCOPE='https://www.googleapis.com/auth/calendar.freebusy',LIST_SCOPE='https://www.googleapis.com/auth/calendar.calendarlist.readonly',CAL_SCOPES=[FB_SCOPE,LIST_SCOPE],me=null;
+function calOk(sc){var s=(sc||'').split(/\s+/).filter(Boolean);if(CAL_SCOPES.some(function(x){return s.indexOf(x)<0}))return false;return !s.some(function(x){return /calendar/.test(x)&&CAL_SCOPES.indexOf(x)<0})}
 function onAuth(f){authCbs.push(f);return function(){authCbs=authCbs.filter(function(x){return x!==f})}}
 function setMe(m){var was=user&&user.uid;me=m;user=m&&!m.anon?m:null;fire(m,false);if(user&&user.uid!==was){var u=user;afterGoogle(u).then(function(){if(user===u)fire(u,true)})}}
 function fire(u,m){authCbs.slice().forEach(function(f){try{f(u,m)}catch(e){console.error(e)}})}
-// Busy blocks in UTC minutes: pad each busy range by buf, round outward to slot boundaries so the whole buffer is
-// kept, then merge anything that overlaps or touches, so every slot is checked against one disjoint list.
-function busyBlocks(busy,buf,step){var iv=[],out=[];
-  busy.forEach(function(b){var a=b.s/6e4-buf,e=b.e/6e4+buf;if(e>a)iv.push([Math.floor(a/step)*step,Math.ceil(e/step)*step])});
+// Busy blocks in UTC minutes: each busy range is widened by the buffer on both sides, then overlapping or touching ranges are merged.
+// A slot is free only if it does not overlap any widened range. Comparing exact times (no rounding to a slot grid) keeps this correct
+// in time zones whose offset is not a multiple of the slot length.
+function busyBlocks(busy,buf){var iv=[],out=[];
+  busy.forEach(function(b){var a=b.s/6e4-buf,e=b.e/6e4+buf;if(e>a)iv.push([a,e])});
   iv.sort(function(x,y){return x[0]-y[0]});iv.forEach(function(x){var l=out[out.length-1];if(l&&x[0]<=l[1]){if(x[1]>l[1])l[1]=x[1]}else out.push([x[0],x[1]])});return out}
 function isBusy(bl,s,step){for(var i=0;i<bl.length;i++)if(s<bl[i][1]&&s+step>bl[i][0])return true;return false}
 function liveAuth(){
@@ -463,22 +583,21 @@ function liveAuth(){
   var A=firebase.auth(),tok=null,exp=0,ok=false;
   function who(u){return{uid:u.uid,anon:u.isAnonymous,email:u.email||'',name:u.displayName||''}}
   A.onAuthStateChanged(function(u){if(u)return setMe(who(u));setMe(null);A.signInAnonymously().catch(function(e){console.warn('Anonymous sign-in failed',e)})});
-  function prov(){var p=new firebase.auth.GoogleAuthProvider();p.addScope(FB_SCOPE);p.setCustomParameters({prompt:'select_account'});return p}
+  function prov(){var p=new firebase.auth.GoogleAuthProvider();CAL_SCOPES.forEach(function(s){p.addScope(s)});p.setCustomParameters({prompt:'select_account'});return p}
   function keep(r){var t=r&&r.credential&&r.credential.accessToken;if(t){tok=t;exp=Date.now()+50*6e4;ok=false}}
   function check(t){return fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token='+encodeURIComponent(t)).then(function(r){if(!r.ok)throw new Error('tokeninfo '+r.status);return r.json()})
-    .then(function(j){var sc=(j.scope||'').split(' ');if(sc.indexOf(FB_SCOPE)<0||sc.some(function(x){return /calendar/.test(x)&&x!==FB_SCOPE}))throw new Error('scope');return t})}
+    .then(function(j){if(!calOk(j.scope))throw new Error('scope');return t})}
   function gis(){
     if(!GOOGLE_OAUTH_CLIENT_ID||GOOGLE_OAUTH_CLIENT_ID.indexOf('PASTE')>=0)return Promise.reject(new Error('Calendar access is not set up yet (missing OAuth client ID).'));
     if(!(window.google&&google.accounts&&google.accounts.oauth2))return Promise.reject(new Error('Google Identity Services did not load.'));
-    return new Promise(function(res,rej){google.accounts.oauth2.initTokenClient({client_id:GOOGLE_OAUTH_CLIENT_ID,scope:FB_SCOPE,include_granted_scopes:false,login_hint:user&&user.email||undefined,
+    return new Promise(function(res,rej){google.accounts.oauth2.initTokenClient({client_id:GOOGLE_OAUTH_CLIENT_ID,scope:CAL_SCOPES.join(' '),include_granted_scopes:false,login_hint:user&&user.email||undefined,
       callback:function(r){if(r.error)return rej(new Error(r.error_description||r.error));
-        var extra=(r.scope||'').split(' ').filter(function(x){return /calendar/.test(x)&&x!==FB_SCOPE});
-        if(extra.length){google.accounts.oauth2.revoke(r.access_token,function(){});return rej(new Error('Google returned more calendar access than free/busy, so the token was discarded.'))}
-        if(!google.accounts.oauth2.hasGrantedAllScopes(r,FB_SCOPE))return rej(new Error('Free/busy access was not granted.'));
+        if(!calOk(r.scope)){google.accounts.oauth2.revoke(r.access_token,function(){});return rej(new Error('Google returned calendar access beyond list and free/busy, so the token was discarded.'))}
+        if(!google.accounts.oauth2.hasGrantedAllScopes.apply(null,[r].concat(CAL_SCOPES)))return rej(new Error('Calendar list or free/busy access was not granted.'));
         tok=r.access_token;ok=true;exp=Date.now()+((+r.expires_in||3600)-60)*1000;res(tok)},
       error_callback:function(e){rej(new Error(e&&e.type==='popup_closed'?'The Google window was closed.':(e&&e.message)||'Google sign-in failed.'))}}).requestAccessToken()})}
-  // The sign-in token is reused when tokeninfo confirms it carries free/busy and no other calendar scope;
-  // otherwise (expired, reloaded page, or the box was unticked) Google's own token popup asks for free/busy alone.
+  // The sign-in token is reused when tokeninfo confirms list + free/busy and no other calendar scope;
+  // otherwise Google's token popup asks for those two scopes only.
   function token(){if(tok&&Date.now()<exp)return ok?Promise.resolve(tok):check(tok).then(function(t){ok=true;return t},function(){tok=null;return gis()});return gis()}
   function handOver(from,cred){var app2=firebase.initializeApp(FIREBASE_CONFIG,'swawm-handover-'+Date.now());
     return app2.auth().signInWithCredential(cred).then(function(r){return transfer(from,{uid:r.user.uid,email:r.user.email||''})})
@@ -490,9 +609,17 @@ function liveAuth(){
         if((e.code!=='auth/credential-already-in-use'&&e.code!=='auth/email-already-in-use')||!e.credential)throw e;
         var cred=e.credential;return handOver(cur.uid,cred).then(function(){return A.signInWithCredential(cred)}).then(function(r){if(cred.accessToken)keep({credential:cred})})})},
     signOut:function(){tok=null;return A.signOut()},
-    freeBusy:function(a,b){return token().then(function(t){return fetch('https://www.googleapis.com/calendar/v3/freeBusy',{method:'POST',headers:{Authorization:'Bearer '+t,'Content-Type':'application/json'},
-      body:JSON.stringify({timeMin:new Date(a).toISOString(),timeMax:new Date(b).toISOString(),items:[{id:'primary'}]})})}).then(function(r){if(!r.ok){if(r.status===401||r.status===403)tok=null;throw new Error('Google Calendar answered '+r.status)}return r.json()})
-      .then(function(j){var c=j.calendars&&j.calendars.primary||{};if(c.errors&&c.errors.length)throw new Error(c.errors[0].reason||'calendar error');return(c.busy||[]).map(function(x){return{s:Date.parse(x.start),e:Date.parse(x.end)}})})}}}
+    freeBusy:function(a,b){return token().then(function(t){
+      function list(page,ids){var u='https://www.googleapis.com/calendar/v3/users/me/calendarList?maxResults=250&showHidden=true&fields=nextPageToken,items(id)';
+        if(page)u+='&pageToken='+encodeURIComponent(page);
+        return fetch(u,{headers:{Authorization:'Bearer '+t}}).then(function(r){if(!r.ok){if(r.status===401||r.status===403)tok=null;throw new Error('Could not list calendars ('+r.status+')')}return r.json()})
+          .then(function(j){(j.items||[]).forEach(function(it){if(it&&it.id)ids.push(it.id)});return j.nextPageToken?list(j.nextPageToken,ids):uniq(ids)})}
+      function chunk(ids,i,busy,nOk,nErr){if(i>=ids.length)return{busy:busy,n:nOk,err:nErr,listed:ids.length};
+        return fetch('https://www.googleapis.com/calendar/v3/freeBusy',{method:'POST',headers:{Authorization:'Bearer '+t,'Content-Type':'application/json'},
+          body:JSON.stringify({timeMin:new Date(a).toISOString(),timeMax:new Date(b).toISOString(),items:ids.slice(i,i+50).map(function(id){return{id:id}})})})
+          .then(function(r){if(!r.ok){if(r.status===401||r.status===403)tok=null;throw new Error('Google Calendar answered '+r.status)}return r.json()})
+          .then(function(j){var cs=j.calendars||{};Object.keys(cs).forEach(function(k){var c=cs[k];if(c.errors&&c.errors.length){nErr++;return}nOk++;(c.busy||[]).forEach(function(x){var s=Date.parse(x.start),e=Date.parse(x.end);if(isFinite(s)&&isFinite(e))busy.push({s:s,e:e})})});return chunk(ids,i+50,busy,nOk,nErr)})}
+      return list(null,[]).then(function(ids){if(!ids.length)ids=['primary'];return chunk(ids,0,[],0,0)})})}}}
 var CONSENT_LINE='SWAWM wants to see the availabilities on your calendars.',CONSENT_SUB='Event titles and details remain private and unchanged.';
 // Preview mode: a fake Google account and seeded busy blocks, so the whole flow runs without credentials. It mirrors the
 // live account model: a per-browser anonymous guest uid, linking on first sign-in, hand-over when the account exists.
@@ -502,16 +629,18 @@ function demoAuth(){var KA='swawm_demo_anon',KG='swawm_demo_user',KR='swawm_demo
   function anon(){var a=ls(KA);if(!a){a={uid:rid('anon_'),anon:true,email:'',name:''};ls(KA,a)}return a}
   setTimeout(function(){setMe(ls(KG)||anon())},0);
   return{ready:true,demo:true,
-    signIn:function(){return modal('Sign in with Google','<p class="msg" style="margin-top:0">Demo only: no real Google account is used.</p><p><b>Demo Google User</b><br>demo.user@gmail.com</p><p><b>'+esc(CONSENT_LINE)+'</b><br><span class="msg">'+esc(CONSENT_SUB)+'</span></p><p class="msg">Google also shares your name and email address with SWAWM.</p>','Continue').then(function(ok){
+    signIn:function(){return modal('Sign in with Google','<p class="msg" style="margin-top:0">Demo only: no real Google account is used.</p><p><b>Demo Google User</b><br>demo.user@gmail.com</p><p><b>'+esc(CONSENT_LINE)+'</b><br><span class="msg">'+esc(CONSENT_SUB)+'</span></p><p class="msg">The live app lists calendar IDs and reads busy times only (not titles). Google also shares your name and email address with SWAWM.</p>','Continue').then(function(ok){
       if(!ok)throw new Error('Sign-in was cancelled.');var reg=ls(KR)||{},cur=me,g={email:'demo.user@gmail.com',name:'Demo Google User',anon:false};
       if(reg[g.email]){g.uid=reg[g.email];return(cur&&cur.anon?transfer(cur.uid,g):Promise.resolve()).then(function(){ls(KA,null);ls(KG,g);setMe(g)})}
       g.uid=cur&&cur.anon?cur.uid:rid('g_');reg[g.email]=g.uid;ls(KR,reg);ls(KA,null);ls(KG,g);setMe(g)})},
     signOut:function(){ls(KG,null);setMe(anon());return Promise.resolve()},
     freeBusy:function(a,b,tz){return new Promise(function(r){setTimeout(r,350)}).then(function(){
-      var z=zOk(tz)?tz:null,P=[[[600,660],[810,855]],[[540,590],[720,780]],[[670,720],[725,760],[900,920]],[[840,990]],[[540,560],[555,600]]],out=[];
+      // Two calendars: primary daytime meetings, plus a work calendar that is busy 4–5pm every day (not on primary).
+      var z=zOk(tz)?tz:null,P=[[[600,660],[810,855]],[[540,590],[720,780]],[[670,720],[725,760],[900,920]],[[840,990]],[[540,560],[555,600]]],W=[[[960,1020]]],out=[];
       var w0=z?zWall(z,a):lw(a/6e4),d0=Math.floor(w0/1440)*1440;
-      for(var k=-1;k<40&&(d0+k*1440)*6e4<b+864e5;k++)P[(k+5)%5].forEach(function(x){var s=z?zToUtc(z,d0+k*1440+x[0]):lToUtc(d0+k*1440+x[0]),e=z?zToUtc(z,d0+k*1440+x[1]):lToUtc(d0+k*1440+x[1]);if(e*6e4>a&&s*6e4<b)out.push({s:s*6e4,e:e*6e4})});
-      return out})}}}
+      function add(pat,mod){for(var k=-1;k<40&&(d0+k*1440)*6e4<b+864e5;k++)pat[(k+5)%mod].forEach(function(x){var s=z?zToUtc(z,d0+k*1440+x[0]):lToUtc(d0+k*1440+x[0]),e=z?zToUtc(z,d0+k*1440+x[1]):lToUtc(d0+k*1440+x[1]);if(e*6e4>a&&s*6e4<b)out.push({s:s*6e4,e:e*6e4})})}
+      add(P,5);add(W,1);
+      return{busy:out,n:2,err:0,listed:2}})}}}
 function modal(title,body,okText,read){return new Promise(function(res){var w=document.createElement('div');w.className='mdl';
   w.innerHTML='<div class="mbox" role="dialog" aria-modal="true" aria-label="'+esc(title)+'"><h2>'+esc(title)+'</h2>'+body+'<p class="mbt"><button class="ghost" data-x="0">Cancel</button> <button data-x="1">'+esc(okText)+'</button></p><p class="msg" data-err style="color:#b4534f"></p></div>';
   document.body.appendChild(w);function done(v){if(v&&read){var r=read(w);if(r&&r.error){w.querySelector('[data-err]').textContent=r.error;return}v=r}w.remove();document.removeEventListener('keydown',k);res(v||null)}
@@ -538,13 +667,15 @@ function demoDb(){var st={},subs=[];
   function kids(c){var o=[];Object.keys(st).forEach(function(k){var i=k.lastIndexOf('/');if(k.slice(0,i)===c)o.push(sd(k))});return o}
   function sd(p){var has=p in st;return{id:p.split('/').pop(),exists:has,data:function(){return has?cp(st[p]):undefined}}}
   function sub(f){subs.push(f);setTimeout(f,0);return function(){subs=subs.filter(function(x){return x!==f})}}
-  function doc(p){return{get:function(){return Promise.resolve(sd(p))},set:function(v){st[p]=cp(v);note();return Promise.resolve()},delete:function(){delete st[p];note();return Promise.resolve()},update:function(v){if(!(p in st))return Promise.reject(new Error('No document to update'));var o=st[p];Object.keys(v).forEach(function(k){o[k]=cp(v[k])});note();return Promise.resolve()},onSnapshot:function(cb){return sub(function(){cb(sd(p))})}}}
+  function doc(p){return{get:function(){return Promise.resolve(sd(p))},set:function(v){st[p]=cp(v);note();return Promise.resolve()},delete:function(){var parts=p.split('/'),isEv=parts[0]==='events'&&parts.length===2,d=st[p];
+    if(isEv&&d){if(d.ownerKind){if(!me||d.owner!==me.uid)return Promise.reject(new Error('Only the owner can delete this event'))}else if(d.owner&&d.owner!==bid)return Promise.reject(new Error('Only the owner can delete this event'))}
+    delete st[p];note();return Promise.resolve()},update:function(v){if(!(p in st))return Promise.reject(new Error('No document to update'));var o=st[p];Object.keys(v).forEach(function(k){o[k]=cp(v[k])});note();return Promise.resolve()},onSnapshot:function(cb){return sub(function(){cb(sd(p))})}}}
   function col(c){return{doc:function(i){return doc(c+'/'+i)},add:function(v){var id='demo'+Math.random().toString(36).slice(2,9);return doc(c+'/'+id).set(v).then(function(){return{id:id}})},get:function(){var d=kids(c);return Promise.resolve({docs:d,empty:!d.length})},onSnapshot:function(cb){return sub(function(){var d=kids(c);cb({docs:d,empty:!d.length})})}}}
   return{doc:doc,collection:col}}
 // The demo event lives in America/Los_Angeles so preview mode shows the conversion from any other zone.
 function seedDemo(){var tz='America/Los_Angeles',z=zOk(tz),now=z?zWall(tz,Date.now()):Date.now()/6e4-new Date().getTimezoneOffset(),d0=Math.floor(now/1440)*1440,dates=[];
   for(var n=0;n<5;n++)dates.push(wIso(d0+n*1440));
-  var ev={title:'Demo event (preview only)',dates:dates,start:9,end:17,step:15,created:Date.now(),owner:'demo'};if(z)ev.tz=tz;
+  var ev={title:'Demo event (preview only)',dates:dates,start:9,end:17,step:15,created:Date.now(),owner:'someone-else',ownerKind:'google'};if(z)ev.tz=tz;
   db.doc('events/demo-event').set(ev);
   [['Alex',0,3,40,56],['Sam',1,4,44,60],['Jo',2,4,48,64]].forEach(function(p){var a=[],u=[];for(var n=p[1];n<=p[2];n++)for(var i=p[3];i<p[4];i++){a.push(dates[n]+'|'+i);if(z)u.push(zToUtc(tz,dn(dates[n])+i*15))}
     var r={name:p[0],slots:a,updated:Date.now()};if(z)r.utc=u;db.doc('events/demo-event/responses/'+p[0].toLowerCase()).set(r)});
@@ -554,9 +685,9 @@ window.addEventListener('hashchange',route);
 
 (function(){
   var ok=typeof firebase!=='undefined'&&typeof FIREBASE_CONFIG!=='undefined'&&FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.apiKey.indexOf('PASTE')<0;
-  if(!ok){db=demoDb();bid=localId();AUTH=demoAuth();var b=document.createElement('div');b.className='demo';b.textContent='Preview mode: could not reach Firebase, so nothing here is saved or shared.';document.body.insertBefore(b,document.body.firstChild);seedDemo();route();return}
-  try{firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore();db.settings({experimentalForceLongPolling:true,useFetchStreams:false})}catch(e){app.innerHTML='<h1>SWAWM: <em>So When Are We Meeting?</em></h1><p class="sub">Could not connect to Firebase: '+esc(String(e.message||e))+'</p>';return}
-  bid=localId();AUTH=liveAuth();
+  if(!ok){db=demoDb();bid=localId();AUTH=demoAuth();renderHeadAuth();var b=document.createElement('div');b.className='demo';b.textContent='Preview mode: could not reach Firebase, so nothing here is saved or shared.';document.body.insertBefore(b,document.body.firstChild);seedDemo();route();return}
+  try{firebase.initializeApp(FIREBASE_CONFIG);db=firebase.firestore();db.settings({experimentalForceLongPolling:true,useFetchStreams:false})}catch(e){app.innerHTML=mast('SWAWM: <em>So When Are We Meeting?</em>')+'<p class="sub">Could not connect to Firebase: '+esc(String(e.message||e))+'</p>';return}
+  bid=localId();AUTH=liveAuth();renderHeadAuth();
   route();
 })();
 })();
