@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- SWAWM 3.1.1 -->
+<html lang="en" data-swawm="3.1.1">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -30,14 +31,14 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:6px;backgroun
 h1,h2{color:var(--pri)}h1{font-weight:800}h1 em{font-style:italic}h2{border-left:4px solid var(--pop);padding-left:10px}
 input:focus,select:focus,button:focus-visible{outline:2px solid var(--pop);outline-offset:1px}
 button:hover{filter:brightness(1.12)}
-main{max-width:980px;margin:0 auto;padding:calc(16px + 2.125rem) 16px 48px}
+main{max-width:980px;margin:0 auto;padding:16px 16px 48px}
 h1{font-size:1.75rem;margin:0 0 4px;letter-spacing:-.5px}h2{font-size:1.1875rem;margin:0 0 10px}
 .mast{display:flex;align-items:center;gap:12px;margin:0 0 4px;min-width:0}
 .mast h1{flex:1;min-width:0;margin:0}
 .brand{flex:0 0 auto;line-height:0}
 .brand img{width:36px;height:36px;display:block}
-.topbar{position:fixed;top:8px;right:8px;z-index:40;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 16px);transition:right .2s,max-width .2s}
-body.calopen .topbar{right:calc(min(460px,42vw) + 8px);max-width:calc(100vw - min(460px,42vw) - 16px);z-index:45}
+.topbar{display:flex;justify-content:flex-end;align-items:center;gap:8px;max-width:980px;margin:0 auto;padding:8px 16px 0;position:relative;z-index:4}
+.ver{margin-right:auto;font:600 .6875rem/2.125rem var(--font);color:var(--mut);letter-spacing:.04em}
 .a11y{position:relative;z-index:1}
 .hauth{display:flex;align-items:center;gap:6px;min-width:0}
 .hwho{max-width:9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:600 .75rem var(--font);color:var(--pri)}
@@ -58,6 +59,8 @@ body.calopen .topbar{right:calc(min(460px,42vw) + 8px);max-width:calc(100vw - mi
 label{display:block;font:600 .75rem var(--font);color:var(--mut);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.5px}
 input,select{font:.9375rem var(--font);padding:.5rem .625rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
 .row{display:flex;gap:10px;flex-wrap:wrap}.row>div{flex:1;min-width:130px}
+.home-when select,.cust select{-webkit-appearance:none;appearance:none;padding:.5rem 1.75rem .5rem .625rem;background-color:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23858585' d='M1.2 1.5 6 6.3 10.8 1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .625rem center;background-size:.75rem .5rem}
+.home-when select::-ms-expand,.cust select::-ms-expand{display:none}
 button{font:600 .875rem var(--font);padding:.5625rem 1rem;border-radius:8px;border:1px solid var(--btn);background:var(--btn);color:var(--btnfg);cursor:pointer}
 button.ghost{background:transparent;color:var(--pri);border-color:var(--pri)}
 .ev{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);cursor:pointer;font-family:var(--font)}
@@ -107,6 +110,12 @@ button:disabled{opacity:.3;cursor:default;filter:none}
 .fmb{width:100%;padding:11px 16px;font-size:.9375rem}
 button.fs{padding:10px 11px}
 .gu{margin-top:6px}
+.adp{margin:10px 0 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.adp p{margin:0 0 8px;font:.875rem/1.45 var(--font);color:var(--fg)}
+.adp ul{list-style:none;margin:0 0 10px;padding:0}
+.adp label{display:flex;align-items:center;gap:8px;margin:4px 0;text-transform:none;letter-spacing:0;font:600 .875rem var(--font);color:var(--fg);cursor:pointer}
+.adp input{width:auto;flex:0 0 auto}
+.adp .fmb{margin-top:2px}
 .hx.on.af{background:repeating-linear-gradient(135deg,var(--avail) 0 4px,var(--card) 4px 7px)}
 .mdl{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(var(--ink),.35)}
 .mbox{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 12px 40px rgba(var(--ink),.25)}
@@ -127,22 +136,16 @@ button.fs{padding:10px 11px}
 .vbar:hover i,.vbar.on i{background:rgba(var(--ink),.55)}
 @media (pointer:coarse){.sbox{padding-right:18px}.vbar{width:18px}.vbar::before,.vbar i{width:4px}.vbar.on::before,.vbar.on i{width:9px}}
 @media (max-width:760px){.grids{grid-template-columns:minmax(0,1fr)}#gp.pv{white-space:normal;font-size:.8125rem}}
-@media (max-width:600px){main{padding:calc(14px + 2.125rem) 10px 40px}.card{padding:12px}h1{font-size:1.375rem}.row>div{min-width:100px}.hh{font-size:.625rem}.vs{max-height:min(360px,50vh)}}
-.calp{position:fixed;top:0;right:0;bottom:0;width:min(460px,42vw);background:var(--card);border-left:1px solid var(--line);box-shadow:-8px 0 24px rgba(var(--ink),.12);z-index:20;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
-.calh{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);font:.875rem var(--font)}
-.calh span{display:flex;gap:12px;align-items:center}
-#calb{flex:1;display:flex;min-height:0}
-.calf{flex:1;border:0;width:100%;background:#fff}
-.calm{padding:10px 14px;margin:0}
-body.calopen{padding-right:min(460px,42vw);transition:padding-right .2s}
+@media (max-width:600px){main{padding:14px 10px 40px}.topbar{padding:8px 10px 0}.card{padding:12px}h1{font-size:1.375rem}.row>div{min-width:100px}.hh{font-size:.625rem}.vs{max-height:min(360px,50vh)}
+.home-when.row{flex-direction:column;flex-wrap:nowrap;gap:8px}.home-when.row>div{min-width:0;flex:none;width:100%}}
+html[data-theme="dark"] .home-when select,html[data-theme="dark"] .cust select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23A8A29A' d='M1.2 1.5 6 6.3 10.8 1.5'/%3E%3C/svg%3E")}
 html[data-theme="dark"] .gbtn{background:#fff;color:#1F1F1F;border-color:var(--line)}
 html[data-theme="dark"] button.danger{color:#E08A74;border-color:#E08A74}
-html[data-theme="dark"] .calf{background:#2A2622}
-@media (max-width:760px){.calp{display:none!important}body.calopen{padding-right:0}body.calopen .topbar{right:8px;max-width:calc(100vw - 16px)}}
 </style>
 </head>
 <body>
-<div class="topbar" id="topbar">
+<header class="topbar" id="topbar">
+<span class="ver" title="SWAWM 3.1.1">3.1.1</span>
 <div class="hauth" id="hauth"></div>
 <div class="a11y" id="a11y">
 <button type="button" class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel" title="Accessibility">Aa</button>
@@ -156,7 +159,7 @@ html[data-theme="dark"] .calf{background:#2A2622}
 <label><input type="checkbox" id="a11yLarge"> Larger text</label>
 </div>
 </div>
-</div>
+</header>
 <main id="app"><p class="sub">Loading…</p></main>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -208,8 +211,7 @@ function renderHeadAuth(){var el=document.getElementById('hauth');if(!el)return;
   if(!user){el.innerHTML='<button type="button" class="gbtn hgbtn" id="hgs" title="Sign in with Google"><span class="gl">'+GLH+'</span><span class="gt">Sign in</span></button>';
     document.getElementById('hgs').onclick=function(){AUTH.signIn().catch(function(e){el.title=e&&e.message||String(e)})};return}
   el.innerHTML='<span class="hwho" title="'+esc(user.email||user.name)+'">'+esc(headLabel(user))+'</span><button type="button" class="lnk" id="hso">Sign out</button>';
-  document.getElementById('hso').onclick=function(){closeHeadCal();if(AUTH)AUTH.signOut()}}
-function closeHeadCal(){var p=document.getElementById('calp');if(p)p.remove();document.body.classList.remove('calopen')}
+  document.getElementById('hso').onclick=function(){if(AUTH)AUTH.signOut()}}
 onAuth(function(){renderHeadAuth()});
 
 function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
@@ -257,7 +259,7 @@ function home(){
   var t=new Date(),n=new Date();n.setDate(n.getDate()+6);
   app.innerHTML=mast('SWAWM: <em>So When Are We Meeting?</em>')+'<p class="sub">Create an event, copy its link, and send it around. Everyone marks when they\'re free.</p>'+
   '<div class="card"><h2>New event</h2><label>Event name</label><input id="ti" placeholder="Click here to name the event">'+
-  '<div class="row"><div><label>First day</label><input type="date" id="d1" value="'+iso(t)+'"></div><div><label>Last day</label><input type="date" id="d2" value="'+iso(n)+'"></div>'+
+  '<div class="row home-when"><div><label>First day</label><input type="date" id="d1" value="'+iso(t)+'"></div><div><label>Last day</label><input type="date" id="d2" value="'+iso(n)+'"></div>'+
   '<div><label>Earliest</label><select id="h1"></select></div><div><label>Latest</label><select id="h2"></select></div></div>'+
   '<p style="margin:14px 0 0"><button id="mk">Create event</button></p><p class="msg" id="err"></p></div>'+
   '<div class="card"><h2>Your events</h2><div id="list"><span class="msg">Loading…</span></div></div>';
@@ -499,16 +501,41 @@ function eventView(id){
   function offPut(){try{localStorage.setItem('swawm_off_'+id,JSON.stringify(Object.keys(off).map(Number)))}catch(e){}}
   function fput(b,lo,hi){var o=fget().o;o.buf=b;o.ev=o.ev||{};o.ev[id]={lo:lo,hi:hi};try{localStorage.setItem('swawm_fma',JSON.stringify(o))}catch(e){}}
   function bounds(){var f=fget(),lo=Math.max(0,Math.min(f.lo,Z.R-1)),hi=f.hi==null?Z.R:Math.max(lo+1,Math.min(f.hi,Z.R));return{buf:f.buf,lo:lo,hi:hi}}
-  function fill(){if(!Z||!user||mode!==null)return;var f=bounds(),inst=function(t){return Z.utc?t:lToUtc(t)},a=inst(Z.E[0]),b=inst(Z.E[Z.E.length-1])+STEP,btn=document.getElementById('fm');
+  var DAYF=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],MONS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function dayNice(iso){var x=new Date(dn(iso)*6e4);return DAYF[x.getUTCDay()]+' ('+MONS[x.getUTCMonth()]+' '+x.getUTCDate()+')'}
+  function dayCheck(iso){var x=new Date(dn(iso)*6e4);return DAYF[x.getUTCDay()]+', '+MONS[x.getUTCMonth()]+' '+x.getUTCDate()}
+  function andList(a){return a.length===1?a[0]:a.length===2?a[0]+' and '+a[1]:a.slice(0,-1).join(', ')+', and '+a[a.length-1]}
+  function hideAdp(){var p=document.getElementById('adp');if(p)p.remove()}
+  function fillDays(f){var o={};Z.cols.forEach(function(col){for(var r=f.lo;r<f.hi;r++)if(col.cells[r]&&col.cells[r].length){o[wIso(col.w0)]=1;return}});return o}
+  function applyFill(busy,skipped,f){
+    hideAdp();
+    var inst=function(t){return Z.utc?t:lToUtc(t)},bl=busyBlocks(busy,f.buf),before=snap(),n=0;
+    Object.keys(auto).forEach(function(t){delete mine[t]});auto={};
+    Z.cols.forEach(function(col){col.cells.forEach(function(x,r){if(r<f.lo||r>=f.hi)return;x.forEach(function(t){if(mine[t]||off[t]||isBusy(bl,inst(t),STEP))return;mine[t]=1;auto[t]=1;n++})})});
+    if(snap()!==before){undo.push(before);if(undo.length>100)undo.shift();redo=[];updUR()}
+    dirty=true;paintMine();idleTip();paintGroup();
+    st.textContent='Filled '+n+' slot'+(n===1?'':'s')+' from your Google Calendar, keeping '+f.buf+' minutes clear around busy times.'+(skipped?' '+skipped+' calendar'+(skipped===1?'':'s')+' could not be accessed.':'')+' Review, then save availability.'+(busy.length?'':' No busy time was found on those calendars, so every slot in range was filled.')}
+  function fill(){if(!Z||!user||mode!==null)return;var f=bounds(),inst=function(t){return Z.utc?t:lToUtc(t)},a=inst(Z.E[0]),b=inst(Z.E[Z.E.length-1])+STEP,btn=document.getElementById('fm'),tz=ev.tz||VTZ;
+    hideAdp();
     if(btn){btn.disabled=true;btn.textContent='Checking your calendar…'}
-    AUTH.freeBusy((a-f.buf)*6e4,(b+f.buf)*6e4,ev.tz||VTZ).then(function(res){if(document.getElementById('g1')!==G1)return;
-      var busy=res&&res.busy?res.busy:res,cals=res&&res.n||1,skipped=res&&res.err||0,bl=busyBlocks(busy,f.buf),before=snap(),n=0;
-      Object.keys(auto).forEach(function(t){delete mine[t]});auto={};
-      Z.cols.forEach(function(col){col.cells.forEach(function(x,r){if(r<f.lo||r>=f.hi)return;x.forEach(function(t){if(mine[t]||off[t]||isBusy(bl,inst(t),STEP))return;mine[t]=1;auto[t]=1;n++})})});
-      if(snap()!==before){undo.push(before);if(undo.length>100)undo.shift();redo=[];updUR()}
-      dirty=true;paintMine();idleTip();paintGroup();
-      st.textContent='Filled '+n+' free slot'+(n===1?'':'s')+' from '+cals+' Google Calendar'+(cals===1?'':'s')+' you can access, keeping '+f.buf+' minutes clear around busy times. Event titles were not read. Review, then Save availability.'+(busy.length?'':' No busy time was found on those calendars, so every slot in range was filled.')+(skipped?' '+skipped+' calendar'+(skipped===1?'':'s')+' could not be checked.':'')})
-    .catch(function(e){if(document.getElementById('g1')===G1)st.textContent='Could not read your calendar: '+(e&&e.message||e)})
+    AUTH.freeBusy((a-f.buf)*6e4,(b+f.buf)*6e4,tz).then(function(res){if(document.getElementById('g1')!==G1)return;
+      var busy=res&&res.busy?res.busy:res,skipped=res&&res.err||0,win=fillDays(f),timed=[],hit=[],seen={};
+      (busy||[]).forEach(function(x){var days=allDayDays(x,tz);
+        if(!days||!days.length){timed.push(x);return}
+        var inWin=false;days.forEach(function(d){if(win[d]){inWin=true;if(!seen[d]){seen[d]=1;hit.push(d)}}});
+        if(!inWin)timed.push(x)});
+      hit.sort();
+      if(!hit.length){applyFill(busy,skipped,f);return}
+      var g=document.getElementById('gx'),box=document.createElement('div');box.id='adp';box.className='adp';
+      box.innerHTML='<p>'+esc('SWAWM detected all-day events on '+andList(hit.map(dayNice))+'. Which of these do you want to treat as busy all day?')+'</p><ul>'+
+        hit.map(function(d){return '<li><label><input type="checkbox" data-d="'+d+'"> '+esc(dayCheck(d))+'</label></li>'}).join('')+
+        '</ul><button type="button" class="fmb" id="adc">Confirm Fill</button>';
+      var fma=g&&g.querySelector('.fma');if(g)g.insertBefore(box,fma&&fma.nextSibling||g.querySelector('#fmh')||null);
+      st.textContent='Choose which all-day events to treat as busy, then confirm Fill. Leave them unchecked unless you want that whole local day blocked.';
+      document.getElementById('adc').onclick=function(){if(document.getElementById('g1')!==G1)return;
+        var extra=[];box.querySelectorAll('input[data-d]:checked').forEach(function(el){extra.push(civilBusy(el.getAttribute('data-d'),tz))});
+        applyFill(timed.concat(extra),skipped,f)}})
+    .catch(function(e){if(document.getElementById('g1')===G1){hideAdp();st.textContent='Could not read your calendar: '+(e&&e.message||e)}})
     .then(function(){var x=document.getElementById('fm');if(x){x.disabled=false;x.textContent='Fill My Availability'}})}
   function settings(){if(!Z)return;var f=bounds(),l='',h='';
     for(var r=0;r<Z.R;r++)l+='<option value="'+r+'"'+(r===f.lo?' selected':'')+'>'+wTime(Z.rs+r*STEP)+'</option>';
@@ -519,24 +546,17 @@ function eventView(id){
       function(w){var B=w.querySelector('#fb').value.trim(),L=+w.querySelector('#fl').value,H=+w.querySelector('#fh').value;
         if(!/^\d+$/.test(B)||+B>120)return{error:'Use a whole number of minutes from 0 to 120.'};if(H<=L)return{error:'Latest must be after earliest.'};return{b:+B,l:L,h:H}})
     .then(function(v){if(!v)return;fput(v.b,v.l,v.h);st.textContent='Fill settings saved: '+v.b+'-minute buffer, '+wTime(Z.rs+v.l*STEP)+' to '+wTime(Z.rs+v.h*STEP)+'. Click Fill My Availability to refresh.'})}
-  function calEmbed(){var tz=(typeof VTZ!=='undefined'&&VTZ)||'';return 'https://calendar.google.com/calendar/embed?src='+encodeURIComponent(user.email)+'&mode=WEEK&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&wkst=1'+(tz?'&ctz='+encodeURIComponent(tz):'')}
-  function closeCal(){var p=document.getElementById('calp');if(p)p.remove();document.body.classList.remove('calopen')}
-  function openCal(){closeCal();var p=document.createElement('aside'),demo=AUTH&&AUTH.demo,live=!demo&&user&&user.email;p.id='calp';p.className='calp';
-    p.innerHTML='<div class="calh"><b>Your Google Calendar</b><span><a class="lnk" href="'+calUrl()+'" target="_blank" rel="noopener">Open in new tab</a><button class="lnk" id="calx">Close</button></span></div><div id="calb"></div><p class="msg calm">'+(live?'If the calendar stays blank, your browser may be blocking it. Use Open in new tab.':'Demo preview: your real Google Calendar would appear here once you sign in with Google.')+'</p>';
-    document.body.appendChild(p);document.body.classList.add('calopen');p.querySelector('#calx').onclick=closeCal;
-    if(live){var f=document.createElement('iframe');f.className='calf';f.title='Google Calendar';f.src=calEmbed();document.getElementById('calb').appendChild(f)}}
   function calUrl(){return 'https://calendar.google.com/calendar/r/week'+(user&&user.email?'?authuser='+encodeURIComponent(user.email):'')}
   function renderGx(){var g=document.getElementById('gx');if(!g)return;
     if(!AUTH||!AUTH.ready){g.innerHTML='<p class="msg">'+esc(AUTH&&AUTH.why||'Google sign-in is not available.')+'</p>';return}
-    if(!user){closeCal();g.innerHTML='<button class="gbtn" id="gs"><span class="gl">'+GL+'</span><span class="gt">Sign in with Google</span></button><p class="msg" id="gxh">Sign in to fill your availability from Google Calendar.</p><p class="msg" id="gxm"></p>';
+    if(!user){g.innerHTML='<button class="gbtn" id="gs"><span class="gl">'+GL+'</span><span class="gt">Sign in with Google</span></button><p class="msg" id="gxh">Sign in to fill your availability from Google Calendar.</p><p class="msg" id="gxm"></p>';
       document.getElementById('gs').onclick=function(){var m=document.getElementById('gxm');AUTH.signIn().catch(function(e){if(m)m.textContent=e&&e.message||String(e)})};return}
     g.innerHTML='<div class="fma"><div class="fcol"><button class="fmb" id="fm">Fill My Availability</button><a class="lnk" id="vc" href="'+calUrl()+'" target="_blank" rel="noopener">View Calendar</a></div>'+
       '<button class="ghost ic fs" id="fs" title="Fill settings" aria-label="Fill settings">'+SLI+'</button></div>'+
       '<p class="msg" id="fmh">Striped slots came from your calendar. If you paint or clear a slot yourself, filling again will leave it alone.</p>'+
       '<p class="msg gu">Signed in as <b>'+esc(user.email||user.name)+'</b> · <button class="lnk" id="so">Sign out</button></p>';
-    document.getElementById('fm').onclick=fill;document.getElementById('fs').onclick=settings;document.getElementById('so').onclick=function(){closeCal();AUTH.signOut()};
-    document.getElementById('vc').onclick=function(e){if(window.matchMedia&&window.matchMedia('(min-width:761px)').matches){e.preventDefault();openCal()}}}
-  unsubs.push(closeCal);renderGx();
+    document.getElementById('fm').onclick=fill;document.getElementById('fs').onclick=settings;document.getElementById('so').onclick=function(){AUTH.signOut()}}
+  renderGx();
   unsubs.push(onAuth(function(u){renderGx();showDel();if(!Z)return;
     var k=myKey();if(u&&!dirty&&resp[k]&&resp[k].uid===u.uid&&k!==loadedSlug){nm.value=resp[k].name||nm.value;loadMine(resp[k])}
     else if(u&&!u.anon&&!nm.value.trim()){var full=String(u.name||'').trim(),nmv='';[full.split(/\s+/)[0],full].some(function(c){if(!c)return false;var r0=resp[slug(c)];if(!r0||r0.uid===u.uid){nmv=c;return true}return false});if(nmv){nm.value=nmv;checkName()}}
@@ -566,7 +586,7 @@ function eventView(id){
 // creates and Firestore rules can check it. Google sign-in links that same anonymous user, keeping its uid. If the
 // Google account already exists, this browser hands its guest data to that account before switching to it.
 // Sign-in asks for openid/email/profile plus calendar list (IDs only) and free/busy. No events or calendar.readonly.
-var FB_SCOPE='https://www.googleapis.com/auth/calendar.freebusy',LIST_SCOPE='https://www.googleapis.com/auth/calendar.calendarlist.readonly',CAL_SCOPES=[FB_SCOPE,LIST_SCOPE],me=null;
+var FB_SCOPE='https://www.googleapis.com/auth/calendar.freebusy',LIST_SCOPE='https://www.googleapis.com/auth/calendar.calendarlist.readonly',CAL_SCOPES=[FB_SCOPE,LIST_SCOPE],BD_CAL='addressbook#contacts@group.v.calendar.google.com',me=null;
 function calOk(sc){var s=(sc||'').split(/\s+/).filter(Boolean);if(CAL_SCOPES.some(function(x){return s.indexOf(x)<0}))return false;return !s.some(function(x){return /calendar/.test(x)&&CAL_SCOPES.indexOf(x)<0})}
 function onAuth(f){authCbs.push(f);return function(){authCbs=authCbs.filter(function(x){return x!==f})}}
 function setMe(m){var was=user&&user.uid;me=m;user=m&&!m.anon?m:null;fire(m,false);if(user&&user.uid!==was){var u=user;afterGoogle(u).then(function(){if(user===u)fire(u,true)})}}
@@ -578,6 +598,17 @@ function busyBlocks(busy,buf){var iv=[],out=[];
   busy.forEach(function(b){var a=b.s/6e4-buf,e=b.e/6e4+buf;if(e>a)iv.push([a,e])});
   iv.sort(function(x,y){return x[0]-y[0]});iv.forEach(function(x){var l=out[out.length-1];if(l&&x[0]<=l[1]){if(x[1]>l[1])l[1]=x[1]}else out.push([x[0],x[1]])});return out}
 function isBusy(bl,s,step){for(var i=0;i<bl.length;i++)if(s<bl[i][1]&&s+step>bl[i][0])return true;return false}
+function ymdStr(s){var m=String(s||'').match(/^(\d{4}-\d{2}-\d{2})(?:$|T00:00:00(?:\.\d+)?(?:Z|[+\-]00:00)?$)/);return m?m[1]:''}
+function civilDays(a,b){var o=[],t=dn(a),e=dn(b);if(!isFinite(t)||!isFinite(e)||e<=t)return o;for(;t<e;t+=1440)o.push(wIso(t));return o}
+function civilBusy(iso,tz){var w=dn(iso);if(zOk(tz))return{s:zToUtc(tz,w)*6e4,e:zToUtc(tz,w+1440)*6e4};return{s:lToUtc(w)*6e4,e:lToUtc(w+1440)*6e4}}
+// All-day-like freeBusy: date-only, or ~24h (N-day) spans that start and end on UTC midnight or calendar TZ midnight.
+// Map to the dates Google sent (e.g. 2026-10-12), not the local 5pm-shifted window.
+function allDayDays(b,tz){
+  var ys=ymdStr(b.start),ye=ymdStr(b.end);if(ys&&ye)return civilDays(ys,ye);
+  var s=b.s,e=b.e,n=e-s;
+  if(isFinite(s)&&isFinite(e)&&s%864e5===0&&e%864e5===0&&n>=864e5-12e4){var d=Math.round(n/864e5);if(d>=1&&Math.abs(n-d*864e5)<=12e4)return civilDays(wIso(s/6e4),wIso(e/6e4))}
+  if(zOk(tz)){var ws=zWall(tz,s),we=zWall(tz,e);if(ws%1440===0&&we%1440===0&&we-ws>=20*60)return civilDays(wIso(ws),wIso(we))}
+  return null}
 function liveAuth(){
   if(!(firebase.auth&&firebase.auth.GoogleAuthProvider))return{ready:false,why:'Google sign-in did not load (firebase-auth-compat.js).'};
   var A=firebase.auth(),tok=null,exp=0,ok=false;
@@ -609,16 +640,17 @@ function liveAuth(){
         if((e.code!=='auth/credential-already-in-use'&&e.code!=='auth/email-already-in-use')||!e.credential)throw e;
         var cred=e.credential;return handOver(cur.uid,cred).then(function(){return A.signInWithCredential(cred)}).then(function(r){if(cred.accessToken)keep({credential:cred})})})},
     signOut:function(){tok=null;return A.signOut()},
-    freeBusy:function(a,b){return token().then(function(t){
+    freeBusy:function(a,b,tz){return token().then(function(t){
+      var zone=zOk(tz)?tz:'UTC';
       function list(page,ids){var u='https://www.googleapis.com/calendar/v3/users/me/calendarList?maxResults=250&showHidden=true&fields=nextPageToken,items(id)';
         if(page)u+='&pageToken='+encodeURIComponent(page);
         return fetch(u,{headers:{Authorization:'Bearer '+t}}).then(function(r){if(!r.ok){if(r.status===401||r.status===403)tok=null;throw new Error('Could not list calendars ('+r.status+')')}return r.json()})
           .then(function(j){(j.items||[]).forEach(function(it){if(it&&it.id)ids.push(it.id)});return j.nextPageToken?list(j.nextPageToken,ids):uniq(ids)})}
       function chunk(ids,i,busy,nOk,nErr){if(i>=ids.length)return{busy:busy,n:nOk,err:nErr,listed:ids.length};
         return fetch('https://www.googleapis.com/calendar/v3/freeBusy',{method:'POST',headers:{Authorization:'Bearer '+t,'Content-Type':'application/json'},
-          body:JSON.stringify({timeMin:new Date(a).toISOString(),timeMax:new Date(b).toISOString(),items:ids.slice(i,i+50).map(function(id){return{id:id}})})})
+          body:JSON.stringify({timeMin:new Date(a).toISOString(),timeMax:new Date(b).toISOString(),timeZone:zone,items:ids.slice(i,i+50).map(function(id){return{id:id}})})})
           .then(function(r){if(!r.ok){if(r.status===401||r.status===403)tok=null;throw new Error('Google Calendar answered '+r.status)}return r.json()})
-          .then(function(j){var cs=j.calendars||{};Object.keys(cs).forEach(function(k){var c=cs[k];if(c.errors&&c.errors.length){nErr++;return}nOk++;(c.busy||[]).forEach(function(x){var s=Date.parse(x.start),e=Date.parse(x.end);if(isFinite(s)&&isFinite(e))busy.push({s:s,e:e})})});return chunk(ids,i+50,busy,nOk,nErr)})}
+          .then(function(j){var cs=j.calendars||{};Object.keys(cs).forEach(function(k){var c=cs[k];if(c.errors&&c.errors.length){if(k!==BD_CAL)nErr++;return}nOk++;(c.busy||[]).forEach(function(x){var s=Date.parse(x.start),e=Date.parse(x.end);if(isFinite(s)&&isFinite(e))busy.push({s:s,e:e,start:x.start,end:x.end})})});return chunk(ids,i+50,busy,nOk,nErr)})}
       return list(null,[]).then(function(ids){if(!ids.length)ids=['primary'];return chunk(ids,0,[],0,0)})})}}}
 var CONSENT_LINE='SWAWM wants to see the availabilities on your calendars.',CONSENT_SUB='Event titles and details remain private and unchanged.';
 // Preview mode: a fake Google account and seeded busy blocks, so the whole flow runs without credentials. It mirrors the
@@ -640,6 +672,8 @@ function demoAuth(){var KA='swawm_demo_anon',KG='swawm_demo_user',KR='swawm_demo
       var w0=z?zWall(z,a):lw(a/6e4),d0=Math.floor(w0/1440)*1440;
       function add(pat,mod){for(var k=-1;k<40&&(d0+k*1440)*6e4<b+864e5;k++)pat[(k+5)%mod].forEach(function(x){var s=z?zToUtc(z,d0+k*1440+x[0]):lToUtc(d0+k*1440+x[0]),e=z?zToUtc(z,d0+k*1440+x[1]):lToUtc(d0+k*1440+x[1]);if(e*6e4>a&&s*6e4<b)out.push({s:s*6e4,e:e*6e4})})}
       add(P,5);add(W,1);
+      // Opaque all-day Busy as UTC midnight→next midnight (Canvas-style), first and last days of the demo week.
+      [wIso(d0),wIso(d0+4*1440)].forEach(function(iso){var nxt=wIso(dn(iso)+1440),s=Date.parse(iso+'T00:00:00Z'),e=Date.parse(nxt+'T00:00:00Z');if(e>a&&s<b)out.push({s:s,e:e,start:iso+'T00:00:00Z',end:nxt+'T00:00:00Z'})});
       return{busy:out,n:2,err:0,listed:2}})}}}
 function modal(title,body,okText,read){return new Promise(function(res){var w=document.createElement('div');w.className='mdl';
   w.innerHTML='<div class="mbox" role="dialog" aria-modal="true" aria-label="'+esc(title)+'"><h2>'+esc(title)+'</h2>'+body+'<p class="mbt"><button class="ghost" data-x="0">Cancel</button> <button data-x="1">'+esc(okText)+'</button></p><p class="msg" data-err style="color:#b4534f"></p></div>';
