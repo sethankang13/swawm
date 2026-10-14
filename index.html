@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- SWAWM 3.1.1 -->
-<html lang="en" data-swawm="3.1.1">
+<!-- SWAWM 3.1.2 -->
+<html lang="en" data-swawm="3.1.2">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -145,7 +145,7 @@ html[data-theme="dark"] button.danger{color:#E08A74;border-color:#E08A74}
 </head>
 <body>
 <header class="topbar" id="topbar">
-<span class="ver" title="SWAWM 3.1.1">3.1.1</span>
+<span class="ver" title="SWAWM 3.1.2">3.1.2</span>
 <div class="hauth" id="hauth"></div>
 <div class="a11y" id="a11y">
 <button type="button" class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel" title="Accessibility">Aa</button>
@@ -337,7 +337,8 @@ function eventView(id){
     else(r.slots||[]).forEach(function(k){var a=String(k).split('|'),w=dn(a[0])+(+a[1])*STEP;if(a.length===2&&isFinite(w))o[Z.utc?zToUtc(ev.tz,w):w]=1});
     return o}
   function pick(a){var o={};(a||[]).forEach(function(t){if(mine[t])o[t]=1});return o}
-  function myKey(){if(me)for(var k in resp)if(resp[k].uid===me.uid)return k;return slug(nm.value)}
+  function uidKey(){if(!me||!me.uid)return '';for(var k in resp)if(resp[k]&&resp[k].uid&&resp[k].uid===me.uid)return k;return ''}
+  function myKey(){var u=uidKey();if(u)return u;var n=nm.value.trim();return n?slug(n):''}
   function lkey(w){return wIso(w)+'|'+(((w%1440)+1440)%1440)/STEP}
   function toDoc(name){var T=Object.keys(mine).map(Number).sort(function(a,b){return a-b}),d={name:name,updated:Date.now()};
     if(Z.utc){d.utc=T;d.slots=T.map(function(t){return lkey(zWall(ev.tz,t*6e4))})}else d.slots=T.map(lkey);
@@ -558,8 +559,7 @@ function eventView(id){
     document.getElementById('fm').onclick=fill;document.getElementById('fs').onclick=settings;document.getElementById('so').onclick=function(){AUTH.signOut()}}
   renderGx();
   unsubs.push(onAuth(function(u){renderGx();showDel();if(!Z)return;
-    var k=myKey();if(u&&!dirty&&resp[k]&&resp[k].uid===u.uid&&k!==loadedSlug){nm.value=resp[k].name||nm.value;loadMine(resp[k])}
-    else if(u&&!u.anon&&!nm.value.trim()){var full=String(u.name||'').trim(),nmv='';[full.split(/\s+/)[0],full].some(function(c){if(!c)return false;var r0=resp[slug(c)];if(!r0||r0.uid===u.uid){nmv=c;return true}return false});if(nmv){nm.value=nmv;checkName()}}
+    var k=uidKey();if(u&&u.uid&&!dirty&&k&&resp[k]&&resp[k].uid===u.uid&&k!==loadedSlug){nm.value=resp[k].name||nm.value;loadMine(resp[k])}
     paintGroup()}));
   function onKey(e){if(!(e.ctrlKey||e.metaKey)||mode!==null)return;var k=(e.key||'').toLowerCase(),ae=document.activeElement;if(ae&&/^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName))return;
     if(k==='z'&&!e.shiftKey){e.preventDefault();doUndo()}else if(k==='y'||(k==='z'&&e.shiftKey)){e.preventDefault();doRedo()}}
@@ -574,7 +574,9 @@ function eventView(id){
       build(G1);build(G2);fillCustom();wire();paintMine();paintGroup();
       unsubs.push(db.collection('events/'+id+'/responses').onSnapshot(function(q){
         resp={};RS={};q.docs.forEach(function(d){resp[d.id]=d.data();RS[d.id]=toSet(resp[d.id])});
-        var mk=myKey(),m=resp[mk];if(m&&!dirty){mine=toSet(m);auto=pick(m.auto);off=offGet();if(!nm.value)nm.value=m.name||'';loadedSlug=slug(nm.value);paintMine();idleTip()}
+        var mk=myKey(),m=mk&&resp[mk];
+        if(m&&!dirty){var byUid=!!(me&&me.uid&&m.uid===me.uid),byName=!!nm.value.trim()&&slug(nm.value)===mk;
+          if(byUid||byName){mine=toSet(m);auto=pick(m.auto);off=offGet();if(byUid&&!nm.value.trim())nm.value=m.name||'';loadedSlug=slug(nm.value);paintMine();idleTip()}}
         paintGroup();
       },function(){var m=document.getElementById('st');if(m)m.textContent='Could not load responses.'}));
     }
