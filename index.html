@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- SWAWM 3.1.2 -->
-<html lang="en" data-swawm="3.1.2">
+<!-- SWAWM 3.1.3 -->
+<html lang="en" data-swawm="3.1.3">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -145,7 +145,7 @@ html[data-theme="dark"] button.danger{color:#E08A74;border-color:#E08A74}
 </head>
 <body>
 <header class="topbar" id="topbar">
-<span class="ver" title="SWAWM 3.1.2">3.1.2</span>
+<span class="ver" title="SWAWM 3.1.3">3.1.3</span>
 <div class="hauth" id="hauth"></div>
 <div class="a11y" id="a11y">
 <button type="button" class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel" title="Accessibility">Aa</button>
@@ -521,12 +521,11 @@ function eventView(id){
     if(btn){btn.disabled=true;btn.textContent='Checking your calendar…'}
     AUTH.freeBusy((a-f.buf)*6e4,(b+f.buf)*6e4,tz).then(function(res){if(document.getElementById('g1')!==G1)return;
       var busy=res&&res.busy?res.busy:res,skipped=res&&res.err||0,win=fillDays(f),timed=[],hit=[],seen={};
-      (busy||[]).forEach(function(x){var days=allDayDays(x,tz);
-        if(!days||!days.length){timed.push(x);return}
-        var inWin=false;days.forEach(function(d){if(win[d]){inWin=true;if(!seen[d]){seen[d]=1;hit.push(d)}}});
-        if(!inWin)timed.push(x)});
+      (busy||[]).forEach(function(x){var days=allDayDays(x,tz,Z.cols);
+        if(!days){timed.push(x);return}
+        days.forEach(function(d){if(win[d]&&!seen[d]){seen[d]=1;hit.push(d)}})});
       hit.sort();
-      if(!hit.length){applyFill(busy,skipped,f);return}
+      if(!hit.length){applyFill(timed,skipped,f);return}
       var g=document.getElementById('gx'),box=document.createElement('div');box.id='adp';box.className='adp';
       box.innerHTML='<p>'+esc('SWAWM detected all-day events on '+andList(hit.map(dayNice))+'. Which of these do you want to treat as busy all day?')+'</p><ul>'+
         hit.map(function(d){return '<li><label><input type="checkbox" data-d="'+d+'"> '+esc(dayCheck(d))+'</label></li>'}).join('')+
@@ -534,7 +533,7 @@ function eventView(id){
       var fma=g&&g.querySelector('.fma');if(g)g.insertBefore(box,fma&&fma.nextSibling||g.querySelector('#fmh')||null);
       st.textContent='Choose which all-day events to treat as busy, then confirm Fill. Leave them unchecked unless you want that whole local day blocked.';
       document.getElementById('adc').onclick=function(){if(document.getElementById('g1')!==G1)return;
-        var extra=[];box.querySelectorAll('input[data-d]:checked').forEach(function(el){extra.push(civilBusy(el.getAttribute('data-d'),tz))});
+        var extra=[];var gtz=zOk(VTZ)?VTZ:tz;box.querySelectorAll('input[data-d]:checked').forEach(function(el){extra.push(civilBusy(el.getAttribute('data-d'),gtz))});
         applyFill(timed.concat(extra),skipped,f)}})
     .catch(function(e){if(document.getElementById('g1')===G1){hideAdp();st.textContent='Could not read your calendar: '+(e&&e.message||e)}})
     .then(function(){var x=document.getElementById('fm');if(x){x.disabled=false;x.textContent='Fill My Availability'}})}
@@ -603,14 +602,18 @@ function isBusy(bl,s,step){for(var i=0;i<bl.length;i++)if(s<bl[i][1]&&s+step>bl[
 function ymdStr(s){var m=String(s||'').match(/^(\d{4}-\d{2}-\d{2})(?:$|T00:00:00(?:\.\d+)?(?:Z|[+\-]00:00)?$)/);return m?m[1]:''}
 function civilDays(a,b){var o=[],t=dn(a),e=dn(b);if(!isFinite(t)||!isFinite(e)||e<=t)return o;for(;t<e;t+=1440)o.push(wIso(t));return o}
 function civilBusy(iso,tz){var w=dn(iso);if(zOk(tz))return{s:zToUtc(tz,w)*6e4,e:zToUtc(tz,w+1440)*6e4};return{s:lToUtc(w)*6e4,e:lToUtc(w+1440)*6e4}}
-// All-day-like freeBusy: date-only, or ~24h (N-day) spans that start and end on UTC midnight or calendar TZ midnight.
-// Map to the dates Google sent (e.g. 2026-10-12), not the local 5pm-shifted window.
-function allDayDays(b,tz){
-  var ys=ymdStr(b.start),ye=ymdStr(b.end);if(ys&&ye)return civilDays(ys,ye);
-  var s=b.s,e=b.e,n=e-s;
-  if(isFinite(s)&&isFinite(e)&&s%864e5===0&&e%864e5===0&&n>=864e5-12e4){var d=Math.round(n/864e5);if(d>=1&&Math.abs(n-d*864e5)<=12e4)return civilDays(wIso(s/6e4),wIso(e/6e4))}
-  if(zOk(tz)){var ws=zWall(tz,s),we=zWall(tz,e);if(ws%1440===0&&we%1440===0&&we-ws>=20*60)return civilDays(wIso(ws),wIso(we))}
-  return null}
+function dayScale(n){if(!isFinite(n)||n<22*36e5)return 0;var d=Math.round(n/864e5);if(d<1)d=1;return Math.abs(n-d*864e5)<=d*36e5+12e4?d:0}
+function atMid(ms,tz){if(!isFinite(ms))return false;if(ms%864e5===0)return true;if(zOk(tz)&&zWall(tz,ms)%1440===0)return true;return lw(ms/6e4)%1440===0}
+function mapGridDays(b,cols){
+  if(cols&&cols.length){var o=[],seen={};cols.forEach(function(col){var iso=wIso(col.w0),w=dn(iso),ds=lToUtc(w)*6e4,de=lToUtc(w+1440)*6e4;if(b.s<de&&b.e>ds&&!seen[iso]){seen[iso]=1;o.push(iso)}});return o}
+  if(!isFinite(b.s)||!isFinite(b.e)||b.e<=b.s)return[];
+  var a=lw(b.s/6e4),c=lw((b.e-1)/6e4);return civilDays(wIso(Math.floor(a/1440)*1440),wIso(Math.floor(c/1440)*1440+1440))}
+// All-day-like freeBusy: date-only, UTC/ev.tz/viewer midnight, or ~N×24h (DST 23h/25h) even when the span
+// starts at calendar-local midnight (e.g. PDT T07:00:00Z). Map days to the grid's local column dates so fillDays/win hits.
+function allDayDays(b,tz,cols){
+  var ys=ymdStr(b.start),ye=ymdStr(b.end),s=b.s,e=b.e,n=e-s,like=!!(ys&&ye);
+  if(!like&&isFinite(s)&&isFinite(e)&&n>0)like=(atMid(s,tz)&&atMid(e,tz)&&n>=22*36e5)||dayScale(n)>=1;
+  return like?mapGridDays(b,cols):null}
 function liveAuth(){
   if(!(firebase.auth&&firebase.auth.GoogleAuthProvider))return{ready:false,why:'Google sign-in did not load (firebase-auth-compat.js).'};
   var A=firebase.auth(),tok=null,exp=0,ok=false;
@@ -674,8 +677,11 @@ function demoAuth(){var KA='swawm_demo_anon',KG='swawm_demo_user',KR='swawm_demo
       var w0=z?zWall(z,a):lw(a/6e4),d0=Math.floor(w0/1440)*1440;
       function add(pat,mod){for(var k=-1;k<40&&(d0+k*1440)*6e4<b+864e5;k++)pat[(k+5)%mod].forEach(function(x){var s=z?zToUtc(z,d0+k*1440+x[0]):lToUtc(d0+k*1440+x[0]),e=z?zToUtc(z,d0+k*1440+x[1]):lToUtc(d0+k*1440+x[1]);if(e*6e4>a&&s*6e4<b)out.push({s:s*6e4,e:e*6e4})})}
       add(P,5);add(W,1);
-      // Opaque all-day Busy as UTC midnight→next midnight (Canvas-style), first and last days of the demo week.
-      [wIso(d0),wIso(d0+4*1440)].forEach(function(iso){var nxt=wIso(dn(iso)+1440),s=Date.parse(iso+'T00:00:00Z'),e=Date.parse(nxt+'T00:00:00Z');if(e>a&&s<b)out.push({s:s,e:e,start:iso+'T00:00:00Z',end:nxt+'T00:00:00Z'})});
+      // Opaque all-day Busy on first+last demo days: calendar-local midnight (PDT T07:00:00Z) and UTC midnight.
+      [wIso(d0),wIso(d0+4*1440)].forEach(function(iso,i){var nxt=wIso(dn(iso)+1440),s,e,st,en;
+        if(i===0&&z){s=zToUtc(tz,dn(iso))*6e4;e=zToUtc(tz,dn(nxt))*6e4;st=new Date(s).toISOString();en=new Date(e).toISOString()}
+        else{st=iso+'T00:00:00Z';en=nxt+'T00:00:00Z';s=Date.parse(st);e=Date.parse(en)}
+        if(e>a&&s<b)out.push({s:s,e:e,start:st,end:en})});
       return{busy:out,n:2,err:0,listed:2}})}}}
 function modal(title,body,okText,read){return new Promise(function(res){var w=document.createElement('div');w.className='mdl';
   w.innerHTML='<div class="mbox" role="dialog" aria-modal="true" aria-label="'+esc(title)+'"><h2>'+esc(title)+'</h2>'+body+'<p class="mbt"><button class="ghost" data-x="0">Cancel</button> <button data-x="1">'+esc(okText)+'</button></p><p class="msg" data-err style="color:#b4534f"></p></div>';
