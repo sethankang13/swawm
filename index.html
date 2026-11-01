@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- SWAWM 3.1.3 -->
-<html lang="en" data-swawm="3.1.3">
+<!-- SWAWM 3.1.4 -->
+<html lang="en" data-swawm="3.1.4">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -137,7 +137,7 @@ button.fs{padding:10px 11px}
 @media (pointer:coarse){.sbox{padding-right:18px}.vbar{width:18px}.vbar::before,.vbar i{width:4px}.vbar.on::before,.vbar.on i{width:9px}}
 @media (max-width:760px){.grids{grid-template-columns:minmax(0,1fr)}#gp.pv{white-space:normal;font-size:.8125rem}}
 @media (max-width:600px){main{padding:14px 10px 40px}.topbar{padding:8px 10px 0}.card{padding:12px}h1{font-size:1.375rem}.row>div{min-width:100px}.hh{font-size:.625rem}.vs{max-height:min(360px,50vh)}
-.home-when.row{flex-direction:column;flex-wrap:nowrap;gap:8px}.home-when.row>div{min-width:0;flex:none;width:100%}}
+.home-when.row{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:8px}.home-when.row>div{flex:1 1 100%;width:100%;min-width:100%;max-width:100%}.home-when input[type=date],.home-when input[type=time],.home-when select{width:100%;min-width:0}.home-when input[type=date]::-webkit-calendar-picker-indicator,.home-when input[type=time]::-webkit-calendar-picker-indicator{position:relative;margin-left:4px}}
 html[data-theme="dark"] .home-when select,html[data-theme="dark"] .cust select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23A8A29A' d='M1.2 1.5 6 6.3 10.8 1.5'/%3E%3C/svg%3E")}
 html[data-theme="dark"] .gbtn{background:#fff;color:#1F1F1F;border-color:var(--line)}
 html[data-theme="dark"] button.danger{color:#E08A74;border-color:#E08A74}
@@ -145,7 +145,7 @@ html[data-theme="dark"] button.danger{color:#E08A74;border-color:#E08A74}
 </head>
 <body>
 <header class="topbar" id="topbar">
-<span class="ver" title="SWAWM 3.1.3">3.1.3</span>
+<span class="ver" title="SWAWM 3.1.4">3.1.4</span>
 <div class="hauth" id="hauth"></div>
 <div class="a11y" id="a11y">
 <button type="button" class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel" title="Accessibility">Aa</button>
@@ -546,7 +546,7 @@ function eventView(id){
       function(w){var B=w.querySelector('#fb').value.trim(),L=+w.querySelector('#fl').value,H=+w.querySelector('#fh').value;
         if(!/^\d+$/.test(B)||+B>120)return{error:'Use a whole number of minutes from 0 to 120.'};if(H<=L)return{error:'Latest must be after earliest.'};return{b:+B,l:L,h:H}})
     .then(function(v){if(!v)return;fput(v.b,v.l,v.h);st.textContent='Fill settings saved: '+v.b+'-minute buffer, '+wTime(Z.rs+v.l*STEP)+' to '+wTime(Z.rs+v.h*STEP)+'. Click Fill My Availability to refresh.'})}
-  function calUrl(){return 'https://calendar.google.com/calendar/r/week'+(user&&user.email?'?authuser='+encodeURIComponent(user.email):'')}
+  function calUrl(){var d='',p,x;if(ev&&ev.dates&&ev.dates[0]){p=String(ev.dates[0]).split('-');if(p[2])d=+p[0]+'/'+(+p[1])+'/'+(+p[2])}else if(Z&&Z.cols&&Z.cols[0]){x=new Date(Z.cols[0].w0*6e4);d=x.getUTCFullYear()+'/'+(x.getUTCMonth()+1)+'/'+x.getUTCDate()}return 'https://calendar.google.com/calendar/r/week'+(d?'/'+d:'')+(user&&user.email?'?authuser='+encodeURIComponent(user.email):'')}
   function renderGx(){var g=document.getElementById('gx');if(!g)return;
     if(!AUTH||!AUTH.ready){g.innerHTML='<p class="msg">'+esc(AUTH&&AUTH.why||'Google sign-in is not available.')+'</p>';return}
     if(!user){g.innerHTML='<button class="gbtn" id="gs"><span class="gl">'+GL+'</span><span class="gt">Sign in with Google</span></button><p class="msg" id="gxh">Sign in to fill your availability from Google Calendar.</p><p class="msg" id="gxm"></p>';
@@ -567,7 +567,7 @@ function eventView(id){
   unsubs.push(ref.onSnapshot(function(s){
     var t=document.getElementById('et');
     if(!s.exists){if(!left&&t)t.textContent='Event not found';return}
-    if(first){ev=s.data();STEP=ev.step||30;first=false;if(t)t.textContent=ev.title;Z=layout();showDel();
+    if(first){ev=s.data();STEP=ev.step||30;first=false;if(t)t.textContent=ev.title;Z=layout();var vc=document.getElementById('vc');if(vc)vc.href=calUrl();showDel();
       var sub=document.querySelector('p.sub');if(sub&&!Z.utc)sub.insertAdjacentHTML('beforeend',' This event was created before time zone support, so its times are shown as entered, without conversion.');
       else if(sub&&ev.tz!==VTZ&&tzAbbr(ev.tz))sub.insertAdjacentHTML('beforeend',' Converted from the organizer\'s time zone ('+esc(tzAbbr(ev.tz))+').');
       build(G1);build(G2);fillCustom();wire();paintMine();paintGroup();
